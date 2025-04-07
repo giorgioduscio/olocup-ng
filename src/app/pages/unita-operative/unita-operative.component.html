@@ -1,1 +1,164 @@
-<p>unita-operative works!</p>
+  <!-- modale di aggiunta e modifica -->
+  <app-modal modalId="modaleUnitaOperative">
+      <div class="modal-body p-4">
+        <div class="text-center mb-4">
+          <h2 class="h4 text-primary" id="titoloForm">Aggiungi Unità Operativa</h2>
+          <p class="text-muted small mb-0">I campi contrassegnati dall'asterisco (<span class="text-danger">*</span>) sono obbligatori</p>
+          <hr class="my-3">
+        </div>
+  
+        <form class="row g-4 needs-validation" id="formUnitaOperative" novalidate>
+          <!-- Campo Codice Struttura -->
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="codice_struttura" class="form-label d-block">
+                Codice Struttura <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" id="codice_struttura" name="codice_struttura">
+              <small class="form-text text-muted d-block"></small>
+            </div>
+          </div>
+  
+          <!-- Campo Centro di Costo -->
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="centro_costo" class="form-label d-block">
+                Centro di Costo <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" id="centro_costo" name="centro_costo">
+              <small class="form-text text-muted d-block"></small>
+            </div>
+          </div>
+  
+          <!-- Campo Codice Reparto HL7 -->
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="codice_reparto_hl7" class="form-label d-block">
+                Codice Reparto HL7 <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" id="codice_reparto_hl7" name="codice_reparto_hl7">
+              <small class="form-text text-muted d-block"></small>
+            </div>
+          </div>
+  
+          <!-- Campo Descrizione Codice Reparto HL7 -->
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="codice_reparto_hl7_ds" class="form-label d-block">
+                Descrizione Codice HL7 <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" id="codice_reparto_hl7_ds" name="codice_reparto_hl7_ds">
+              <small class="form-text text-muted d-block"></small>
+            </div>
+          </div>
+  
+          <!-- Campo Unità Operativa -->
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="unita_operativa" class="form-label d-block">
+                Nome Unità Operativa <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" id="unita_operativa" name="unita_operativa">
+              <small class="form-text text-muted d-block"></small>
+            </div>
+          </div>
+  
+          <!-- Pulsanti -->
+          <div class="col-12 mt-4">
+            <div class="d-flex justify-content-between border-top pt-4">
+              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Annulla</button>
+              <button type="submit" class="btn btn-primary" id="pulsanteSubmit">
+                <svg class="icon icon-white icon-sm me-2"><use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use></svg>
+                Conferma aggiunta
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </app-modal>
+  
+  <!-- eliminare unità -->
+  <app-modal modalId="eliminaUnitaOperative">
+    <div class="modal-body p-4">
+      <h3 id="eliminaUnitaOperativeTitle" class="h5 text-primary pb-3">
+        <svg class="icon icon-danger me-2" aria-hidden="true">
+          <use href="../../../bootstrap-italia/svg/sprites.svg#it-warning-circle"></use>
+        </svg> Conferma eliminazione
+      </h3>
+      <p>L'unità operativa sarà eliminata definitivamente.</p>
+      
+      <div class="d-flex justify-content-between align-items-center pt-3">
+        <button class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal" type="button">Annulla</button>
+        <button class="btn btn-danger" type="button" id="btnElimina">
+          <svg class="icon icon-sm icon-white me-2" aria-hidden="true">
+            <use href="../../../bootstrap-italia/svg/sprites.svg#it-delete"></use>
+          </svg>
+          Elimina
+        </button>
+      </div>
+    </div>
+  </app-modal>
+  
+  <!-- visualizza -->
+  <app-header></app-header>
+  <app-navbar-navigazione></app-navbar-navigazione>
+  <div id="routerBreadcrumb"></div>
+
+  <article class="container">
+  <!-- titolo -->
+    <div class="container mb-3">
+      <div class="d-flex justify-content-between flex-wrap gap-3">
+        <div>
+          <h1 class="it-header-title text-primary font-sans-serif">Unità Operative</h1>
+        </div>
+         <!-- botton aggiungi unità operativa -->
+         <div>
+          <button type="button" class="btn btn-primary font-sans-serif align-items-center float-end" id="pulsanteAggiunta"
+            data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
+            <svg class="icon icon-white icon-sm me-2">
+              <use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use>
+            </svg> <span>Aggiungi Unità Operativa</span> 
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <form class="it-search-wrapper" role="search" id="searchForm">
+      <label for="searchInput" class="visually-hidden">Unità operative da cercare</label>
+      <span class="it-search-label"></span>
+      <div class="input-group m-2 mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-white border-end-0">
+            <svg class="icon icon-sm" aria-hidden="true">
+              <use href="/bootstrap-italia/svg/sprites.svg#it-search"></use>
+            </svg>
+          </span>
+        </div>
+        <input 
+          type="search" 
+          id="searchInput" 
+          class="form-control border-start-0" 
+          placeholder="Unità operative da cercare" 
+          aria-label="Unità operative da cercare">
+      </div>
+    </form>
+  
+    <!-- TABELLA -->
+    <div class="p-2" tableContainer>
+      <div class="table-responsive mb-1" >
+        <table class="table table-borderless table-striped table-hover m-0" aria-describedby="tableDescription">
+          <caption class="caption-top ps-2 d-none" id="tableDescription">Tabella delle unità operative</caption>
+          <thead>
+            <tr id="campiTabella"></tr>
+          </thead>
+          <tbody id="corpoTabella"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="paginationContainer" class="mt-4"></div>
+  </article>
+  
+  <!-- backToTop -->
+  <app-back-to-top></app-back-to-top>
+  <!-- footer -->
+  <app-footer></app-footer>
