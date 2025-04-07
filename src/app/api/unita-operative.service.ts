@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import unitaOperativa from '../interfaces/unita-operative';
 
@@ -19,6 +18,7 @@ export class UnitaOperativeService {
     fetch(`${this.url}/${id}`,{ method:'DELETE' }) 
     .then(res=>res.json()) .then(res=>{
       if(res) this.get()
+      console.log('delete', this.unitaOperative() );
     })
   }
   patch(id:number, unita:unitaOperativa){
