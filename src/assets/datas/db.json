@@ -1,0 +1,935 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "fiscalCode": "VRDMRA70A01G273R",
+      "firstName": "Mario",
+      "lastName": "Verdi",
+      "birthDate": "1970-01-12",
+      "gender": "M",
+      "phoneNumber": "333-1234567",
+      "email": null,
+      "address": "Via Libertà 123",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "exemptionCode": null,
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "fiscalCode": "BNCLCU65B41G273E",
+      "firstName": "Lucia",
+      "lastName": "Bianchi",
+      "birthDate": "1965-02-01",
+      "gender": "F",
+      "phoneNumber": "333-7654321",
+      "email": null,
+      "address": "Via Roma 45",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "exemptionCode": null,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "fiscalCode": "RSSMRA80A01H501U",
+      "firstName": "Mario",
+      "lastName": "Rossi",
+      "birthDate": "1980-01-01",
+      "gender": "M",
+      "phoneNumber": "0912345678",
+      "email": "mario.rossi@email.com",
+      "address": "Via Roma 123",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "exemptionCode": "E01",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "fiscalCode": "RSSMRA75C51G273W",
+      "firstName": "Maria",
+      "lastName": "Rossi",
+      "birthDate": "1975-03-11",
+      "gender": "F",
+      "phoneNumber": "333-9876543",
+      "email": null,
+      "address": "Via Maqueda 78",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "exemptionCode": null,
+      "notes": ""
+    }
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "code": "RAD",
+      "name": "Radiologia",
+      "branchTypeId": 3,
+      "branchCode": "08",
+      "status": "active",
+      "requiresValidation": true,
+      "includeInReports": true,
+      "revenueCenter": true,
+      "notes": "Reparto di Radiologia - Piano 2, Scala A"
+    },
+    {
+      "id": 2,
+      "code": "CAR",
+      "name": "Cardiologia",
+      "branchTypeId": 4,
+      "branchCode": "02",
+      "status": "active",
+      "requiresValidation": true,
+      "includeInReports": true,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "code": "NEU",
+      "name": "Neurologia",
+      "branchTypeId": 4,
+      "branchCode": null,
+      "status": "active",
+      "requiresValidation": true,
+      "includeInReports": true,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "code": "ORT",
+      "name": "Ortopedia",
+      "branchTypeId": 2,
+      "branchCode": null,
+      "status": "suspended",
+      "requiresValidation": true,
+      "includeInReports": true,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "code": "OFT",
+      "name": "Oftalmologia",
+      "branchTypeId": 4,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    }
+  ],
+  "branchTypes": [
+    {
+      "id": 1,
+      "name": "Medicina Generale"
+    },
+    {
+      "id": 2,
+      "name": "Chirurgia"
+    },
+    {
+      "id": 3,
+      "name": "Diagnostica per immagini"
+    },
+    {
+      "id": 4,
+      "name": "Medicina Specialistica"
+    },
+    {
+      "id": 5,
+      "name": "Laboratorio Analisi"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "firstName": "Mario",
+      "lastName": "Bianchi",
+      "title": "Dr.",
+      "departmentIds": [2, 1],
+      "phone": "0912345111",
+      "email": "mario.bianchi@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "firstName": "Anna",
+      "lastName": "Rossi",
+      "title": "Dr.ssa",
+      "departmentIds": [2],
+      "phone": "0912345222",
+      "email": "anna.rossi@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "firstName": "Paolo",
+      "lastName": "Verdi",
+      "title": "Dr.",
+      "departmentIds": [3],
+      "phone": "0912345333",
+      "email": "paolo.verdi@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "firstName": "Silvia",
+      "lastName": "Neri",
+      "title": "Dr.ssa",
+      "departmentIds": [2],
+      "phone": "0912345444",
+      "email": "silvia.neri@olocup.it",
+      "status": "active"
+    }
+  ],
+  "facilities": [
+    {
+      "id": 1,
+      "name": "Policlinico Universitario",
+      "address": "Via Roma 123",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "phone": "0917891234",
+      "email": "info@policlinico.it"
+    },
+    {
+      "id": 2,
+      "name": "Ospedale Centrale",
+      "address": "Via Libertà 45",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "phone": "0917895678",
+      "email": "info@ospedalecentrale.it"
+    },
+    {
+      "id": 3,
+      "name": "Centro Diagnostico Est",
+      "address": "Via Messina 78",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "phone": "0917899876",
+      "email": "info@centrodiagnostico.it"
+    },
+    {
+      "id": 4,
+      "name": "Poliambulatorio Nord",
+      "address": "Via Dante 22",
+      "city": "Palermo",
+      "postalCode": "90100",
+      "province": "PA",
+      "phone": "0917893456",
+      "email": "info@poliambulatorio.it"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "code": "89.7A.3",
+      "name": "Visita Cardiologica",
+      "description": "Visita specialistica cardiologica completa",
+      "defaultDuration": 30,
+      "preparationTime": 5,
+      "departmentId": 2,
+      "ticketCost": 36.15,
+      "privatePrice": 120,
+      "notes": "Portare documentazione clinica precedente. Presentarsi 15 minuti prima dell'appuntamento per pratiche amministrative.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Eventuali esami precedenti"
+      ],
+      "priorityCodes": ["U", "B", "D", "P"]
+    },
+    {
+      "id": 2,
+      "code": "E002",
+      "name": "Elettrocardiogramma",
+      "description": "Elettrocardiogramma a riposo",
+      "defaultDuration": 15,
+      "preparationTime": 5,
+      "departmentId": 2,
+      "ticketCost": 20.50,
+      "privatePrice": 50,
+      "notes": "",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante"
+      ],
+      "priorityCodes": ["U", "B", "D", "P"]
+    },
+    {
+      "id": 3,
+      "code": "E003",
+      "name": "Ecocardiogramma",
+      "description": "Ecocardiogramma color doppler",
+      "defaultDuration": 40,
+      "preparationTime": 10,
+      "departmentId": 2,
+      "ticketCost": 51.65,
+      "privatePrice": 130,
+      "notes": "",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante"
+      ],
+      "priorityCodes": ["U", "B", "D", "P"]
+    },
+    {
+      "id": 4,
+      "code": "E004",
+      "name": "RX Torace",
+      "description": "Radiografia del torace in 2 proiezioni",
+      "defaultDuration": 15,
+      "preparationTime": 5,
+      "departmentId": 1,
+      "ticketCost": 25.40,
+      "privatePrice": 70,
+      "notes": "",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante"
+      ],
+      "priorityCodes": ["U", "B", "D", "P"]
+    },
+    {
+      "id": 5,
+      "code": "E005",
+      "name": "TAC Cranio",
+      "description": "Tomografia computerizzata del cranio senza mezzo di contrasto",
+      "defaultDuration": 35,
+      "preparationTime": 15,
+      "departmentId": 1,
+      "ticketCost": 87.30,
+      "privatePrice": 220,
+      "notes": "A digiuno da 6 ore",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Esami del sangue recenti"
+      ],
+      "priorityCodes": ["U", "B", "D", "P"]
+    }
+  ],
+  "agendas": [
+    {
+      "id": 1,
+      "name": "Cardiologia - Dr. Bianchi",
+      "code": "CAR01",
+      "facilityId": 1,
+      "departmentId": 2,
+      "doctorId": 1,
+      "location": "Ambulatorio Cardiologia 3",
+      "startDate": "2025-01-01",
+      "endDate": null,
+      "slotDuration": 15,
+      "minSlotDuration": 10,
+      "disableOverflow": false,
+      "maxPvVisits": 20,
+      "maxCoVisits": 15,
+      "multipleBookingsAllowed": true,
+      "disableDuplicateBookings": true,
+      "serviceIds": [1, 2, 3],
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Cardiologia - Dr.ssa Rossi",
+      "code": "CAR02",
+      "facilityId": 2,
+      "departmentId": 2,
+      "doctorId": 2,
+      "location": "Cardiologia",
+      "startDate": "2025-01-01",
+      "endDate": null,
+      "slotDuration": 15,
+      "minSlotDuration": 10,
+      "disableOverflow": false,
+      "maxPvVisits": 20,
+      "maxCoVisits": 15,
+      "multipleBookingsAllowed": true,
+      "disableDuplicateBookings": true,
+      "serviceIds": [1, 2, 3],
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "name": "Cardiologia ALPI - Dr. Bianchi",
+      "code": "CAR03",
+      "facilityId": 1,
+      "departmentId": 2,
+      "doctorId": 1,
+      "location": "Studio 12",
+      "startDate": "2025-01-01",
+      "endDate": null,
+      "slotDuration": 15,
+      "minSlotDuration": 10,
+      "disableOverflow": true,
+      "maxPvVisits": 15,
+      "maxCoVisits": 10,
+      "multipleBookingsAllowed": false,
+      "disableDuplicateBookings": true,
+      "serviceIds": [1, 2, 3],
+      "status": "active"
+    }
+  ],
+  "agendaSchedules": [
+    {
+      "id": 1,
+      "agendaId": 1,
+      "dayOfWeek": 1,
+      "startTimeMorning": "08:00",
+      "endTimeMorning": "13:00",
+      "startTimeAfternoon": "15:00",
+      "endTimeAfternoon": "19:00",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "agendaId": 1,
+      "dayOfWeek": 2,
+      "startTimeMorning": "08:00",
+      "endTimeMorning": "13:00",
+      "startTimeAfternoon": "15:00",
+      "endTimeAfternoon": "19:00",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "agendaId": 1,
+      "dayOfWeek": 3,
+      "startTimeMorning": "08:00",
+      "endTimeMorning": "13:00",
+      "startTimeAfternoon": "15:00",
+      "endTimeAfternoon": "19:00",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "agendaId": 1,
+      "dayOfWeek": 4,
+      "startTimeMorning": "08:00",
+      "endTimeMorning": "13:00",
+      "startTimeAfternoon": "15:00",
+      "endTimeAfternoon": "19:00",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "agendaId": 1,
+      "dayOfWeek": 5,
+      "startTimeMorning": "08:00",
+      "endTimeMorning": "13:00",
+      "startTimeAfternoon": "15:00",
+      "endTimeAfternoon": "19:00",
+      "status": "active"
+    },
+    {
+      "id": 6,
+      "agendaId": 1,
+      "dayOfWeek": 6,
+      "startTimeMorning": null,
+      "endTimeMorning": null,
+      "startTimeAfternoon": null,
+      "endTimeAfternoon": null,
+      "status": "inactive"
+    }
+  ],
+  "scheduleSuspensions": [
+    {
+      "id": 1,
+      "agendaId": 1,
+      "startDate": "2025-03-15",
+      "endDate": "2025-03-22",
+      "suspensionType": "closure",
+      "notes": "Chiusura per festività"
+    }
+  ],
+  "slots": [
+    {
+      "id": 1,
+      "agendaId": 1,
+      "date": "2025-02-17",
+      "time": "08:00",
+      "durationMinutes": 30,
+      "priority": "U",
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "agendaId": 1,
+      "date": "2025-02-17",
+      "time": "08:30",
+      "durationMinutes": 30,
+      "priority": "B",
+      "status": "available"
+    },
+    {
+      "id": 3,
+      "agendaId": 1,
+      "date": "2025-02-17",
+      "time": "09:00",
+      "durationMinutes": 30,
+      "priority": "D",
+      "status": "available"
+    },
+    {
+      "id": 4,
+      "agendaId": 1,
+      "date": "2025-02-17",
+      "time": "09:30",
+      "durationMinutes": 30,
+      "priority": "P",
+      "status": "available"
+    },
+    {
+      "id": 5,
+      "agendaId": 1,
+      "date": "2025-02-17",
+      "time": "10:00",
+      "durationMinutes": 30,
+      "priority": "B",
+      "status": "available"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "patientId": 3,
+      "appointmentDate": "2025-02-15",
+      "appointmentTime": "09:30",
+      "agendaId": 1,
+      "serviceId": 1,
+      "doctorId": 1,
+      "priorityCode": "D",
+      "status": "completed",
+      "notes": "",
+      "prescriptionNumber": "NRE7654321",
+      "prescriptionDate": "2025-02-01",
+      "prescriptionDoctorName": "Dr. Bianchi",
+      "accessType": "first",
+      "exemptionCode": "E01"
+    },
+    {
+      "id": 2,
+      "patientId": 3,
+      "appointmentDate": "2025-03-10",
+      "appointmentTime": "12:00",
+      "agendaId": 2,
+      "serviceId": 4,
+      "doctorId": 2,
+      "priorityCode": "P",
+      "status": "booked",
+      "notes": "",
+      "prescriptionNumber": "NRE1234567",
+      "prescriptionDate": "2025-03-01",
+      "prescriptionDoctorName": "Dr. Rossi",
+      "accessType": "first",
+      "exemptionCode": "E01"
+    }
+  ],
+  "prescriptions": [
+    {
+      "id": 1,
+      "patientId": 3,
+      "prescriptionNumber": "NRE1234567",
+      "prescriptionDate": "2025-03-01",
+      "doctorName": "Dr. Rossi",
+      "services": [
+        {
+          "serviceId": 1,
+          "quantity": 1
+        }
+      ],
+      "status": "to_book"
+    },
+    {
+      "id": 2,
+      "patientId": 3,
+      "prescriptionNumber": "NRE7654321",
+      "prescriptionDate": "2025-02-15",
+      "doctorName": "Dr. Bianchi",
+      "services": [
+        {
+          "serviceId": 4,
+          "quantity": 1
+        }
+      ],
+      "status": "booked"
+    }
+  ],
+  "invoices": [
+    {
+      "id": 1,
+      "invoiceNumber": "2025/001234",
+      "invoiceDate": "2025-03-01",
+      "invoiceType": "FT",
+      "patientId": 3,
+      "patientName": "Rossi Mario",
+      "fiscalCode": "RSSMRA80A01H501U",
+      "address": "Via Roma 123",
+      "city": "Palermo",
+      "province": "PA",
+      "items": [
+        {
+          "id": 1,
+          "code": "89.7",
+          "description": "Visita cardiologica",
+          "quantity": 1,
+          "amount": 85.00,
+          "vatExempt": true
+        }
+      ],
+      "totalAmount": 85.00,
+      "taxAmount": 0.00,
+      "status": "paid",
+      "paymentMethod": "Contanti",
+      "paymentDate": "2025-03-01",
+      "paymentAmount": 85.00,
+      "sdiCode": null,
+      "pec": null,
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "invoiceNumber": "2025/001233",
+      "invoiceDate": "2025-03-01",
+      "invoiceType": "FT",
+      "patientId": null,
+      "patientName": "Verdi Giuseppe",
+      "fiscalCode": "VRDGPP75M01H501Z",
+      "address": "Via Libertà 45",
+      "city": "Palermo",
+      "province": "PA",
+      "items": [
+        {
+          "id": 1,
+          "code": "89.7",
+          "description": "Visita cardiologica",
+          "quantity": 1,
+          "amount": 110.00,
+          "vatExempt": true
+        }
+      ],
+      "totalAmount": 110.00,
+      "taxAmount": 0.00,
+      "status": "unpaid",
+      "paymentMethod": null,
+      "paymentDate": null,
+      "paymentAmount": 0.00,
+      "sdiCode": null,
+      "pec": null,
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "invoiceNumber": "2025/000024",
+      "invoiceDate": "2025-02-28",
+      "invoiceType": "NC",
+      "patientId": null,
+      "patientName": "Bianchi Anna",
+      "fiscalCode": "BNCNNA65A41H501Y",
+      "address": "Via Maqueda 22",
+      "city": "Palermo",
+      "province": "PA",
+      "items": [
+        {
+          "id": 1,
+          "code": "89.7",
+          "description": "Visita cardiologica",
+          "quantity": 1,
+          "amount": 55.00,
+          "vatExempt": true
+        }
+      ],
+      "totalAmount": 55.00,
+      "taxAmount": 0.00,
+      "status": "paid",
+      "paymentMethod": "POS",
+      "paymentDate": "2025-02-28",
+      "paymentAmount": 55.00,
+      "sdiCode": null,
+      "pec": null,
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "invoiceNumber": "2025/001232",
+      "invoiceDate": "2025-02-28",
+      "invoiceType": "FT",
+      "patientId": null,
+      "patientName": "Centro Medico Salute Srl",
+      "fiscalCode": "01234567890",
+      "address": "Via Roma 78",
+      "city": "Palermo",
+      "province": "PA",
+      "items": [
+        {
+          "id": 1,
+          "code": "89.7",
+          "description": "Visite cardiologiche",
+          "quantity": 5,
+          "amount": 450.00,
+          "vatExempt": true
+        }
+      ],
+      "totalAmount": 450.00,
+      "taxAmount": 0.00,
+      "status": "draft",
+      "paymentMethod": null,
+      "paymentDate": null,
+      "paymentAmount": 0.00,
+      "sdiCode": "ABC123",
+      "pec": "info@centromedico.it",
+      "notes": ""
+    }
+  ],
+  "priorities": [
+    {
+      "id": "U",
+      "name": "Urgente",
+      "maxWaitDays": 3,
+      "color": "#f73e5a"
+    },
+    {
+      "id": "B",
+      "name": "Breve",
+      "maxWaitDays": 10,
+      "color": "#ff9900"
+    },
+    {
+      "id": "D",
+      "name": "Differita",
+      "maxWaitDays": 30,
+      "color": "#0073e6"
+    },
+    {
+      "id": "P",
+      "name": "Programmabile",
+      "maxWaitDays": 180,
+      "color": "#008758"
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": 1,
+      "code": "CASH",
+      "name": "Contanti"
+    },
+    {
+      "id": 2,
+      "code": "POS",
+      "name": "POS"
+    },
+    {
+      "id": 3,
+      "code": "BANK",
+      "name": "Bonifico"
+    }
+  ],
+  "exemptions": [
+    {
+      "id": 1,
+      "code": "E01",
+      "description": "Reddito inferiore"
+    },
+    {
+      "id": 2,
+      "code": "E02",
+      "description": "Disoccupazione"
+    },
+    {
+      "id": 3,
+      "code": "E03",
+      "description": "Pensione minima"
+    },
+    {
+      "id": 4,
+      "code": "E04",
+      "description": "Età > 65 anni"
+    }
+  ],
+  "serviceTypes": [
+    {
+      "id": 1,
+      "code": "SSN",
+      "name": "SSN",
+      "color": "primary"
+    },
+    {
+      "id": 2,
+      "code": "ALPI",
+      "name": "ALPI",
+      "color": "warning"
+    },
+    {
+      "id": 3,
+      "code": "CONV",
+      "name": "Convenzionati",
+      "color": "info"
+    }
+  ],
+  "settings": {
+    "companyName": "OloCUP3",
+    "companyAddress": "Via Roma 123, Palermo",
+    "companyPhone": "091-1234567",
+    "companyEmail": "info@olocup.it",
+    "companyVatNumber": "IT12345678901",
+    "version": "3.5.2",
+    "lastUpdate": "2023-01-15"
+  },
+"unitaOperative": [
+    {
+      "id": 1,
+      "codice_struttura": "STR001",
+      "unita_operativa": "Chirurgia Generale",
+      "centro_costo": "CC011",
+      "codice_reparto_hl7": "HL7001",
+      "codice_reparto_hl7_ds": "Chirurgia Generale HL7"
+    },
+    {
+      "id": 3,
+      "codice_struttura": "STR003",
+      "unita_operativa": "Pediatria",
+      "centro_costo": "CC005",
+      "codice_reparto_hl7": "HL7003",
+      "codice_reparto_hl7_ds": "Pediatria HL7"
+    },
+    {
+      "id": 2,
+      "codice_struttura": "STR002",
+      "unita_operativa": "Ortopedia",
+      "centro_costo": "CC001",
+      "codice_reparto_hl7": "HL7002",
+      "codice_reparto_hl7_ds": "Ortopedia HL7"
+    },
+    {
+      "id": 4,
+      "codice_struttura": "STR004",
+      "unita_operativa": "Cardiologia",
+      "centro_costo": "CC012",
+      "codice_reparto_hl7": "HL7004",
+      "codice_reparto_hl7_ds": "Cardiologia HL7"
+    },
+    {
+      "id": 5,
+      "codice_struttura": "STR005",
+      "unita_operativa": "Neurologia",
+      "centro_costo": "CC015",
+      "codice_reparto_hl7": "HL7005",
+      "codice_reparto_hl7_ds": "Neurologia HL7"
+    },
+    {
+      "id": 6,
+      "codice_struttura": "STR006",
+      "unita_operativa": "Oncologia",
+      "centro_costo": "CC020",
+      "codice_reparto_hl7": "HL7006",
+      "codice_reparto_hl7_ds": "Oncologia HL7"
+    },
+    {
+      "id": 7,
+      "codice_struttura": "STR007",
+      "unita_operativa": "Radiologia",
+      "centro_costo": "CC025",
+      "codice_reparto_hl7": "HL7007",
+      "codice_reparto_hl7_ds": "Radiologia HL7"
+    },
+    {
+      "id": 8,
+      "codice_struttura": "STR008",
+      "unita_operativa": "Pronto Soccorso",
+      "centro_costo": "CC030",
+      "codice_reparto_hl7": "HL7008",
+      "codice_reparto_hl7_ds": "Pronto Soccorso HL7"
+    },
+    {
+      "id": 9,
+      "codice_struttura": "STR009",
+      "unita_operativa": "Ginecologia e Ostetricia",
+      "centro_costo": "CC035",
+      "codice_reparto_hl7": "HL7009",
+      "codice_reparto_hl7_ds": "Ginecologia e Ostetricia HL7"
+    },
+    {
+      "id": 11,
+      "codice_struttura": "STR010",
+      "unita_operativa": "Nefrologia",
+      "centro_costo": "CC040",
+      "codice_reparto_hl7": "HL7010",
+      "codice_reparto_hl7_ds": "Nefrologia HL7"
+    },
+    {
+      "id": 10,
+      "codice_struttura": "STR011",
+      "unita_operativa": "Dermatologia",
+      "centro_costo": "CC045",
+      "codice_reparto_hl7": "HL7011",
+      "codice_reparto_hl7_ds": "Dermatologia HL7"
+    },
+    {
+      "id": 12,
+      "codice_struttura": "STR012",
+      "unita_operativa": "Oculistica",
+      "centro_costo": "CC050",
+      "codice_reparto_hl7": "HL7012",
+      "codice_reparto_hl7_ds": "Oculistica HL7"
+    },
+    {
+      "id": 13,
+      "codice_struttura": "STR013",
+      "unita_operativa": "Psichiatria",
+      "centro_costo": "CC055",
+      "codice_reparto_hl7": "HL7013",
+      "codice_reparto_hl7_ds": "Psichiatria HL7"
+    },
+    {
+      "id": 16,
+      "codice_struttura": "STR014",
+      "unita_operativa": "Riabilitazione",
+      "centro_costo": "CC060",
+      "codice_reparto_hl7": "HL7014",
+      "codice_reparto_hl7_ds": "Riabilitazione HL7"
+    },
+    {
+      "id": 15,
+      "codice_struttura": "STR015",
+      "unita_operativa": "Medicina Interna",
+      "centro_costo": "CC065",
+      "codice_reparto_hl7": "HL7015",
+      "codice_reparto_hl7_ds": "Medicina Interna HL7"
+    },
+    {
+      "id": 14,
+      "codice_struttura": "STR016",
+      "unita_operativa": "Anestesia e Rianimazione",
+      "centro_costo": "CC070",
+      "codice_reparto_hl7": "HL7016",
+      "codice_reparto_hl7_ds": "Anestesia e Rianimazione HL7"
+    }
+  ]
+  
+
+  
+}
