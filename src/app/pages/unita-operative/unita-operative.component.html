@@ -1,81 +1,143 @@
 <!-- modale di aggiunta e modifica -->
 <app-modal modalId="modaleUnitaOperative">
-    <div class="modal-body p-4">
-      <div class="text-center mb-4">
-        <h2 class="h4 text-primary" id="titoloForm">Aggiungi Unità Operativa</h2>
-        <p class="text-muted small mb-0">I campi contrassegnati dall'asterisco (<span class="text-danger">*</span>) sono obbligatori</p>
-        <hr class="my-3">
+  <div class="modal-body p-4">
+    <div class="text-center mb-4">
+      <h2 class="h4 text-primary">{{isAddMode ? 'Aggiungi' : 'Modifica'}} Unità Operativa</h2>
+      <p class="text-muted small mb-0">I campi contrassegnati dall'asterisco (<span class="text-danger">*</span>) sono obbligatori</p>
+      <hr class="my-3">
+    </div>
+
+    <form [formGroup]="form" class="row g-4 needs-validation" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Campo Codice Struttura -->
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="codice_struttura" class="form-label d-block" [class.active]="form.get('codice_struttura')?.touched || form.get('codice_struttura')?.value">
+            Codice Struttura <span class="text-danger">*</span>
+          </label>
+          <input type="text" class="form-control" id="codice_struttura" 
+                formControlName="codice_struttura"
+                [class.is-invalid]="showErrors && form.get('codice_struttura')?.invalid"
+                [class.is-valid]="showErrors && form.get('codice_struttura')?.valid">
+          <div *ngIf="showErrors">
+            <div *ngIf="form.get('codice_struttura')?.invalid">
+              <span *ngIf="form.get('codice_struttura')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
+              <span *ngIf="form.get('codice_struttura')?.errors?.['minlength'] || form.get('codice_struttura')?.errors?.['maxlength']" class="text-danger">
+                Il codice deve essere esattamente 6 caratteri
+              </span>
+            </div>
+            <div *ngIf="form.get('codice_struttura')?.valid">
+              <span class="text-success">Campo valido</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <form class="row g-4 needs-validation" id="formUnitaOperative" novalidate>
-        <!-- Campo Codice Struttura -->
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="codice_struttura" class="form-label d-block">
-              Codice Struttura <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" id="codice_struttura" name="codice_struttura">
-            <small class="form-text text-muted d-block"></small>
+      <!-- Campo Unità Operativa -->
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="unita_operativa" class="form-label d-block" [class.active]="form.get('unita_operativa')?.touched || form.get('unita_operativa')?.value">
+            Unità Operativa <span class="text-danger">*</span>
+          </label>
+          <input type="text" class="form-control" id="unita_operativa" 
+                formControlName="unita_operativa"
+                [class.is-invalid]="showErrors && form.get('unita_operativa')?.invalid"
+                [class.is-valid]="showErrors && form.get('unita_operativa')?.valid">
+          <div *ngIf="showErrors">
+            <div *ngIf="form.get('unita_operativa')?.invalid">
+              <span *ngIf="form.get('unita_operativa')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
+            </div>
+            <div *ngIf="form.get('unita_operativa')?.valid">
+              <span class="text-success">Campo valido</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Campo Centro di Costo -->
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="centro_costo" class="form-label d-block">
-              Centro di Costo <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" id="centro_costo" name="centro_costo">
-            <small class="form-text text-muted d-block"></small>
+      <!-- Campo Centro Costo -->
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="centro_costo" class="form-label d-block" [class.active]="form.get('centro_costo')?.touched || form.get('centro_costo')?.value">
+            Centro Costo <span class="text-danger">*</span>
+          </label>
+          <input type="text" class="form-control" id="centro_costo" 
+                formControlName="centro_costo"
+                [class.is-invalid]="showErrors && form.get('centro_costo')?.invalid"
+                [class.is-valid]="showErrors && form.get('centro_costo')?.valid">
+          <div *ngIf="showErrors">
+            <div *ngIf="form.get('centro_costo')?.invalid">
+              <span *ngIf="form.get('centro_costo')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
+              <span *ngIf="form.get('centro_costo')?.errors?.['minlength'] || form.get('centro_costo')?.errors?.['maxlength']" class="text-danger">
+                Il centro costo deve essere esattamente 5 caratteri
+              </span>
+            </div>
+            <div *ngIf="form.get('centro_costo')?.valid">
+              <span class="text-success">Campo valido</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Campo Codice Reparto HL7 -->
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="codice_reparto_hl7" class="form-label d-block">
-              Codice Reparto HL7 <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" id="codice_reparto_hl7" name="codice_reparto_hl7">
-            <small class="form-text text-muted d-block"></small>
+      <!-- Campo Codice Reparto HL7 -->
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="codice_reparto_hl7" class="form-label d-block" [class.active]="form.get('codice_reparto_hl7')?.touched || form.get('codice_reparto_hl7')?.value">
+            Codice Reparto HL7 <span class="text-danger">*</span>
+          </label>
+          <input type="text" class="form-control" id="codice_reparto_hl7" 
+                formControlName="codice_reparto_hl7"
+                [class.is-invalid]="showErrors && form.get('codice_reparto_hl7')?.invalid"
+                [class.is-valid]="showErrors && form.get('codice_reparto_hl7')?.valid">
+          <div *ngIf="showErrors">
+            <div *ngIf="form.get('codice_reparto_hl7')?.invalid">
+              <span *ngIf="form.get('codice_reparto_hl7')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
+              <span *ngIf="form.get('codice_reparto_hl7')?.errors?.['minlength'] || form.get('codice_reparto_hl7')?.errors?.['maxlength']" class="text-danger">
+                Il codice deve essere esattamente 6 caratteri
+              </span>
+            </div>
+            <div *ngIf="form.get('codice_reparto_hl7')?.valid">
+              <span class="text-success">Campo valido</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Campo Descrizione Codice Reparto HL7 -->
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="codice_reparto_hl7_ds" class="form-label d-block">
-              Descrizione Codice HL7 <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" id="codice_reparto_hl7_ds" name="codice_reparto_hl7_ds">
-            <small class="form-text text-muted d-block"></small>
+      <!-- Campo Descrizione Codice HL7 -->
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="codice_reparto_hl7_ds" class="form-label d-block" [class.active]="form.get('codice_reparto_hl7_ds')?.touched || form.get('codice_reparto_hl7_ds')?.value">
+            Descrizione Codice HL7 <span class="text-danger">*</span>
+          </label>
+          <input type="text" class="form-control" id="codice_reparto_hl7_ds" 
+                formControlName="codice_reparto_hl7_ds"
+                [class.is-invalid]="showErrors && form.get('codice_reparto_hl7_ds')?.invalid"
+                [class.is-valid]="showErrors && form.get('codice_reparto_hl7_ds')?.valid">
+          <div *ngIf="showErrors">
+            <div *ngIf="form.get('codice_reparto_hl7_ds')?.invalid">
+              <span *ngIf="form.get('codice_reparto_hl7_ds')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
+            </div>
+            <div *ngIf="form.get('codice_reparto_hl7_ds')?.valid">
+              <span class="text-success">Campo valido</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Campo Unità Operativa -->
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="unita_operativa" class="form-label d-block">
-              Nome Unità Operativa <span class="text-danger">*</span>
-            </label>
-            <input type="text" class="form-control" id="unita_operativa" name="unita_operativa">
-            <small class="form-text text-muted d-block"></small>
-          </div>
+      <!-- Pulsanti -->
+      <div class="col-12 mt-4">
+        <div class="d-flex justify-content-between border-top pt-4">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Annulla</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!isAddMode && !isFormModified()" 
+            [attr.data-bs-dismiss]="form.valid ? 'modal' : null">
+            <svg class="icon icon-white icon-sm me-2"><use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use></svg>
+            Conferma {{isAddMode ? 'aggiunta' : 'modifica'}}
+          </button>
         </div>
+      </div>
+    </form>
 
-        <!-- Pulsanti -->
-        <div class="col-12 mt-4">
-          <div class="d-flex justify-content-between border-top pt-4">
-            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Annulla</button>
-            <button type="submit" class="btn btn-primary" id="pulsanteSubmit">
-              <svg class="icon icon-white icon-sm me-2"><use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use></svg>
-              Conferma aggiunta
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+  </div>
 </app-modal>
+
 
 <!-- eliminare unità -->
 <app-modal modalId="eliminaUnitaOperative">
@@ -99,6 +161,7 @@
   </div>
 </app-modal>
 
+
 <!-- visualizza -->
 <app-header></app-header>
 <app-navbar-navigazione></app-navbar-navigazione>
@@ -106,14 +169,14 @@
 
 <article class="container">
   <!-- titolo -->
-  <div class="container mb-3">
-    <div class="d-flex justify-content-between flex-wrap gap-3">
+  <div class="container m-2">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
       <div>
         <h1 class="it-header-title text-primary font-sans-serif">Unità Operative</h1>
       </div>
         <!-- botton aggiungi unità operativa -->
         <div>
-        <button type="button" class="btn btn-primary font-sans-serif align-items-center float-end" id="pulsanteAggiunta"
+        <button type="button" class="btn btn-primary font-sans-serif align-items-center float-end" (click)="formInit(undefined)"
           data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
           <svg class="icon icon-white icon-sm me-2">
             <use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use>
@@ -183,7 +246,7 @@
                   <use href="../../../../bootstrap-italia/svg/sprites.svg#it-delete"></use>
                 </svg>
               </button>
-              <button class="btn btn-sm btn-icon btn-success p-2" id="${unita.id}" aria-label="Elimina"
+              <button class="btn btn-sm btn-icon btn-success p-2" (click)="formInit(unita)" aria-label="Elimina"
                 type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
                 <svg class="icon icon-sm icon-white">
                   <use href="../../../../bootstrap-italia/svg/sprites.svg#it-pencil"></use>

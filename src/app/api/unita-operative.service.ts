@@ -26,6 +26,8 @@ export class UnitaOperativeService {
       method:'PATCH', body:JSON.stringify(unita), headers:{'Content-Type':'application/json'}
     }) .then(res=>res.json()).then(res=>{
       if(res) this.get()
+        console.log('patch', this.unitaOperative() );
+        
     })
   }
   post(unita:unitaOperativa){
@@ -33,6 +35,8 @@ export class UnitaOperativeService {
       method:'POST', body:JSON.stringify(unita), headers:{'Content-Type':'application/json'}
     }).then(res=>res.json()).then(res=>{
       if(res) this.get()
+      console.log('post', this.unitaOperative() );
+        
     })
   }
 
