@@ -8,13 +8,13 @@ import { UnitaOperativeService } from '../../api/unita-operative.service';
 import { NgFor, NgIf } from '@angular/common';
 import unitaOperativa from '../../interfaces/unita-operative';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RoutesBreadcrumbComponent } from "../../components/routes-breadcrumb/routes-breadcrumb.component";
 
 @Component({
   selector: 'app-unita-operative',
   standalone: true,
   imports: [ModalComponent, HeaderComponent, NavbarNavigazioneComponent, BackToTopComponent, FooterComponent,
-    NgFor, NgIf, FormsModule, ReactiveFormsModule,
-  ],
+    NgFor, NgIf, FormsModule, ReactiveFormsModule, RoutesBreadcrumbComponent],
   templateUrl: './unita-operative.component.html',
   styleUrl: './unita-operative.component.sass'
 })
@@ -203,9 +203,7 @@ export class UnitaOperativeComponent {
     };
     
     // @ts-ignore // asseconda json server
-    if(typeof formData.id==='number') formData.id =formData.id.toString()
-    // console.log(formData);
-      
+    if(typeof formData.id==='number') formData.id =formData.id.toString()      
     
     if (this.isAddMode) this.uos.post(formData);
     else this.uos.patch(formData.id, formData);
