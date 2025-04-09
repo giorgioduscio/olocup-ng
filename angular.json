@@ -36,6 +36,7 @@
               "src/assets/bootstrap-italia/css/bootstrap-italia.min.css"
             ],
             "scripts": [
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "src/assets/bootstrap-italia/js/bootstrap-italia.min.js"
             ]
           },

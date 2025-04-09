@@ -9,21 +9,23 @@ import { NgFor, NgIf } from '@angular/common';
 import unitaOperativa from '../../interfaces/unita-operative';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RoutesBreadcrumbComponent } from "../../components/routes-breadcrumb/routes-breadcrumb.component";
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-unita-operative',
   standalone: true,
-  imports: [ModalComponent, HeaderComponent, NavbarNavigazioneComponent, BackToTopComponent, FooterComponent,
+  imports: [ModalComponent, HeaderComponent, NavbarNavigazioneComponent, BackToTopComponent, FooterComponent, PaginationComponent,
     NgFor, NgIf, FormsModule, ReactiveFormsModule, RoutesBreadcrumbComponent],
   templateUrl: './unita-operative.component.html',
   styleUrl: './unita-operative.component.sass'
 })
 export class UnitaOperativeComponent {
   constructor(public uos: UnitaOperativeService){
-    effect(()=>{
-      this.unitaOperative =uos.unitaOperative()
-      // console.log( 'effect', this.unitaOperative )
-    })
+    effect(() => {
+      this.filteredUnits = this.uos.unitaOperative(); // tutti i dati
+      if (this.filteredUnits.length === 0) return;
+      this.paginatedUnits();
+    });
   }
 
   // VISUALIZZAZIONE
@@ -39,18 +41,13 @@ export class UnitaOperativeComponent {
 
   // FILTRI
   filter =''
+  filteredUnits: unitaOperativa[] = [];
   setFilter(e: Event) {
     const { value } = e.target as HTMLInputElement;
     this.filter = value;
-
-    this.unitaOperative = this.uos.unitaOperative().filter(uo =>
-      Object.values(uo).some(val =>
-        typeof val === 'string' &&
-        val.toLowerCase().includes(value.toLowerCase())
-      )
-    );
+    this.applySortFilter();
   }
-
+  
   // ORDINAMENTO
   sortColumn: keyof unitaOperativa | null = null;
   sortDirection: 'asc' | 'desc' | '' = '';
@@ -75,20 +72,19 @@ export class UnitaOperativeComponent {
   applySortFilter() {
     const value = this.filter.toLowerCase();
   
-    let result = this.uos.unitaOperative().filter(uo =>
+    this.filteredUnits = this.uos.unitaOperative().filter(uo =>
       Object.values(uo).some(val =>
         typeof val === 'string' && val.toLowerCase().includes(value)
       )
     );
   
     if (this.sortColumn && this.sortDirection !== '') {
-      result = result.sort((a, b) => {
+      this.filteredUnits = this.filteredUnits.sort((a, b) => {
         let valA = a[this.sortColumn!];
         let valB = b[this.sortColumn!];
-    
+  
         if (valA == null || valB == null) return 0;
-    
-        // Forza il confronto numerico se il campo è 'id'
+  
         if (this.sortColumn === 'id') {
           valA = Number(valA);
           valB = Number(valB);
@@ -96,16 +92,17 @@ export class UnitaOperativeComponent {
           valA = typeof valA === 'string' ? valA.toLowerCase() : valA;
           valB = typeof valB === 'string' ? valB.toLowerCase() : valB;
         }
-    
+  
         if (valA < valB) return this.sortDirection === 'asc' ? -1 : 1;
         if (valA > valB) return this.sortDirection === 'asc' ? 1 : -1;
         return 0;
       });
     }
-      
-    this.unitaOperative = result;
+  
+    this.paginationIndex = 1; // Reset alla prima pagina
+    this.paginatedUnits();
   }
-
+  
   // DELETE 
   unitIdToDelete :number |undefined
   deleteUnita(){
@@ -213,6 +210,19 @@ export class UnitaOperativeComponent {
   }
 
 
-
+  // PAGINAZIONE 
+  tableRecords = 10;
+  paginationIndex = 1;
+  updateDatasCallback(newTableRecords: number | null, newPaginationIndex: number | null) {
+    if (newTableRecords) this.tableRecords = newTableRecords;
+    if (newPaginationIndex) this.paginationIndex = newPaginationIndex;
+    this.paginatedUnits();
+  }
+  paginatedUnits() {
+    const start = (this.paginationIndex - 1) * this.tableRecords;
+    const end = this.paginationIndex * this.tableRecords;
+    this.unitaOperative = this.filteredUnits.slice(start, end);
+  }
+    
 
 }

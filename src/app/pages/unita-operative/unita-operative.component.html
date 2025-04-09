@@ -261,7 +261,10 @@
   </div>
 
   <!-- PAGINAZIONE -->
-  <div id="paginationContainer" class="mt-4"></div>
+  <app-pagination
+    [updateDatasCallback]="updateDatasCallback.bind(this)"
+    [totalItems]="filteredUnits.length"
+  ></app-pagination>
 </article>
 
 <!-- backToTop -->
