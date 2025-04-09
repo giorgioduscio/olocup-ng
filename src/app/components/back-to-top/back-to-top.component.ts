@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   template:`
   <a href="#" aria-label="Torna su" data-bs-toggle="backtotop" class="back-to-top" (click)="scrollToTop()">
     <svg class="icon icon-light">
-      <use href="../../../bootstrap-italia/svg/sprites.svg#it-arrow-up"></use>
+      <use href="assets/bootstrap-italia/svg/sprites.svg#it-arrow-up"></use>
     </svg>
   </a>  `
 })

@@ -128,7 +128,7 @@
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Annulla</button>
           <button type="submit" class="btn btn-primary" [disabled]="!isAddMode && !isFormModified()" 
             [attr.data-bs-dismiss]="form.valid ? 'modal' : null">
-            <svg class="icon icon-white icon-sm me-2"><use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use></svg>
+            <svg class="icon icon-white icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-plus"></use></svg>
             Conferma {{isAddMode ? 'aggiunta' : 'modifica'}}
           </button>
         </div>
@@ -144,7 +144,7 @@
   <div class="modal-body p-4">
     <h3 id="eliminaUnitaOperativeTitle" class="h5 text-primary pb-3">
       <svg class="icon icon-danger me-2" aria-hidden="true">
-        <use href="../../../bootstrap-italia/svg/sprites.svg#it-warning-circle"></use>
+        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-warning-circle"></use>
       </svg> Conferma eliminazione
     </h3>
     <p>L'unità operativa sarà eliminata definitivamente.</p>
@@ -153,7 +153,7 @@
       <button class="btn btn-outline-primary btn-sm" data-bs-dismiss="modal" type="button">Annulla</button>
       <button class="btn btn-danger" type="button" (click)="deleteUnita()" data-bs-dismiss="modal">
         <svg class="icon icon-sm icon-white me-2" aria-hidden="true">
-          <use href="../../../bootstrap-italia/svg/sprites.svg#it-delete"></use>
+          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-delete"></use>
         </svg>
         Elimina
       </button>
@@ -179,7 +179,7 @@
         <button type="button" class="btn btn-primary font-sans-serif align-items-center float-end" (click)="formInit(undefined)"
           data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
           <svg class="icon icon-white icon-sm me-2">
-            <use href="/bootstrap-italia/svg/sprites.svg#it-plus"></use>
+            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-plus"></use>
           </svg> <span>Aggiungi Unità Operativa</span> 
         </button>
       </div>
@@ -194,7 +194,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text bg-white border-end-0">
           <svg class="icon icon-sm" aria-hidden="true">
-            <use href="/bootstrap-italia/svg/sprites.svg#it-search"></use>
+            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use>
           </svg>
         </span>
       </div>
@@ -217,7 +217,23 @@
         <thead>
           <tr>
             <th *ngFor="let campo of nomiCampi"> 
-              <button class="btn" (click)="orderColumn(campo.key)">{{ campo.title }}</button> 
+              <button class="btn d-flex align-items-center gap-1" (click)="orderColumn(campo.key)">
+                <span>{{ campo.title }}</span>
+                <span class="d-flex flex-column">
+                  @if (sortColumn === campo.key && sortDirection === 'desc') {
+                    <svg class="icon icon-xs">
+                      <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-up"></use>
+                    </svg>
+
+                  }@else if (sortColumn === campo.key && sortDirection === 'asc') {
+                    <svg class="icon icon-xs">
+                      <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-down"></use>
+                    </svg>
+                  }@else {
+                    <svg class="icon icon-xs"></svg>
+                  }
+                </span>
+              </button> 
             </th>
             <th><b>Azioni</b></th>
           </tr>
@@ -231,10 +247,10 @@
                 </div>
                 <div *ngIf="campo.title === 'Descrizione'" class="d-flex gap-2">
                   <button type="button" class="btn btn-link text-primary">
-                    <svg class="icon icon-sm"><use href="/bootstrap-italia/svg/sprites.svg#it-pencil"></use></svg>
+                    <svg class="icon icon-sm"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-pencil"></use></svg>
                   </button>
                   <button type="button" class="btn btn-link text-danger">
-                    <svg class="icon icon-sm"><use href="/bootstrap-italia/svg/sprites.svg#it-delete"></use></svg>
+                    <svg class="icon icon-sm"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-delete"></use></svg>
                   </button>
                 </div>
               </div>
@@ -243,13 +259,13 @@
               <button class="btn btn-sm btn-icon btn-danger p-2" aria-label="Elimina" (click)="unitIdToDelete=unita.id"
                 type="button" data-bs-toggle="modal" data-bs-target="#eliminaUnitaOperative">
                 <svg class="icon icon-sm icon-white">
-                  <use href="../../../../bootstrap-italia/svg/sprites.svg#it-delete"></use>
+                  <use href="/assets/bootstrap-italia/svg/sprites.svg#it-delete"></use>
                 </svg>
               </button>
               <button class="btn btn-sm btn-icon btn-success p-2" (click)="formInit(unita)" aria-label="Elimina"
                 type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
                 <svg class="icon icon-sm icon-white">
-                  <use href="../../../../bootstrap-italia/svg/sprites.svg#it-pencil"></use>
+                  <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pencil"></use>
                 </svg>
               </button>
             </td>
