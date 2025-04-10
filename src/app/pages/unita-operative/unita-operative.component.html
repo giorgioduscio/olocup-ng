@@ -7,124 +7,47 @@
       <hr class="my-3">
     </div>
 
-    <form [formGroup]="form" class="row g-4 needs-validation" (ngSubmit)="onSubmit()" novalidate>
-      <!-- Campo Codice Struttura -->
-      <div class="col-12 col-md-6">
-        <div class="form-group">
-          <label for="codice_struttura" class="form-label d-block" [class.active]="form.get('codice_struttura')?.touched || form.get('codice_struttura')?.value">
-            Codice Struttura <span class="text-danger">*</span>
+    <form [formGroup]="form" class="row g-4 pt-3 needs-validation" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Campi generati dinamicamente -->
+      <div *ngFor="let field of formFields" class="col-12 col-md-6">
+        <div class="form-group mb-2">
+          <label [for]="field.key" class="form-label d-block" 
+                 [class.active]="form.get(field.key)?.value">
+            {{field.label}} <span *ngIf="field.validators?.length" class="text-danger">*</span>
           </label>
-          <input type="text" class="form-control" id="codice_struttura" 
-                formControlName="codice_struttura"
-                [class.is-invalid]="showErrors && form.get('codice_struttura')?.invalid"
-                [class.is-valid]="showErrors && form.get('codice_struttura')?.valid">
-          <div *ngIf="showErrors">
-            <div *ngIf="form.get('codice_struttura')?.invalid">
-              <span *ngIf="form.get('codice_struttura')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
-              <span *ngIf="form.get('codice_struttura')?.errors?.['minlength'] || form.get('codice_struttura')?.errors?.['maxlength']" class="text-danger">
+          
+          <!-- Input generico - possiamo estendere per diversi tipi -->
+          <input [type]="field.type || 'text'" 
+                 class="form-control" 
+                 [id]="field.key"
+                 [formControlName]="field.key"
+                 [class.is-invalid]="showErrors && form.get(field.key)?.invalid"
+                 [class.is-valid]="showErrors && form.get(field.key)?.valid">
+          
+          <!-- Messaggi di errore dinamici -->
+          <div *ngIf="showErrors && form.get(field.key)?.invalid" class="text-danger">
+            <div *ngIf="form.get(field.key)?.errors?.['required']">
+              Il campo è obbligatorio
+            </div>
+            <div *ngIf="form.get(field.key)?.errors?.['minlength'] || form.get(field.key)?.errors?.['maxlength']">
+              <span *ngIf="field.key === 'codice_struttura' || field.key === 'codice_reparto_hl7'">
                 Il codice deve essere esattamente 6 caratteri
               </span>
-            </div>
-            <div *ngIf="form.get('codice_struttura')?.valid">
-              <span class="text-success">Campo valido</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Campo Unità Operativa -->
-      <div class="col-12 col-md-6">
-        <div class="form-group">
-          <label for="unita_operativa" class="form-label d-block" [class.active]="form.get('unita_operativa')?.touched || form.get('unita_operativa')?.value">
-            Unità Operativa <span class="text-danger">*</span>
-          </label>
-          <input type="text" class="form-control" id="unita_operativa" 
-                formControlName="unita_operativa"
-                [class.is-invalid]="showErrors && form.get('unita_operativa')?.invalid"
-                [class.is-valid]="showErrors && form.get('unita_operativa')?.valid">
-          <div *ngIf="showErrors">
-            <div *ngIf="form.get('unita_operativa')?.invalid">
-              <span *ngIf="form.get('unita_operativa')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
-            </div>
-            <div *ngIf="form.get('unita_operativa')?.valid">
-              <span class="text-success">Campo valido</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Campo Centro Costo -->
-      <div class="col-12 col-md-6">
-        <div class="form-group">
-          <label for="centro_costo" class="form-label d-block" [class.active]="form.get('centro_costo')?.touched || form.get('centro_costo')?.value">
-            Centro Costo <span class="text-danger">*</span>
-          </label>
-          <input type="text" class="form-control" id="centro_costo" 
-                formControlName="centro_costo"
-                [class.is-invalid]="showErrors && form.get('centro_costo')?.invalid"
-                [class.is-valid]="showErrors && form.get('centro_costo')?.valid">
-          <div *ngIf="showErrors">
-            <div *ngIf="form.get('centro_costo')?.invalid">
-              <span *ngIf="form.get('centro_costo')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
-              <span *ngIf="form.get('centro_costo')?.errors?.['minlength'] || form.get('centro_costo')?.errors?.['maxlength']" class="text-danger">
+              <span *ngIf="field.key === 'centro_costo'">
                 Il centro costo deve essere esattamente 5 caratteri
               </span>
             </div>
-            <div *ngIf="form.get('centro_costo')?.valid">
-              <span class="text-success">Campo valido</span>
-            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Campo Codice Reparto HL7 -->
-      <div class="col-12 col-md-6">
-        <div class="form-group">
-          <label for="codice_reparto_hl7" class="form-label d-block" [class.active]="form.get('codice_reparto_hl7')?.touched || form.get('codice_reparto_hl7')?.value">
-            Codice Reparto HL7 <span class="text-danger">*</span>
-          </label>
-          <input type="text" class="form-control" id="codice_reparto_hl7" 
-                formControlName="codice_reparto_hl7"
-                [class.is-invalid]="showErrors && form.get('codice_reparto_hl7')?.invalid"
-                [class.is-valid]="showErrors && form.get('codice_reparto_hl7')?.valid">
-          <div *ngIf="showErrors">
-            <div *ngIf="form.get('codice_reparto_hl7')?.invalid">
-              <span *ngIf="form.get('codice_reparto_hl7')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
-              <span *ngIf="form.get('codice_reparto_hl7')?.errors?.['minlength'] || form.get('codice_reparto_hl7')?.errors?.['maxlength']" class="text-danger">
-                Il codice deve essere esattamente 6 caratteri
-              </span>
-            </div>
-            <div *ngIf="form.get('codice_reparto_hl7')?.valid">
-              <span class="text-success">Campo valido</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Campo Descrizione Codice HL7 -->
-      <div class="col-12 col-md-6">
-        <div class="form-group">
-          <label for="codice_reparto_hl7_ds" class="form-label d-block" [class.active]="form.get('codice_reparto_hl7_ds')?.touched || form.get('codice_reparto_hl7_ds')?.value">
-            Descrizione Codice HL7 <span class="text-danger">*</span>
-          </label>
-          <input type="text" class="form-control" id="codice_reparto_hl7_ds" 
-                formControlName="codice_reparto_hl7_ds"
-                [class.is-invalid]="showErrors && form.get('codice_reparto_hl7_ds')?.invalid"
-                [class.is-valid]="showErrors && form.get('codice_reparto_hl7_ds')?.valid">
-          <div *ngIf="showErrors">
-            <div *ngIf="form.get('codice_reparto_hl7_ds')?.invalid">
-              <span *ngIf="form.get('codice_reparto_hl7_ds')?.errors?.['required']" class="text-danger">Il campo è obbligatorio</span>
-            </div>
-            <div *ngIf="form.get('codice_reparto_hl7_ds')?.valid">
-              <span class="text-success">Campo valido</span>
-            </div>
+          
+          <div *ngIf="showErrors && form.get(field.key)?.valid" class="text-success">
+            Campo valido
           </div>
         </div>
       </div>
 
       <!-- Pulsanti -->
-      <div class="col-12 mt-4">
-        <div class="d-flex justify-content-between border-top pt-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Annulla</button>
           <button type="submit" class="btn btn-primary" [disabled]="!isAddMode && !isFormModified()" 
             [attr.data-bs-dismiss]="form.valid ? 'modal' : null">
@@ -134,10 +57,8 @@
         </div>
       </div>
     </form>
-
   </div>
 </app-modal>
-
 
 <!-- eliminare unità -->
 <app-modal modalId="eliminaUnitaOperative">
@@ -256,7 +177,7 @@
               </div>
             </td>
             <td class="d-flex gap-2">
-              <button class="btn btn-sm btn-icon btn-danger p-2" aria-label="Elimina" (click)="unitIdToDelete=unita.id"
+              <button class="btn btn-sm btn-icon btn-danger p-2" aria-label="Elimina" (click)="deleteTarger=unita.id"
                 type="button" data-bs-toggle="modal" data-bs-target="#eliminaUnitaOperative">
                 <svg class="icon icon-sm icon-white">
                   <use href="/assets/bootstrap-italia/svg/sprites.svg#it-delete"></use>
@@ -278,7 +199,7 @@
 
   <!-- PAGINAZIONE -->
   <app-pagination
-    [updateDatasCallback]="updateDatasCallback.bind(this)"
+    [onChangePagination]="onChangePagination.bind(this)"
     [totalItems]="filteredUnits.length"
   ></app-pagination>
 </article>

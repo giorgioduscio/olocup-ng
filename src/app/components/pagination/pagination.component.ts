@@ -10,7 +10,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class PaginationComponent implements OnChanges {
   @Input({required:true}) 
-    updateDatasCallback! :(newTableRecords: number | null, newPaginationIndex: number | null) => void;
+    onChangePagination! :(newpaginationRecords: number | null, newPaginationIndex: number | null) => void;
   @Input({required:true}) totalItems: number = 0;  // Numero totale di elementi
   @Input() options: number[] = [5, 10, 20, 50, 100];
 
@@ -32,14 +32,14 @@ export class PaginationComponent implements OnChanges {
     if (newPage < 1 || newPage > this.totalPages) return;
 
     this.currentPage = newPage;
-    this.updateDatasCallback(this.itemsPerPage, this.currentPage); // Notifica il padre
+    this.onChangePagination(this.itemsPerPage, this.currentPage); // Notifica il padre
     this.updatePagination();
   }
 
   changeItemsPerPage(newItemsPerPage: number): void {
     this.itemsPerPage = newItemsPerPage;
     this.currentPage = 1; // Reset alla prima pagina
-    this.updateDatasCallback(this.itemsPerPage, this.currentPage); // Notifica il padre
+    this.onChangePagination(this.itemsPerPage, this.currentPage); // Notifica il padre
     this.updatePagination();
   }
 
