@@ -2,168 +2,85 @@
   <div class="container-xxl">
     <div class="row">
       <div class="col-12">
-        <nav class="navbar navbar-expand-lg has-megamenu d-flex flex-column flex-lg-row align-items-center" aria-label="Navigazione principale">
+
+        <!-- Navbar principale - Struttura originale Bootstrap Italia -->
+        <nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
           <button class="custom-navbar-toggler" type="button" aria-controls="nav0" aria-expanded="false" aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#nav0">
-            <svg class="icon bg-override">
-              <use href="/assets/bootstrap-italia/svg/sprites.svg#it-burger"></use>
-            </svg>
+            <svg class="icon icon-primary bg-override"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-burger"></use></svg>
           </button>
-          <div class="collapse navbar-collapse navbar-collapsable" id="nav0">
-            <div class="overlay"></div>
+          
+          <div class="navbar-collapsable" id="nav0" style="display: none;">
+            <div class="overlay" style="display: none;"></div>
             <div class="close-div">
-                <button class="btn close-menu" type="button">
-                  <span class="visually-hidden">Nascondi la navigazione</span>
-                  <svg class="icon"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-close-big"></use></svg>
-                </button>
+              <button class="btn close-menu" type="button">
+                <span class="visually-hidden">Nascondi la navigazione</span>
+                <svg class="icon"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-close-big"></use></svg>
+              </button>
             </div>
-            <div class="menu-wrapper d-flex flex-column flex-lg-row align-items-center w-100">
-                <ul class="navbar-nav">
-                  <li class="nav-item font-sans-serif d-flex flex-column flex-lg-row align-items-center">
-                    <a class="nav-link" href="../home/home.html">
-                      <span>Home</span>
-                    </a>
-                  </li>
-                  <li class="nav-item dropdown megamenu d-flex flex-column flex-lg-row align-items-center">
-                    <button type="button" class="nav-link dropdown-toggle px-lg-2 px-xl-3 font-sans-serif" data-bs-toggle="dropdown" aria-expanded="false" id="megamenu-base-D" data-focus-mouse="false">
-                        <span>Sezioni</span><svg role="img" class="icon icon-xs ms-1"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-expand"></use></svg>
-                    </button>
-                    <div class="dropdown-menu shadow-lg" role="region" aria-labelledby="megamenu-base-D">
-                      <div class="megamenu pb-5 pt-3 py-lg-0">
-                        <div class="col-12">
-                          <div class="row">
-                            <div class="col-12 col-lg-4">
-                              <div class="link-list-wrapper">
-                                    <ul class="link-list">
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../ticket/ticket.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Ticket</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../pazienti/pazienti.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Pazienti</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item " href="../prenotazione/_prenotazione.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Prenotazioni</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../agende/agenda_creation.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Agende</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../flussi/flussi.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Flussi</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="col-12 col-lg-4">
-                                  <div class="link-list-wrapper">
-                                    <ul class="link-list">
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../ricerca/ricerca.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Ricerca</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../accettazione/accettazione.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Accettazioni</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item " href="../report/report.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Report</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../tabelle/tabelle.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Tabelle</span>
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../utenti/utenti.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Utenti</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div class="col-12 col-lg-4">
-                                  <div class="link-list-wrapper">
-                                    <ul class="link-list">
-                                      <li>
-                                        <a class="list-item dropdown-item" href="../unita_operative/unita_operative.html">
-                                          <svg role="img" class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                          <span>Unità Operative</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>    
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle font-sans-serif"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        id="mainNavDropdown0">
-                      <span>Reparti</span>
-                      <svg class="icon icon-xs">
-                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-expand"></use>
-                      </svg>
-                    </a>
-                    <div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown0">
-                      <div class="link-list-wrapper">
-                        <ul class="link-list" id="departments">
-                          <li>
-                            <a class="dropdown-item list-item" href="../reparti/radiologia/radiologia.html"
-                              ><span>Radiologia</span></a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item list-item" href="../reparti/cardiologia/cardiologia.html"
-                              ><span>Cardiologia</span></a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item list-item" href="../reparti/neurologia/neurologia.html"
-                              ><span>Neurologia</span></a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item list-item" href="../reparti/ortopedia/ortopedia.html"
-                              ><span>Ortopedia</span></a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item list-item" href="../reparti/oftalmologia/oftalmologia.html"
-                              ><span>Oftalmologia</span></a>
+            
+            <div class="menu-wrapper">
+              <ul class="navbar-nav">
+                <!-- Voce Home -->
+                <li class="nav-item active">
+                  <a class="nav-link" routerLink="/home">
+                    <span>Home</span>
+                  </a>
+                </li>
+                
+                <!-- Megamenu Sezioni -->
+                <li class="nav-item dropdown megamenu">
+                  <button type="button" class="nav-link dropdown-toggle px-lg-2 px-xl-3" data-bs-toggle="dropdown" aria-expanded="false" id="megamenu-sezioni" data-focus-mouse="false">
+                    <span>Sezioni</span>
+                    <svg class="icon icon-xs ms-1"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-expand"></use></svg>
+                  </button>
+                  
+                  <div class="dropdown-menu shadow-lg" role="region" aria-labelledby="megamenu-sezioni">
+                    <div class="megamenu pb-5 pt-3 py-lg-0">
+                      <div class="col link-list-wrapper">
+                        <ul class="link-list row">
+                          <li *ngFor="let s of sezioni" class="col-12 col-lg-3">
+                            <a class="list-item dropdown-item" [routerLink]="s.link">
+                              <svg class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
+                              <span>{{ s.title }}</span>
+                            </a>
                           </li>
                         </ul>
                       </div>
                     </div>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                </li> <!-- megamenù -->
+
+                <!-- Menu a tendina Reparti -->
+                <li class="nav-item dropdown">
+
+                  <a class="nav-link dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="mainNavDropdown0">
+                    <span>Reparti</span>
+                    <svg class="icon icon-xs"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-expand"></use></svg>
+                  </a>
+
+                  <div class="dropdown-menu" role="region" aria-labelledby="mainNavDropdown0">
+                    <div class="link-list-wrapper">
+                      <ul class="link-list" id="departments">
+
+                        <li *ngFor="let r of reparti">
+                          <a class="list-item dropdown-item" [routerLink]="r.link">
+                            <svg class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
+                            <span>{{ r.title }}</span>
+                          </a>
+                        </li>
+              
+                      </ul>
+                    </div>
+                  </div>
+                </li> <!-- reparti -->
+
+              </ul>
             </div>
-          </nav>
-        </div>
+          </div>
+        </nav>
+        <!-- Navbar principale - Struttura originale Bootstrap Italia END -->
+         
       </div>
+    </div>
   </div>
 </div>
