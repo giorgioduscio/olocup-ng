@@ -97,9 +97,10 @@
       </div>
         <!-- botton aggiungi unità operativa -->
         <div>
-        <button type="button" class="btn btn-primary font-sans-serif align-items-center float-end" (click)="formInit(undefined)"
-          data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
-          <svg class="icon icon-white icon-sm me-2">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative"
+          class="btn btn-primary font-sans-serif align-items-center float-end" 
+          (click)="formInit(undefined)"
+        > <svg class="icon icon-white icon-sm me-2">
             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-plus"></use>
           </svg> <span>Aggiungi Unità Operativa</span> 
         </button>
@@ -156,7 +157,7 @@
                 </span>
               </button> 
             </th>
-            <th><b>Azioni</b></th>
+            <th azioni><b>Azioni</b></th>
           </tr>
         </thead>
         <tbody>
@@ -204,7 +205,6 @@
   ></app-pagination>
 </article>
 
-<!-- backToTop -->
+
 <app-back-to-top></app-back-to-top>
-<!-- footer -->
 <app-footer></app-footer>

@@ -7,6 +7,7 @@ import { NgIf } from '@angular/common';
   selector: 'app-routes-breadcrumb',
   standalone: true,
   imports: [RouterLink, NgIf],
+  styleUrl: './routes-breadcrumb.component.sass',
 
   template: `
     <nav class="breadcrumb-container" aria-label="Percorso di navigazione">

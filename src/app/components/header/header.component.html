@@ -2,25 +2,25 @@
   <div class="container-xxl">
     <div class="row">
       <div class="col-12">
-        <div class="it-header-slim-wrapper-content d-flex flex-column flex-lg-row align-items-center justify-content-between">
-            <a class="it-brand-text d-lg-block navbar-brand mb-0 me-auto text-white font-sans-serif" href="../home/home.htlm">OloCUP3</a>
-            <div class="it-header-slim-right-zone d-flex flex-column flex-sm-row align-items-center gap-2">
-              <div class="header-item button p-5 mb-2 text-white ">
-                <a class="header-link button-toggle d-flex align-items-center text-white" href="../users/user.html" role="button" data-bs-toggle="button" aria-expanded="false">
+        <div class="it-header-slim-wrapper-content d-flex flex-wrap align-items-center justify-content-between">
+          <!-- logo -->
+          <a class="it-brand-text d-lg-block navbar-brand mb-0 me-auto text-white font-sans-serif" routerLink="/home">OloCUP3</a>
+          <!-- parte finale -->
+            <div class="it-header-slim-right-zone d-flex flex-wrap align-items-center gap-2">
+              <div class="header-item buttontext-white ">
+                <a class="header-link button-toggle d-flex align-items-center text-white" routerLink="/users" role="button" data-bs-toggle="button" aria-expanded="false">
                   <svg class="icon icon-sm icon-lg icon-white mr-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
                   </svg>
                   <span>USER</span>
                 </a>
               </div>
+
+              <!-- notifiche -->
               <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-primary dropdown-toggle d-flex align-items-center"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                  Notifiche
+                <button class="btn btn-primary dropdown-toggle d-flex align-items-center"
+                  type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="d-none d-sm-inline">Notifiche</span>
                   <svg class="icon icon-sm icon-light mr-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-bookmark"></use>
                   </svg>
@@ -30,6 +30,7 @@
                     </div>
                   </a>
                 </button>
+
                 <div class="dropdown-menu ">
                   <div class="link-list-wrapper">
                     <ul class="link-list">
