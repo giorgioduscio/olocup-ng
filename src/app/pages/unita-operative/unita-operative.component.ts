@@ -1,21 +1,16 @@
 import { Component, effect } from '@angular/core';
-import { HeaderComponent } from "../../components/header/header.component";
-import { NavbarNavigazioneComponent } from "../../components/navbar-navigazione/navbar-navigazione.component";
 import { ModalComponent } from '../../components/modal/modal.component';
-import { BackToTopComponent } from "../../components/back-to-top/back-to-top.component";
-import { FooterComponent } from "../../components/footer/footer.component";
 import { UnitaOperativeService } from '../../api/unita-operative.service';
 import { NgFor, NgIf } from '@angular/common';
 import unitaOperativa from '../../interfaces/unita-operative';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RoutesBreadcrumbComponent } from "../../components/routes-breadcrumb/routes-breadcrumb.component";
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-unita-operative',
   standalone: true,
-  imports: [ModalComponent, HeaderComponent, NavbarNavigazioneComponent, BackToTopComponent, FooterComponent, PaginationComponent,
-    NgFor, NgIf, FormsModule, ReactiveFormsModule, RoutesBreadcrumbComponent],
+  imports: [ModalComponent, PaginationComponent,
+    NgFor, NgIf, FormsModule, ReactiveFormsModule],
   templateUrl: './unita-operative.component.html',
   styleUrl: './unita-operative.component.sass'
 })
