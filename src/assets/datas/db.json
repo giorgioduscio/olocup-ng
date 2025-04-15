@@ -1,4 +1,12 @@
 {
+  "authenticator":{
+    "status":true,
+    "result":{
+      "email": "pippo@gmail",
+      "username": "pippo",
+      "role": "admin"
+    }
+  },
   "patients": [
     {
       "id": 1,

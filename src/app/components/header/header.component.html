@@ -7,13 +7,23 @@
           <a class="it-brand-text d-lg-block navbar-brand mb-0 me-auto text-white font-sans-serif" routerLink="/home">OloCUP3</a>
           <!-- parte finale -->
             <div class="it-header-slim-right-zone d-flex flex-wrap align-items-center gap-2">
-              <div class="header-item buttontext-white ">
-                <a class="header-link button-toggle d-flex align-items-center text-white" routerLink="/users" role="button" data-bs-toggle="button" aria-expanded="false">
-                  <svg class="icon icon-sm icon-lg icon-white mr-2">
-                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
-                  </svg>
-                  <span>USER</span>
-                </a>
+              <div class="header-item buttontext-white d-flex gap-2">
+                @if (user){
+                    <a class="header-link button-toggle d-flex align-items-center text-white" routerLink="/users" role="button" data-bs-toggle="button" aria-expanded="false">
+                      <svg class="icon icon-sm icon-lg icon-white mr-2">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
+                      </svg>
+                      <span>{{ user?.role }}</span>
+                    </a>
+                    <a (click)="auth.logout()" class="header-link button-toggle d-flex align-items-center text-white">
+                      <svg class="icon icon-sm icon-lg icon-white mr-2">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-logout"></use>
+                      </svg>
+                      <span class="d-none d-sm-inline">Logout</span>
+                    </a>
+                  }@else {
+                    <a routerLink="/login">Login</a>
+                  }
               </div>
 
               <!-- notifiche -->
