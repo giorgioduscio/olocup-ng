@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
-import { NavbarNavigazioneComponent } from './components/navbar-navigazione/navbar-navigazione.component';
-import { RoutesBreadcrumbComponent } from './components/routes-breadcrumb/routes-breadcrumb.component';
-import { BackToTopComponent } from './components/back-to-top/back-to-top.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { NavbarNavigazioneComponent } from './shared/navbar-navigazione/navbar-navigazione.component';
+import { RoutesBreadcrumbComponent } from './shared/routes-breadcrumb/routes-breadcrumb.component';
+import { BackToTopComponent } from './shared/back-to-top/back-to-top.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',

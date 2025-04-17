@@ -1,10 +1,12 @@
 import { Component, effect } from '@angular/core';
-import { ModalComponent } from '../../components/modal/modal.component';
+import { ModalComponent } from '../../shared/modal/modal.component';
 import { UnitaOperativeService } from '../../api/unita-operative.service';
 import { NgFor, NgIf } from '@angular/common';
 import unitaOperativa from '../../interfaces/unita-operative';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { Authorizations } from '../../auth/authorizations';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-unita-operative',
@@ -15,7 +17,7 @@ import { PaginationComponent } from '../../components/pagination/pagination.comp
   styleUrl: './unita-operative.component.sass'
 })
 export class UnitaOperativeComponent {
-  constructor(public uos: UnitaOperativeService){
+  constructor(public uos: UnitaOperativeService, private auth: AuthService) {
     // Effetto reattivo che si attiva quando cambiano i dati delle unità operative
     effect(() => {
       this.filteredUnits = this.uos.unitaOperative(); // tutti i dati
@@ -27,9 +29,9 @@ export class UnitaOperativeComponent {
       (acc as Record<string, FormControl>)[field.key] = new FormControl('', field.validators);
       return acc;
     }, {});
-
     this.form = new FormGroup(controls);
-    
+
+    this.getAuth()
   }
 
   // FIX VISUALIZZAZIONE
@@ -221,10 +223,9 @@ export class UnitaOperativeComponent {
   }
 
   // Resetta il form ai valori di default
-  formReset(): unitaOperativa {
+  formReset(){
     this.removeActiveClass()
     return {
-      id: -1,
       codice_struttura: '',
       unita_operativa: '',
       centro_costo: '',
@@ -266,28 +267,40 @@ export class UnitaOperativeComponent {
 
   // Invia i dati del form al servizio appropriato (POST o PATCH)
   private submitFormData() {
-    if(!this.form.value.id) return;
-
+  
+    // Solo in modalità aggiunta (id === -1) controlla l'ID
+    if(this.isAddMode && this.form.value.id === -1) 
+      return console.log('submitFormData - ID mancante in modalità aggiunta', this.form.value.id);
+    
     const formData: unitaOperativa = {
-      id: this.form.value.id==-1 ?Math.floor(Math.random() * 1000) :this.form.value.id,
+      id: this.originalFormValues ?this.originalFormValues.id :Math.floor(Math.random() * 1000),
       codice_struttura: this.form.value.codice_struttura ?? '',
       unita_operativa: this.form.value.unita_operativa ?? '',
       centro_costo: this.form.value.centro_costo ?? '',
       codice_reparto_hl7: this.form.value.codice_reparto_hl7 ?? '',
       codice_reparto_hl7_ds: this.form.value.codice_reparto_hl7_ds ?? '',
-    };
+    };    
     
     // @ts-ignore // asseconda json server (TODO: trovare soluzione migliore)
-    if(typeof formData.id==='number') formData.id =formData.id.toString()      
-    
-    if (this.isAddMode) {
-      this.uos.post(formData); // Aggiungi nuova unità
-    } else {
-      this.uos.patch(formData.id, formData); // Modifica unità esistente
-    }
+    if(typeof formData.id==='number') formData.id =formData.id.toString();
+          
+    if (this.isAddMode) this.uos.post(formData); // Aggiungi nuova unità
+    else this.uos.patch(formData.id, formData); // Modifica unità esistente
   
     // Resetta il form dopo l'invio
     this.form.reset(this.formReset());
     this.originalFormValues = null;
   }
+
+  //FIX verifica i permessi sulle funzionalità in base all'autorizzazione
+  authorizations = Authorizations['unita_operarive'].user; // Autorizzazioni di default
+  // recupera le autorizzazioni per le unità operative
+  getAuth(){
+    effect(() => {
+      const user = this.auth.user();
+      if(user) this.authorizations = Authorizations['unita_operarive'][user.role];
+      else this.authorizations = Authorizations['unita_operarive'].user;
+    })
+  }
+  
 }

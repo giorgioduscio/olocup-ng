@@ -1,5 +1,5 @@
 <!-- modale di aggiunta e modifica -->
-<app-modal modalId="modaleUnitaOperative">
+<app-modal modalId="modaleUnitaOperative" *ngIf="form">
   <div class="modal-body p-4">
     <div class="text-center mb-4">
       <h2 class="h4 text-primary">{{isAddMode ? 'Aggiungi' : 'Modifica'}} Unità Operativa</h2>
@@ -61,7 +61,7 @@
 </app-modal>
 
 <!-- eliminare unità -->
-<app-modal modalId="eliminaUnitaOperative">
+<app-modal modalId="eliminaUnitaOperative" *ngIf="deleteTarger">
   <div class="modal-body p-4">
     <h3 id="eliminaUnitaOperativeTitle" class="h5 text-primary pb-3">
       <svg class="icon icon-danger me-2" aria-hidden="true">
@@ -84,7 +84,7 @@
 
 
 <!-- visualizza -->
-<article class="container">
+<article class="container" *ngIf="authorizations?.read">
   <!-- titolo -->
   <div class="container m-2">
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
@@ -93,9 +93,10 @@
       </div>
         <!-- botton aggiungi unità operativa -->
         <div>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative"
+        <button 
+          (click)="formInit(undefined)" *ngIf="authorizations?.create"
+          type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative"
           class="btn btn-primary font-sans-serif align-items-center float-end" 
-          (click)="formInit(undefined)"
         > <svg class="icon icon-white icon-sm me-2">
             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-plus"></use>
           </svg> <span>Aggiungi Unità Operativa</span> 
@@ -127,7 +128,7 @@
   </div>
 
   <!-- TABELLA -->
-  <div class="p-2">
+  <div class="table-container">
     <div class="table-responsive mb-1" >
 
       <table class="table table-borderless table-striped table-hover m-0" aria-describedby="tableDescription">
@@ -153,7 +154,7 @@
                 </span>
               </button> 
             </th>
-            <th azioni><b>Azioni</b></th>
+            <th azioni *ngIf="authorizations?.delete ||authorizations?.update"><b>Azioni</b></th>
           </tr>
         </thead>
         <tbody>
@@ -173,19 +174,25 @@
                 </div>
               </div>
             </td>
-            <td class="d-flex gap-2">
-              <button class="btn btn-sm btn-icon btn-danger p-2" aria-label="Elimina" (click)="deleteTarger=unita.id"
-                type="button" data-bs-toggle="modal" data-bs-target="#eliminaUnitaOperative">
-                <svg class="icon icon-sm icon-white">
-                  <use href="/assets/bootstrap-italia/svg/sprites.svg#it-delete"></use>
-                </svg>
-              </button>
-              <button class="btn btn-sm btn-icon btn-success p-2" (click)="formInit(unita)" aria-label="Elimina"
-                type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
-                <svg class="icon icon-sm icon-white">
-                  <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pencil"></use>
-                </svg>
-              </button>
+            <td *ngIf="authorizations?.update || authorizations?.delete">
+              <div class="d-flex gap-2">
+                <button 
+                  (click)="deleteTarger=unita.id" *ngIf="authorizations?.delete"
+                  class="btn btn-sm btn-icon btn-danger p-2" aria-label="Elimina" 
+                  type="button" data-bs-toggle="modal" data-bs-target="#eliminaUnitaOperative">
+                  <svg class="icon icon-sm icon-white">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-delete"></use>
+                  </svg>
+                </button>
+                <button 
+                (click)="formInit(unita)" *ngIf="authorizations?.update"
+                  class="btn btn-sm btn-icon btn-success p-2" aria-label="Elimina"
+                  type="button" data-bs-toggle="modal" data-bs-target="#modaleUnitaOperative">
+                  <svg class="icon icon-sm icon-white">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pencil"></use>
+                  </svg>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
