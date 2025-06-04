@@ -18,6 +18,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class UnitaOperativeComponent {
   constructor(public uos: UnitaOperativeService, private auth: AuthService) {
+    document.title = 'Unità Operative';
     // Effetto reattivo che si attiva quando cambiano i dati delle unità operative
     effect(() => {
       this.filteredUnits = this.uos.unitaOperative(); // tutti i dati
