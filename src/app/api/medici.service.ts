@@ -8,7 +8,7 @@ export class MediciService {
     this.get()
   }
 
-  private url ='http://localhost:3000/doctors'
+  private url ='http://localhost:3000/medici'
   medici =signal<Medico[]>([])
   get(){
     fetch(this.url).then(res=>res.json()).then(res=>{

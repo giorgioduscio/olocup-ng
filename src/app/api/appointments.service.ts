@@ -8,18 +8,18 @@ export class AppointmentsService {
     this.get()
   }
 
-  private url ='http://localhost:3000/unitaOperative'
-  unitaOperative =signal<Appointment[]>([])
+  private url ='http://localhost:3000/appointments'
+  appointments =signal<Appointment[]>([])
   get(){
     fetch(this.url).then(res=>res.json()).then(res=>{
-      if(res) this.unitaOperative.set(res)
+      if(res) this.appointments.set(res)
     })
   }
   delete(id:number){
     fetch(`${this.url}/${id}`,{ method:'DELETE' }) 
     .then(res=>res.json()) .then(res=>{
       if(res) this.get()
-      console.log('delete', this.unitaOperative() );
+      console.log('delete', this.appointments() );
     })
   }
   patch(id:number, appointment:Appointment){
@@ -27,7 +27,7 @@ export class AppointmentsService {
       method:'PATCH', body:JSON.stringify(appointment), headers:{'Content-Type':'application/json'}
     }) .then(res=>res.json()).then(res=>{
       if(res) this.get()
-        console.log('patch', this.unitaOperative() );
+        console.log('patch', this.appointments() );
         
     })
   }
@@ -36,7 +36,7 @@ export class AppointmentsService {
       method:'POST', body:JSON.stringify(appointment), headers:{'Content-Type':'application/json'}
     }).then(res=>res.json()).then(res=>{
       if(res) this.get()
-      console.log('post', this.unitaOperative() );
+      console.log('post', this.appointments() );
         
     })
   }

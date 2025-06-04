@@ -9,17 +9,17 @@ export class StrutturaService {
     }
   
     private url ='http://localhost:3000/strutture';
-    Struttura =signal<Struttura[]>([])
+    strutture =signal<Struttura[]>([])
     get(){
       fetch(this.url).then(res=>res.json()).then(res=>{
-        if(res) this.Struttura.set(res)
+        if(res) this.strutture.set(res)
       })
     }
     delete(id:number){
       fetch(`${this.url}/${id}`,{ method:'DELETE' }) 
       .then(res=>res.json()) .then(res=>{
         if(res) this.get()
-        console.log('delete', this.Struttura() );
+        console.log('delete', this.strutture() );
       })
     }
     patch(id:number, Struttura:Struttura){
@@ -27,7 +27,7 @@ export class StrutturaService {
         method:'PATCH', body:JSON.stringify(Struttura), headers:{'Content-Type':'application/json'}
       }) .then(res=>res.json()).then(res=>{
         if(res) this.get()
-          console.log('patch', this.Struttura() );
+          console.log('patch', this.strutture() );
           
       })
     }
@@ -36,7 +36,7 @@ export class StrutturaService {
         method:'POST', body:JSON.stringify(Struttura), headers:{'Content-Type':'application/json'}
       }).then(res=>res.json()).then(res=>{
         if(res) this.get()
-        console.log('post', this.Struttura() );
+        console.log('post', this.strutture() );
           
       })
    }
