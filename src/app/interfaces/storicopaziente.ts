@@ -21,37 +21,3 @@ export interface Payment {
        
 
 
-/*{
-    "id": 1,
-    "pazienteId": 1,
-    "visits": [
-      {
-        "name": "Visita Cardiologica",
-        "date": "2023-06-12",
-        "time": "10:00",
-        "priority": "b",
-        "repartoId": 2,
-        "medicoId": 5,
-        "strutturaId": 1,
-        "payment": {
-          "code": "CASH",
-          "ticketCost": "36.15",
-          "paymentMode": "Contanti"
-        }
-      },
-      {
-        "name": "Visita Cardiologica",
-        "date": "2024-09-15",
-        "time": "11:00",
-        "priority": "d",
-        "repartoId": 2,
-        "medicoId": 1,
-        "strutturaId": 2,
-        "payment": {
-          "code": "POS",
-          "ticketCost": "25.40",
-          "paymentMode": "POS"
-        }
-      }
-    ]
-  }, */

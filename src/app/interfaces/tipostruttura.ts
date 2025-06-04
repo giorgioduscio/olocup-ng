@@ -4,11 +4,3 @@ export interface TipoStruttura {
     name: string; 
     color: string; 
 }
-/*
-{
-    "id": 1,
-    "code": "SSN",
-    "name": "SSN",
-    "color": "primary"
-  },
-*/
