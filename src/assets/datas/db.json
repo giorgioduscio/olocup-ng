@@ -1,13 +1,5 @@
 {
-  "authenticator":{
-    "status":true,
-    "result":{
-      "email": "pippo@gmail",
-      "username": "pippo",
-      "role": "admin"
-    }
-  },
-  "patients": [
+  "pazienti": [
     {
       "id": 1,
       "fiscalCode": "VRDMRA70A01G273R",
@@ -17,12 +9,17 @@
       "gender": "M",
       "phoneNumber": "333-1234567",
       "email": null,
-      "address": "Via Libertà 123",
+      "residenceAddress": "Via Libertà 123",
+      "domicileAddress": "Via Libertà 123",
       "city": "Palermo",
-      "postalCode": "90100",
-      "province": "PA",
-      "exemptionCode": null,
-      "notes": ""
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E03",
+      "notes": "Paziente allergico alla penicillina"
     },
     {
       "id": 2,
@@ -33,12 +30,17 @@
       "gender": "F",
       "phoneNumber": "333-7654321",
       "email": null,
-      "address": "Via Roma 45",
+      "recidenceAddress": "Via Roma 45",
+      "domicileAddress": "Via Roma 45",
       "city": "Palermo",
-      "postalCode": "90100",
-      "province": "PA",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
       "exemptionCode": null,
-      "notes": ""
+      "notes": "Paziente diabetico"
     },
     {
       "id": 3,
@@ -49,10 +51,15 @@
       "gender": "M",
       "phoneNumber": "0912345678",
       "email": "mario.rossi@email.com",
-      "address": "Via Roma 123",
+      "recidenceAddress": "Via Roma 123",
+      "domicileAddress": "Via Roma 123",
       "city": "Palermo",
-      "postalCode": "90100",
-      "province": "PA",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
       "exemptionCode": "E01",
       "notes": ""
     },
@@ -65,15 +72,188 @@
       "gender": "F",
       "phoneNumber": "333-9876543",
       "email": null,
-      "address": "Via Maqueda 78",
+      "recidenceAddress": "Via Maqueda 78",
+      "domicileAddress": "Via Maqueda 78",
       "city": "Palermo",
-      "postalCode": "90100",
-      "province": "PA",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E04",
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "fiscalCode": "GLLGNN85D12F205V",
+      "firstName": "Giovanni",
+      "lastName": "Gallo",
+      "birthDate": "1985-04-12",
+      "gender": "M",
+      "phoneNumber": "347-1122334",
+      "email": "giovanni.gallo@email.com",
+      "recidenceAddress": "Via Dante 7",
+      "domicileAddress": "Via Dante 7",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E02",
+      "notes": "Ipertensione"
+    },
+    {
+      "id": 6,
+      "fiscalCode": "FRNMRC90E55G273X",
+      "firstName": "Marta",
+      "lastName": "Ferri",
+      "birthDate": "1990-05-15",
+      "gender": "F",
+      "phoneNumber": "333-4455667",
+      "email": null,
+      "recidenceAddress": "Corso Vittorio Emanuele 34",
+      "domicileAddress": "Corso Vittorio Emanuele 34",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": null,
+      "notes": "Gravidanza in corso"
+    },
+    {
+      "id": 7,
+      "fiscalCode": "BRDSRA60F25G273Z",
+      "firstName": "Sara",
+      "lastName": "Bruni",
+      "birthDate": "1960-06-25",
+      "gender": "F",
+      "phoneNumber": "091-8765432",
+      "email": "sara.bruni@email.com",
+      "recidenceAddress": "Via Notarbartolo 12",
+      "domicileAddress": "Via Sciuti 56",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E05",
+      "notes": "Allergia ai sulfamidici"
+    },
+    {
+      "id": 8,
+      "fiscalCode": "CNTFRN72M08G273P",
+      "firstName": "Francesco",
+      "lastName": "Conti",
+      "birthDate": "1972-08-08",
+      "gender": "M",
+      "phoneNumber": "338-9988776",
+      "email": null,
+      "recidenceAddress": "Via Sciuti 50",
+      "domicileAddress": "Via Sciuti 50",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E03",
+      "notes": "Cardiopatico"
+    },
+    {
+      "id": 9,
+      "fiscalCode": "ESPSMN88L21G273Q",
+      "firstName": "Simone",
+      "lastName": "Esposito",
+      "birthDate": "1988-07-21",
+      "gender": "M",
+      "phoneNumber": "320-1122334",
+      "email": "simone.esposito@email.com",
+      "recidenceAddress": "Via Libertà 89",
+      "domicileAddress": "Via Libertà 89",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
       "exemptionCode": null,
       "notes": ""
+    },
+    {
+      "id": 10,
+      "fiscalCode": "RCCLRA95P42G273R",
+      "firstName": "Laura",
+      "lastName": "Ricci",
+      "birthDate": "1995-09-02",
+      "gender": "F",
+      "phoneNumber": "333-5544332",
+      "email": null,
+      "recidenceAddress": "Via Marchese di Villabianca 3",
+      "domicileAddress": "Via Marchese di Villabianca 3",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E01",
+      "notes": "Asma bronchiale"
+    },
+    {
+      "id": 11,
+      "fiscalCode": "GRZCRL83T30G273S",
+      "firstName": "Carlo",
+      "lastName": "Greco",
+      "birthDate": "1983-12-30",
+      "gender": "M",
+      "phoneNumber": "091-1234567",
+      "email": "carlo.greco@email.com",
+      "recidenceAddress": "Via Lazio 10",
+      "domicileAddress": "Via Lazio 10",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": null,
+      "notes": "Sportivo agonista"
+    },
+    {
+      "id": 12,
+      "fiscalCode": "MNTLIA00A41G273T",
+      "firstName": "Lia",
+      "lastName": "Mantovani",
+      "birthDate": "2000-01-01",
+      "gender": "F",
+      "phoneNumber": "366-7788990",
+      "email": null,
+      "recidenceAddress": "Via Della Regione 5",
+      "domicileAddress": "Via Della Regione 5",
+      "city": "Palermo",
+      "recidenceMunicipality":"Palermo",
+      "domicileMunicipality":"Palermo",
+      "recidencePostalCode": "90100",
+      "domicilePostalCode":"90100",
+      "recidenceProvince": "PA",
+      "domicileProvince": "PA",
+      "exemptionCode": "E01",
+      "notes": "Minore"
     }
   ],
-  "departments": [
+  "reparti": [
     {
       "id": 1,
       "code": "RAD",
@@ -133,7 +313,116 @@
       "includeInReports": false,
       "revenueCenter": true,
       "notes": ""
+    },
+    {
+      "id": 6,
+      "code": "DERM",
+      "name": "Dermatologia",
+      "branchTypeId": 6,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "code": "REU",
+      "name": "Reumatologia",
+      "branchTypeId": 7,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "code": "GASTRO",
+      "name": "Gastroenterologia",
+      "branchTypeId": 8,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "code": "GINE",
+      "name": "Ginecologia e Ostetricia",
+      "branchTypeId": 9,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "code": "PEDI",
+      "name": "Pediatria",
+      "branchTypeId": 10,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "code": "ALLER",
+      "name": "Area Allergologica",
+      "branchTypeId": 11,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "code": "URO",
+      "name": "Area Urologica e Andrologica",
+      "branchTypeId": 12,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 13,
+      "code": "FISI",
+      "name": "Area Fisioterapica",
+      "branchTypeId": 13,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
+    },
+    {
+      "id": 14,
+      "code": "ONCOL",
+      "name": "Area Oncologica",
+      "branchTypeId": 14,
+      "branchCode": null,
+      "status": "inactive",
+      "requiresValidation": true,
+      "includeInReports": false,
+      "revenueCenter": true,
+      "notes": ""
     }
+
   ],
   "branchTypes": [
     {
@@ -155,15 +444,51 @@
     {
       "id": 5,
       "name": "Laboratorio Analisi"
+    },
+    {
+      "id": 6,
+      "name": "Area Dermatologica"
+    },
+    {
+      "id": 7,
+      "name": "Area Reumatologica"
+    },
+    {
+      "id": 8,
+      "name": "Area Gastroenterologica"
+    },
+    {
+      "id": 9,
+      "name": "Area Ginecologica e Ostetrica"
+    },
+    {
+      "id": 10,
+      "name": "Area Pediatrica"
+    },
+    {
+      "id": 11,
+      "name": "Area Allergologica"
+    },
+    {
+      "id": 12,
+      "name": "Area Urologica / Andrologica"
+    },
+    {
+      "id": 13,
+      "name": "Area Fisioterapica"
+    },
+    {
+      "id": 14,
+      "name": "Area Oncologica"
     }
   ],
-  "doctors": [
+  "medici": [
     {
       "id": 1,
       "firstName": "Mario",
       "lastName": "Bianchi",
       "title": "Dr.",
-      "departmentIds": [2, 1],
+      "repartoIds": [2, 1],
       "phone": "0912345111",
       "email": "mario.bianchi@olocup.it",
       "status": "active"
@@ -173,7 +498,7 @@
       "firstName": "Anna",
       "lastName": "Rossi",
       "title": "Dr.ssa",
-      "departmentIds": [2],
+      "repartoIds": [2],
       "phone": "0912345222",
       "email": "anna.rossi@olocup.it",
       "status": "active"
@@ -183,7 +508,7 @@
       "firstName": "Paolo",
       "lastName": "Verdi",
       "title": "Dr.",
-      "departmentIds": [3],
+      "repartoIds": [3],
       "phone": "0912345333",
       "email": "paolo.verdi@olocup.it",
       "status": "active"
@@ -193,13 +518,73 @@
       "firstName": "Silvia",
       "lastName": "Neri",
       "title": "Dr.ssa",
-      "departmentIds": [2],
+      "repartoIds": [2],
       "phone": "0912345444",
       "email": "silvia.neri@olocup.it",
       "status": "active"
+    },
+    {
+      "id": 5,
+      "firstName": "Luca",
+      "lastName": "Moretti",
+      "title": "Dr.",
+      "repartoIds": [1],
+      "phone": "0912345555",
+      "email": "luca.moretti@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 6,
+      "firstName": "Francesca",
+      "lastName": "Russo",
+      "title": "Dr.ssa",
+      "repartoIds": [3, 2],
+      "phone": "0912345666",
+      "email": "francesca.russo@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 7,
+      "firstName": "Giovanni",
+      "lastName": "Ferrari",
+      "title": "Dr.",
+      "repartoIds": [1, 3],
+      "phone": "0912345777",
+      "email": "giovanni.ferrari@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 8,
+      "firstName": "Elena",
+      "lastName": "Conti",
+      "title": "Dr.ssa",
+      "repartoIds": [2],
+      "phone": "0912345888",
+      "email": "elena.conti@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 9,
+      "firstName": "Elisa",
+      "lastName": "Gambino",
+      "title": "Dr.ssa",
+      "repartoIds": [6],
+      "phone": "0912375421",
+      "email": "elisa.gambino@olocup.it",
+      "status": "active"
+    },
+    {
+      "id": 10,
+      "firstName": "Maria",
+      "lastName": "Benedetta",
+      "title": "Dr.ssa",
+      "repartoIds": [9],
+      "phone": "0917520900",
+      "email": "maria.benedetta@olocup.it",
+      "status": "active"
     }
   ],
-  "facilities": [
+  "strutture": [
     {
       "id": 1,
       "name": "Policlinico Universitario",
@@ -229,19 +614,10 @@
       "province": "PA",
       "phone": "0917899876",
       "email": "info@centrodiagnostico.it"
-    },
-    {
-      "id": 4,
-      "name": "Poliambulatorio Nord",
-      "address": "Via Dante 22",
-      "city": "Palermo",
-      "postalCode": "90100",
-      "province": "PA",
-      "phone": "0917893456",
-      "email": "info@poliambulatorio.it"
     }
   ],
-  "services": [
+  
+  "prestazioni": [
     {
       "id": 1,
       "code": "89.7A.3",
@@ -249,7 +625,12 @@
       "description": "Visita specialistica cardiologica completa",
       "defaultDuration": 30,
       "preparationTime": 5,
-      "departmentId": 2,
+      "repartoId": 2,
+      "strutturaId": 1,
+      "tipoStrutturaId": 1,
+      "medicoId": 1,
+      "agendaId": 1,
+      "prescriptionNumberId": 1,
       "ticketCost": 36.15,
       "privatePrice": 120,
       "notes": "Portare documentazione clinica precedente. Presentarsi 15 minuti prima dell'appuntamento per pratiche amministrative.",
@@ -260,7 +641,7 @@
         "Impegnativa medico curante",
         "Eventuali esami precedenti"
       ],
-      "priorityCodes": ["U", "B", "D", "P"]
+      "priorityCodes": {"u":0, "b":1, "d":4, "p":3}
     },
     {
       "id": 2,
@@ -269,7 +650,12 @@
       "description": "Elettrocardiogramma a riposo",
       "defaultDuration": 15,
       "preparationTime": 5,
-      "departmentId": 2,
+      "repartoId": 2,
+      "strutturaId": 1,
+      "tipoStrutturaId": 2,
+      "medicoId": 1,
+      "agendaId": 1,
+      "prescriptionNumberId": 1,
       "ticketCost": 20.50,
       "privatePrice": 50,
       "notes": "",
@@ -279,7 +665,7 @@
         "Tessera sanitaria",
         "Impegnativa medico curante"
       ],
-      "priorityCodes": ["U", "B", "D", "P"]
+      "priorityCodes": {"u":3, "b":5, "d":6, "p":1}
     },
     {
       "id": 3,
@@ -288,7 +674,12 @@
       "description": "Ecocardiogramma color doppler",
       "defaultDuration": 40,
       "preparationTime": 10,
-      "departmentId": 2,
+      "repartoId": 2,
+      "strutturaId": 1,
+      "tipoStrutturaId": 2,
+      "medicoId": 1,
+      "agendaId": 1,
+      "prescriptionNumberId": 1,
       "ticketCost": 51.65,
       "privatePrice": 130,
       "notes": "",
@@ -298,57 +689,195 @@
         "Tessera sanitaria",
         "Impegnativa medico curante"
       ],
-      "priorityCodes": ["U", "B", "D", "P"]
+      "priorityCodes": {"u":1, "b":1, "d":1, "p":0}
     },
     {
       "id": 4,
-      "code": "E004",
-      "name": "RX Torace",
-      "description": "Radiografia del torace in 2 proiezioni",
-      "defaultDuration": 15,
-      "preparationTime": 5,
-      "departmentId": 1,
-      "ticketCost": 25.40,
-      "privatePrice": 70,
-      "notes": "",
-      "active": true,
-      "requiredDocuments": [
-        "Documento d'identità",
-        "Tessera sanitaria",
-        "Impegnativa medico curante"
-      ],
-      "priorityCodes": ["U", "B", "D", "P"]
-    },
-    {
-      "id": 5,
-      "code": "E005",
-      "name": "TAC Cranio",
-      "description": "Tomografia computerizzata del cranio senza mezzo di contrasto",
-      "defaultDuration": 35,
-      "preparationTime": 15,
-      "departmentId": 1,
-      "ticketCost": 87.30,
-      "privatePrice": 220,
-      "notes": "A digiuno da 6 ore",
+      "code": "80.5D.1",
+      "name": "Infiltrazioni articolari",
+      "description": "Visita Reumatologa per iniezioni di sostanze terapeutiche in un'articolazione",
+      "defaultDuration": 60,
+      "preparationTime": 10,
+      "repartoId": 7,
+      "strutturaId": 3,
+      "tipoStrutturaId": 6,
+      "medicoId": 2,
+      "agendaId": 4,
+      "prescriptionNumberId": 2,
+      "ticketCost": 50.00,
+      "privatePrice": 170,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
       "active": true,
       "requiredDocuments": [
         "Documento d'identità",
         "Tessera sanitaria",
         "Impegnativa medico curante",
-        "Esami del sangue recenti"
+        "Referti esami precedenti"
       ],
-      "priorityCodes": ["U", "B", "D", "P"]
+      "priorityCodes": {"u": 0, "b": 2, "d": 6, "p": 1}
+    },
+    {
+      "id": 5,
+      "code": "06.7U.5",
+      "name": "Pap Test",
+      "description": "Visita Ginecologica",
+      "defaultDuration": 30,
+      "preparationTime": 10,
+      "repartoId": 9,
+      "strutturaId": 2,
+      "tipoStrutturaId": 2,
+      "medicoId": 10,
+      "agendaId": 2,
+      "prescriptionNumberId": 2,
+      "ticketCost": 20.00,
+      "privatePrice": 30,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Referti esami precedenti"
+      ],
+      "priorityCodes": {"u": 3, "b": 2, "d": 6, "p": 1}
+    },
+    {
+      "id": 6,
+      "code": "72.4Y.1",
+      "name": "Visita Ginecologica",
+      "description": "Visita Ginecologica",
+      "defaultDuration": 30,
+      "preparationTime": 10,
+      "repartoId": 9,
+      "strutturaId": 2,
+      "tipoStrutturaId": 2,
+      "medicoId": 10,
+      "agendaId": 2,
+      "prescriptionNumberId": 1,
+      "ticketCost": 20.00,
+      "privatePrice": 30,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Referti esami precedenti"
+      ],
+      "priorityCodes": {"u": 3, "b": 2, "d": 6, "p": 1}
+    },
+    {
+      "id": 7,
+      "code": "64.2C.8",
+      "name": "Visita Pediatrica",
+      "description": "Visita Pediatrica",
+      "defaultDuration": 40,
+      "preparationTime": 10,
+      "repartoId": 10,
+      "strutturaId": 3,
+      "tipoStrutturaId": 2,
+      "medicoId": 3,
+      "agendaId": 5,
+      "prescriptionNumberId": 2,
+      "ticketCost": 20.00,
+      "privatePrice": 50,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Referti esami precedenti"
+      ],
+      "priorityCodes": {"u": 1, "b": 4, "d": 4, "p": 7}
+    },
+    {
+      "id": 8,
+      "code": "22.3B.0",
+      "name": "Visita Ostetrica",
+      "description": "Visita Ostetrica",
+      "defaultDuration": 30,
+      "preparationTime": 10,
+      "repartoId": 9,
+      "strutturaId": 2,
+      "tipoStrutturaId": 2,
+      "medicoId": 10,
+      "agendaId": 3,
+      "prescriptionNumberId": 1,
+      "ticketCost": 70.00,
+      "privatePrice": 100,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Referti esami precedenti"
+      ],
+      "priorityCodes": {"u": 1, "b": 3, "d": 4, "p": 2}
+    },
+    {
+      "id": 9,
+      "code": "30.6F.2",
+      "name": "Controllo scoliosi",
+      "description": "Visita Pediatrica",
+      "defaultDuration": 20,
+      "preparationTime": 10,
+      "repartoId": 10,
+      "strutturaId": 3,
+      "tipoStrutturaId": 2,
+      "medicoId": 3,
+      "agendaId": 5,
+      "prescriptionNumberId": 2,
+      "ticketCost": 70.00,
+      "privatePrice": 100,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Referti esami precedenti"
+      ],
+      "priorityCodes": {"u": 2, "b": 5, "d": 2, "p": 3}
+    },
+    {
+      "id": 10,
+      "code": "95.9T.3",
+      "name": "Visita Fisiatrica",
+      "description": "Visita Fisiatrica",
+      "defaultDuration": 30,
+      "preparationTime": 10,
+      "repartoId": 13,
+      "strutturaId": 3,
+      "tipoStrutturaId": 2,
+      "medicoId": 8,
+      "agendaId": 4,
+      "prescriptionNumberId": 1,
+      "ticketCost": 50.75,
+      "privatePrice": 80,
+      "notes": "Portare eventuali referti di risonanze, TAC o EEG.",
+      "active": true,
+      "requiredDocuments": [
+        "Documento d'identità",
+        "Tessera sanitaria",
+        "Impegnativa medico curante",
+        "Referti esami precedenti"
+      ],
+      "priorityCodes": {"u": 6, "b": 3, "d": 2, "p": 8}
     }
   ],
-  "agendas": [
+
+  "agende": [
     {
       "id": 1,
-      "name": "Cardiologia - Dr. Bianchi",
+      "name": "Cardiologia",
       "code": "CAR01",
-      "facilityId": 1,
-      "departmentId": 2,
-      "doctorId": 1,
-      "location": "Ambulatorio Cardiologia 3",
+      "repartoId": 2,
+      "medicoId": 1,
+      "strutturaId": 1,
+      "unitaOperativeId": 4,
+      "location": "Ambulatorio Cardiologia",
       "startDate": "2025-01-01",
       "endDate": null,
       "slotDuration": 15,
@@ -356,19 +885,17 @@
       "disableOverflow": false,
       "maxPvVisits": 20,
       "maxCoVisits": 15,
-      "multipleBookingsAllowed": true,
-      "disableDuplicateBookings": true,
-      "serviceIds": [1, 2, 3],
       "status": "active"
     },
     {
       "id": 2,
-      "name": "Cardiologia - Dr.ssa Rossi",
-      "code": "CAR02",
-      "facilityId": 2,
-      "departmentId": 2,
-      "doctorId": 2,
-      "location": "Cardiologia",
+      "name": "Ginecologia e Ostetricia",
+      "code": "GINE02",
+      "repartoId": 5,
+      "medicoId": 2,
+      "strutturaId": 2,
+      "unitaOperativeId": 12,
+      "location": "Ambulatorio Ginecologia e Ostetrica ",
       "startDate": "2025-01-01",
       "endDate": null,
       "slotDuration": 15,
@@ -376,19 +903,17 @@
       "disableOverflow": false,
       "maxPvVisits": 20,
       "maxCoVisits": 15,
-      "multipleBookingsAllowed": true,
-      "disableDuplicateBookings": true,
-      "serviceIds": [1, 2, 3],
       "status": "active"
     },
     {
       "id": 3,
-      "name": "Cardiologia ALPI - Dr. Bianchi",
-      "code": "CAR03",
-      "facilityId": 1,
-      "departmentId": 2,
-      "doctorId": 1,
-      "location": "Studio 12",
+      "name": "Ortopedia",
+      "code": "ORT03",
+      "repartoId": 4,
+      "medicoId": 1,
+      "strutturaId": 1,
+      "unitaOperativeId": 2,
+      "location": "Ambulatorio Ortopedia",
       "startDate": "2025-01-01",
       "endDate": null,
       "slotDuration": 15,
@@ -396,72 +921,43 @@
       "disableOverflow": true,
       "maxPvVisits": 15,
       "maxCoVisits": 10,
-      "multipleBookingsAllowed": false,
-      "disableDuplicateBookings": true,
-      "serviceIds": [1, 2, 3],
-      "status": "active"
-    }
-  ],
-  "agendaSchedules": [
-    {
-      "id": 1,
-      "agendaId": 1,
-      "dayOfWeek": 1,
-      "startTimeMorning": "08:00",
-      "endTimeMorning": "13:00",
-      "startTimeAfternoon": "15:00",
-      "endTimeAfternoon": "19:00",
-      "status": "active"
-    },
-    {
-      "id": 2,
-      "agendaId": 1,
-      "dayOfWeek": 2,
-      "startTimeMorning": "08:00",
-      "endTimeMorning": "13:00",
-      "startTimeAfternoon": "15:00",
-      "endTimeAfternoon": "19:00",
-      "status": "active"
-    },
-    {
-      "id": 3,
-      "agendaId": 1,
-      "dayOfWeek": 3,
-      "startTimeMorning": "08:00",
-      "endTimeMorning": "13:00",
-      "startTimeAfternoon": "15:00",
-      "endTimeAfternoon": "19:00",
       "status": "active"
     },
     {
       "id": 4,
-      "agendaId": 1,
-      "dayOfWeek": 4,
-      "startTimeMorning": "08:00",
-      "endTimeMorning": "13:00",
-      "startTimeAfternoon": "15:00",
-      "endTimeAfternoon": "19:00",
+      "name": "Reumatologia",
+      "code": "REU02",
+      "repartoId": 7,
+      "medicoId": 2,
+      "strutturaId": 3,
+      "unitaOperativeId": 2,
+      "location": "Ambulatorio Reumatologia",
+      "startDate": "2025-01-01",
+      "endDate": null,
+      "slotDuration": 20,
+      "minSlotDuration": 15,
+      "disableOverflow": true,
+      "maxPvVisits": 15,
+      "maxCoVisits": 10,
       "status": "active"
     },
     {
       "id": 5,
-      "agendaId": 1,
-      "dayOfWeek": 5,
-      "startTimeMorning": "08:00",
-      "endTimeMorning": "13:00",
-      "startTimeAfternoon": "15:00",
-      "endTimeAfternoon": "19:00",
+      "name": "Pediatria",
+      "code": "PEDI03",
+      "repartoId": 10,
+      "medicoId": 3,
+      "strutturaId": 3,
+      "unitaOperativeId": 3,
+      "location": "Ambulatorio Pediatria",
+      "startDate": "2025-01-01",
+      "endDate": "2025-12-31",
+      "slotDuration": 30,
+      "minSlotDuration": 20,
+      "disableOverflow": false,
+      "maxPvVisits": 25,
+      "maxCoVisits": 20,
       "status": "active"
-    },
-    {
-      "id": 6,
-      "agendaId": 1,
-      "dayOfWeek": 6,
-      "startTimeMorning": null,
-      "endTimeMorning": null,
-      "startTimeAfternoon": null,
-      "endTimeAfternoon": null,
-      "status": "inactive"
     }
   ],
   "scheduleSuspensions": [
@@ -474,63 +970,461 @@
       "notes": "Chiusura per festività"
     }
   ],
+
   "slots": [
     {
       "id": 1,
-      "agendaId": 1,
-      "date": "2025-02-17",
+      "prestazioneId": 1,
+      "date": "2025-06-15",
       "time": "08:00",
       "durationMinutes": 30,
-      "priority": "U",
-      "status": "available"
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 1
     },
     {
       "id": 2,
-      "agendaId": 1,
-      "date": "2025-02-17",
+      "prestazioneId": 1,
+      "date": "2025-06-15",
       "time": "08:30",
       "durationMinutes": 30,
-      "priority": "B",
-      "status": "available"
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 1
     },
     {
       "id": 3,
-      "agendaId": 1,
-      "date": "2025-02-17",
+      "prestazioneId": 1,
+      "date": "2025-06-16",
       "time": "09:00",
       "durationMinutes": 30,
-      "priority": "D",
-      "status": "available"
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 1
     },
     {
       "id": 4,
-      "agendaId": 1,
-      "date": "2025-02-17",
+      "prestazioneId": 1,
+      "date": "2025-06-16",
       "time": "09:30",
       "durationMinutes": 30,
-      "priority": "P",
-      "status": "available"
+      "priority": "p",
+      "status": "unavailable",
+      "dayOfWeek": "lun",
+      "agendaId": 1
     },
     {
       "id": 5,
-      "agendaId": 1,
-      "date": "2025-02-17",
+      "prestazioneId": 2,
+      "date": "2025-06-16",
       "time": "10:00",
       "durationMinutes": 30,
-      "priority": "B",
-      "status": "available"
+      "priority": "ob",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 1
+    },
+    {
+      "id": 6,
+      "prestazioneId": 2,
+      "date": "2025-06-16",
+      "time": "08:00",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "unavailable",
+      "dayOfWeek": "lun",
+      "agendaId": 1
+    },
+    {
+      "id": 7,
+      "prestazioneId": 2,
+      "date": "2025-06-16",
+      "time": "08:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 1
+    },
+    {
+      "id": 8,
+      "prestazioneId": 2,
+      "date": "2025-06-16",
+      "time": "09:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 1
+    },
+    {
+      "id": 9,
+      "prestazioneId": 3,
+      "date": "2025-06-16",
+      "time": "09:30",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 2
+    },
+    {
+      "id": 10,
+      "prestazioneId": 3,
+      "date": "2025-06-16",
+      "time": "10:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "lun",
+      "agendaId": 2
+    },
+    {
+      "id": 11,
+      "prestazioneId": 3,
+      "date": "2025-06-30",
+      "time": "10:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "mer",
+      "agendaId": 2
+    },
+    {
+      "id": 12,
+      "prestazioneId": 3,
+      "date": "2025-06-30",
+      "time": "11:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "mer",
+      "agendaId": 2
+    },
+    {
+      "id": 13,
+      "prestazioneId": 4,
+      "date": "2025-06-30",
+      "time": "11:30",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mer",
+      "agendaId": 2
+    },
+    {
+      "id": 14,
+      "prestazioneId": 4,
+      "date": "2025-06-02",
+      "time": "08:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "ven",
+      "agendaId": 2
+    },
+    {
+      "id": 15,
+      "prestazioneId": 4,
+      "date": "2025-06-02",
+      "time": "08:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "ven",
+      "agendaId": 2
+    },
+    {
+      "id": 16,
+      "prestazioneId": 4,
+      "date": "2025-06-02",
+      "time": "09:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "ven",
+      "agendaId": 2
+    },
+    {
+      "id": 17,
+      "prestazioneId": 5,
+      "date": "2025-06-13",
+      "time": "08:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 18,
+      "prestazioneId": 5,
+      "date": "2025-06-13",
+      "time": "08:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 19,
+      "prestazioneId": 5,
+      "date": "2025-06-13",
+      "time": "09:00",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 20,
+      "prestazioneId": 5,
+      "date": "2025-06-13",
+      "time": "09:30",
+      "durationMinutes": 30,
+      "priority": "ob",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 21,
+      "prestazioneId": 6,
+      "date": "2025-06-13",
+      "time": "10:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 22,
+      "prestazioneId": 6,
+      "date": "2025-06-13",
+      "time": "10:30",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 23,
+      "prestazioneId": 6,
+      "date": "2025-06-13",
+      "time": "11:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 24,
+      "prestazioneId": 6,
+      "date": "2025-06-13",
+      "time": "11:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 3
+    },
+    {
+      "id": 25,
+      "prestazioneId": 7,
+      "date": "2025-06-13",
+      "time": "12:00",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 26,
+      "prestazioneId": 7,
+      "date": "2025-06-13",
+      "time": "12:30",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 27,
+      "prestazioneId": 7,
+      "date": "2025-06-13",
+      "time": "14:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 28,
+      "prestazioneId": 7,
+      "date": "2025-06-13",
+      "time": "14:00",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 29,
+      "prestazioneId": 8,
+      "date": "2025-06-13",
+      "time": "14:30",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 30,
+      "prestazioneId": 8,
+      "date": "2025-06-13",
+      "time": "15:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 31,
+      "prestazioneId": 8,
+      "date": "2025-06-13",
+      "time": "15:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 32,
+      "prestazioneId": 8,
+      "date": "2025-06-13",
+      "time": "16:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 4
+    },
+    {
+      "id": 33,
+      "prestazioneId": 9,
+      "date": "2025-06-14",
+      "time": "16:30",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 34,
+      "prestazioneId": 9,
+      "date": "2025-06-14",
+      "time": "17:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 35,
+      "prestazioneId": 9,
+      "date": "2025-06-14",
+      "time": "17:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 36,
+      "prestazioneId": 9,
+      "date": "2025-06-14",
+      "time": "18:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 37,
+      "prestazioneId": 10,
+      "date": "2025-06-13",
+      "time": "08:00",
+      "durationMinutes": 30,
+      "priority": "u",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 38,
+      "prestazioneId": 10,
+      "date": "2025-06-13",
+      "time": "08:30",
+      "durationMinutes": 30,
+      "priority": "d",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 39,
+      "prestazioneId": 10,
+      "date": "2025-06-13",
+      "time": "09:00",
+      "durationMinutes": 30,
+      "priority": "p",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
+    },
+    {
+      "id": 40,
+      "prestazioneId": 10,
+      "date": "2025-06-13",
+      "time": "09:30",
+      "durationMinutes": 30,
+      "priority": "b",
+      "status": "available",
+      "dayOfWeek": "mar",
+      "agendaId": 5
     }
+
+
   ],
   "appointments": [
     {
       "id": 1,
-      "patientId": 3,
+      "pazienteId": 3,
       "appointmentDate": "2025-02-15",
       "appointmentTime": "09:30",
       "agendaId": 1,
-      "serviceId": 1,
-      "doctorId": 1,
-      "priorityCode": "D",
+      "prestazioneId": 1,
+      "medicoId": 1,
+      "priorityCode": "d",
       "status": "completed",
       "notes": "",
       "prescriptionNumber": "NRE7654321",
@@ -541,13 +1435,13 @@
     },
     {
       "id": 2,
-      "patientId": 3,
+      "pazienteId": 3,
       "appointmentDate": "2025-03-10",
       "appointmentTime": "12:00",
       "agendaId": 2,
-      "serviceId": 4,
-      "doctorId": 2,
-      "priorityCode": "P",
+      "prestazioneId": 4,
+      "medicoId": 2,
+      "priorityCode": "p",
       "status": "booked",
       "notes": "",
       "prescriptionNumber": "NRE1234567",
@@ -560,13 +1454,13 @@
   "prescriptions": [
     {
       "id": 1,
-      "patientId": 3,
+      "pazienteId": 3,
       "prescriptionNumber": "NRE1234567",
       "prescriptionDate": "2025-03-01",
       "doctorName": "Dr. Rossi",
-      "services": [
+      "performances": [
         {
-          "serviceId": 1,
+          "prestazioneId": 1,
           "quantity": 1
         }
       ],
@@ -574,13 +1468,13 @@
     },
     {
       "id": 2,
-      "patientId": 3,
+      "pazienteId": 3,
       "prescriptionNumber": "NRE7654321",
       "prescriptionDate": "2025-02-15",
       "doctorName": "Dr. Bianchi",
-      "services": [
+      "performances": [
         {
-          "serviceId": 4,
+          "prestazioneId": 4,
           "quantity": 1
         }
       ],
@@ -593,7 +1487,7 @@
       "invoiceNumber": "2025/001234",
       "invoiceDate": "2025-03-01",
       "invoiceType": "FT",
-      "patientId": 3,
+      "pazienteId": 3,
       "patientName": "Rossi Mario",
       "fiscalCode": "RSSMRA80A01H501U",
       "address": "Via Roma 123",
@@ -624,7 +1518,7 @@
       "invoiceNumber": "2025/001233",
       "invoiceDate": "2025-03-01",
       "invoiceType": "FT",
-      "patientId": null,
+      "pazienteId": null,
       "patientName": "Verdi Giuseppe",
       "fiscalCode": "VRDGPP75M01H501Z",
       "address": "Via Libertà 45",
@@ -655,7 +1549,7 @@
       "invoiceNumber": "2025/000024",
       "invoiceDate": "2025-02-28",
       "invoiceType": "NC",
-      "patientId": null,
+      "pazienteId": null,
       "patientName": "Bianchi Anna",
       "fiscalCode": "BNCNNA65A41H501Y",
       "address": "Via Maqueda 22",
@@ -686,7 +1580,7 @@
       "invoiceNumber": "2025/001232",
       "invoiceDate": "2025-02-28",
       "invoiceType": "FT",
-      "patientId": null,
+      "pazienteId": null,
       "patientName": "Centro Medico Salute Srl",
       "fiscalCode": "01234567890",
       "address": "Via Roma 78",
@@ -715,28 +1609,34 @@
   ],
   "priorities": [
     {
-      "id": "U",
+      "id": "u",
       "name": "Urgente",
       "maxWaitDays": 3,
-      "color": "#f73e5a"
+      "color": "#cc334d"
     },
     {
-      "id": "B",
+      "id": "b",
       "name": "Breve",
       "maxWaitDays": 10,
-      "color": "#ff9900"
+      "color": "#cc7a00"
     },
     {
-      "id": "D",
+      "id": "d",
       "name": "Differita",
       "maxWaitDays": 30,
-      "color": "#0073e6"
+      "color": "#5c6f82"
     },
     {
-      "id": "P",
+      "id": "p",
       "name": "Programmabile",
       "maxWaitDays": 180,
-      "color": "#008758"
+      "color": "#008055"
+    },
+    { 
+      "id": "ob",
+      "name": "Overbooking",
+      "maxWaitDays": 7,
+      "color":"#cc334d"
     }
   ],
   "paymentMethods": [
@@ -778,7 +1678,7 @@
       "description": "Età > 65 anni"
     }
   ],
-  "serviceTypes": [
+  "tipiStrutture": [
     {
       "id": 1,
       "code": "SSN",
@@ -807,7 +1707,7 @@
     "version": "3.5.2",
     "lastUpdate": "2023-01-15"
   },
-"unitaOperative": [
+  "unitaOperative": [
     {
       "id": 1,
       "codice_struttura": "STR001",
@@ -936,8 +1836,144 @@
       "codice_reparto_hl7": "HL7016",
       "codice_reparto_hl7_ds": "Anestesia e Rianimazione HL7"
     }
+  ],
+  "storicoPazienti": [
+    {
+      "id": 1,
+      "pazienteId": 1,
+      "visits": [
+        {
+          "name": "Visita Cardiologica",
+          "date": "2023-06-12",
+          "time": "10:00",
+          "priority": "b",
+          "repartoId": 2,
+          "medicoId": 5,
+          "strutturaId": 1,
+          "payment": {
+            "code": "CASH",
+            "ticketCost": "36.15",
+            "paymentMode": "Contanti"
+          }
+        },
+        {
+          "name": "Visita Cardiologica",
+          "date": "2024-09-15",
+          "time": "11:00",
+          "priority": "d",
+          "repartoId": 2,
+          "medicoId": 1,
+          "strutturaId": 2,
+          "payment": {
+            "code": "POS",
+            "ticketCost": "25.40",
+            "paymentMode": "POS"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "pazienteId": 2,
+      "visits": [
+        { 
+          "name": "Visita Ginecologica",
+          "date": "2022-11-05",
+          "time": "09:15",
+          "priority": "p",
+          "repartoId": 9,
+          "medicoId": 3,
+          "strutturaId": 3,
+          "payment": {
+            "code": "BANK",
+            "ticketCost": "87.30",
+            "paymentMode": "Bonifico"
+          }
+        },
+        {
+          "name": "Visita Fisiatrica",
+          "date": "2024-03-20",
+          "time": "08:45",
+          "priority": "b",
+          "repartoId": 13,
+          "medicoId": 4,
+          "strutturaId": 2,
+          "payment": {
+            "code": "POS",
+            "ticketCost": "20.50",
+            "paymentMode": "POS"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "pazienteId": 3,
+      "visits": [
+        {
+          "name": "Visita Cardiologica",
+          "date": "2022-12-01",
+          "time": "10:30",
+          "priority": "d",
+          "repartoId": 2,
+          "medicoId": 1,
+          "strutturaId": 1,
+          "payment": {
+            "code": "CASH",
+            "ticketCost": "25.40",
+            "paymentMode": "Contanti"
+          }
+        },
+        {
+          "name": "Visita Fisiatrica",
+          "date": "2023-10-10",
+          "time": "11:45",
+          "priority": "u",
+          "repartoId": 13,
+          "medicoId": 4,
+          "strutturaId": 2,
+          "payment": {
+            "code": "BANK",
+            "ticketCost": "51.65",
+            "paymentMode": "Bonifico"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "pazienteId": 4,
+      "visits": [
+        {
+          "name": "Visita Ginecologica",
+          "date": "2023-05-15",
+          "time": "09:00",
+          "priority": "u",
+          "repartoId": 9,
+          "medicoId": 3,
+          "strutturaId": 2,
+          "payment": {
+            "code": "CASH",
+            "ticketCost": "25.40",
+            "paymentMode": "Contanti"
+          }
+        },
+        {
+          "name": "Visita Ginecologica",
+          "date": "2024-02-22",
+          "time": "12:00",
+          "priority": "p",
+          "repartoId": 9,
+          "medicoId": 5,
+          "strutturaId": 3,
+          "payment": {
+            "code": "POS",
+            "ticketCost": "87.30",
+            "paymentMode": "POS"
+          }
+        }
+      ]
+    }
   ]
-  
 
-  
 }
