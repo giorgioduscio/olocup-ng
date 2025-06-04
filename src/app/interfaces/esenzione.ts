@@ -1,4 +1,4 @@
-export interface Exemption {
+export interface Esenzione {
     id: string; 
     code: string; 
     description: string; 

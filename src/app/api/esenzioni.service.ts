@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Exemption } from '../interfaces/exemption';
+import { Esenzione } from '../interfaces/esenzione';
 
 @Injectable({  providedIn: 'root'})
 export class EsenzioniService {
@@ -8,8 +8,8 @@ export class EsenzioniService {
     this.get()
   }
 
-  private url ='http://localhost:3000/exemptions'
-  esenzioni =signal<Exemption[]>([])
+  private url ='http://localhost:3000/esenzioni'
+  esenzioni =signal<Esenzione[]>([])
   get(){
     fetch(this.url).then(res=>res.json()).then(res=>{
       if(res) this.esenzioni.set(res)
@@ -22,7 +22,7 @@ export class EsenzioniService {
       console.log('delete', this.esenzioni() );
     })
   }
-  patch(id:number, esenzione:Exemption){
+  patch(id:number, esenzione:Esenzione){
     fetch(`${this.url}/${id}`,{ 
       method:'PATCH', body:JSON.stringify(esenzione), headers:{'Content-Type':'application/json'}
     }) .then(res=>res.json()).then(res=>{
@@ -31,7 +31,7 @@ export class EsenzioniService {
         
     })
   }
-  post(esenzione:Exemption){
+  post(esenzione:Esenzione){
     fetch(this.url,{
       method:'POST', body:JSON.stringify(esenzione), headers:{'Content-Type':'application/json'}
     }).then(res=>res.json()).then(res=>{
