@@ -17,7 +17,7 @@ export class NavbarNavigazioneComponent {
   sezioni=[
     { title: 'Ticket',          link: '/ticket' },
     { title: 'Pazienti',        link: '/pazienti' },
-    { title: 'Prenotazioni',    link: '/prenotazione' },
+    { title: 'Prenotazioni',    link: '/prenotazione_alpi' },
     { title: 'Agende',          link: '/agende' },
     { title: 'Flussi',          link: '/flussi' },
     { title: 'Ricerca',         link: '/ricerca' },
