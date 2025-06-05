@@ -1,1 +1,327 @@
-<p>prenotazione-alpi works!</p>
+<app-modal modalId="historyModal">
+  <div class="modal-body">
+    <div id="historyContent"></div>
+  </div>
+</app-modal>
+
+<app-modal modalId="addPatient">
+  <div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="pb-0 mb-0 text-primary">Registra Paziente</h3>
+      <button title="Chiudi" class="btn btn-white btn-xs float-end" type="button" data-bs-dismiss="modal" aria-label="Chiudi">
+        <svg class="icon icon-lg icon-primary mr-2">
+          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
+        </svg>
+      </button>
+    </div>    
+    <div class="alert alert-primary rounded w-75 container mb-5" role="alert">
+      I campi contrassegnati da "<b>*</b>" sono obbligatori.
+    </div>
+    <form id="addPatientForm"></form>
+  </div>
+</app-modal>
+
+
+
+<article class="container my-4">
+  <div id="routerBreadcrumb"></div>
+
+  <!--! Title and Actions -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <h1 class="mb-0 text-primary font-sans-serif" aria-label="Nuova Prenotazione ALPI">Nuova Prenotazione ALPI</h1>
+      <p class="text-muted text-secondary font-sans-serif" aria-label="Inserimento prenotazione per prestazioni sanitarie">Inserimento prenotazione per prestazioni sanitarie</p>
+    </div>
+    <div class="col-md-6 text-md-right mt-3 mt-md-0">
+      <div class="btn-group" role="group">
+        <button title="Guida" type="button" class="btn btn-primary btn-sm" aria-label="Guida">
+          <svg class="icon icon-sm icon-padded icon-white mr-2">
+            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-help-circle">
+            </use>
+          </svg>Guida
+        </button>
+
+        <button title="Stampa" type="button" class="btn btn-primary btn-sm" aria-label="Stampa">
+          <svg class="icon icon-sm icon-padded icon-white mr-2">
+            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-print"></use>
+          </svg>Stampa
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--! Processo di prenotazione a tabs -->
+  <div class="row mb-4 justify-content-center">
+    <div class="mx-auto" style="max-width: max-content;">
+      <ul class="nav nav-tabs nav-tabs-icon-text" id="prenotationTabs" role="tablist" aria-label="Tab Prenotazione"> 
+        <li *ngFor="let tab of tabsDatas" class="nav-item" role="presentation">
+          <a class="nav-link {{tab.status}} p-3" id="{{ tab.key }}-tab" data-bs-toggle="tab" 
+            href="#{{ tab.key }}" role="tab" title="{{ tab.title }}" aria-label="Secondo tab Data e Ora " 
+            [attr.aria-controls]="tab.key" aria-selected="false"
+          > <svg class="icon"><use [attr.href]="'/assets/bootstrap-italia/svg/sprites.svg#' + tab.icon"></use></svg>
+            {{ tab.title }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content Row -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-body tabs-container tab-content p-0">
+
+          <!--! Tab 1: PRESTAZIONE -->
+          <div class="panel tab-pane active" id="prestazione">
+            <div class="row g-3 justify-content-center">
+              <!-- Filtri  -->
+              <div class="col-12 col-md-4 col-lg-3 shadow-sm p-3 m-0" id="filters" aria-label="Filtri prestazione">
+                <h5 class="fw-bold">Filtri </h5>
+                <section class="form-group compact-form">
+                
+                  <!-- Campo di ricerca testuale -->
+                  <div class="it-search-wrapper pb-3" role="search">
+                    <label for="filtroPrestazioni" class="visually-hidden">Cerca Prestazione</label>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text bg-white border-end-0">
+                        <svg class="icon icon-sm" aria-hidden="true">
+                          <use href="/bootstrap-italia/svg/sprites.svg#it-search"></use>
+                        </svg>
+                      </span>
+                      <!--TEST: Visita cardiologica, Elettrocardiogramma, Ecocardiogramma, RX Torace, TAC Cranio-->
+                      <input type="search" id="filtroPrestazioni" class="form-control border-start-0 m-0" placeholder="Cerca Prestazione" aria-label="Cerca Prestazione">
+                    </div>
+                  </div>
+
+                  <div class="select-wrapper pb-5">
+                    <label for="filtroStruttura">Seleziona Struttura</label>
+                    <select id="filtroStruttura" aria-label="Seleziona Struttura"></select>
+                  </div>
+
+                  <div class="select-wrapper mb-3">
+                    <label for="medicoFilter">Seleziona Medico</label>
+                    <select id="medicoFilter" aria-label="Seleziona Medico"></select>
+                  </div>
+
+                  <div class="text-end mb-2">
+                    <button id="resetFiltroPrestazioni" class="btn btn-primary p-2" aria-label="Reset">
+                      <svg class="icon icon-sm icon-padded icon-white m-0">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close-circle"></use>
+                      </svg>
+                      <span>Reset</span>
+                    </button>
+                  </div>
+
+                  <div id="selectedPrestazioneA" class="details"></div>
+                </section>
+              </div>
+              <!-- Prestazioni -->
+              <aside class="col-12 col-md-8 col-lg-6 shadow-sm p-3 m-0">
+                <h5 class="fw-bold mb-3">Risultati Prestazioni</h5>
+                <section class="list-group mb-3" id="prestazioniResults"></section>
+              </aside>
+            </div>
+          </div>
+          
+          <!--! Tab 2: DATA E ORA -->
+          <div class="panel tab-pane" id="datetime">
+            <div class="row justify-content-center gx-3 gy-4">
+              <!-- Riepilogo Prestazione selezionato (sinistra) -->
+              <aside class="col-12 col-md-4 col-lg-3 shadow-sm m-0 p-3 order-lg-1">
+                <h5 class="font-weight-bold mb-3" aria-label="Prestazione Selezionta"p-0>Prestazione Selezionata</h5>
+                <div>
+                  <div id="selectedPrestazioneB" class="selected-prestazione mb-4"></div>
+                  
+                  <div class="btn-group-vertical" id="btn-first-available">
+                    <button date class="btn btn-secondary w-100" title="Prima Data e Ora Disponibile e Avanti" aria-label="Prima Data e Ora Disponibile e Avanti">
+                      <h6 class="font-weight-bold">Primo Disponibile</h6>
+                      <svg class="icon icon-sm icon-padded icon-white m-0">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                      </svg> <span></span>
+                    </button>
+                  </div>
+
+                </div>
+                <button class="btn btn-primary w-100" data-target-tab="#prestazione" title="Indietro" aria-label="Indietro">
+                  <svg class="icon icon-sm icon-padded icon-white mr-2">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
+                  </svg>Indietro
+                </button>
+              </aside>
+
+              <!-- Calendario (centro) -->
+              <aside class="col-12 col-md-8 col-lg-6 shadow-sm m-0 p-3 order-lg-2">
+                <h5 aria-label="Calendario Disponibilità">
+                  <svg class="icon icon-sm icon-padded icon-primary mr-1">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-calendar"></use>
+                  </svg>Calendario Disponibilità
+                </h5>
+                <section>
+
+                  <!-- Calendario -->
+                  <div id="calendar" class="w-100">
+                    <header id="month-year" class="d-flex justify-content-between align-items-center mb-2">
+                      <div>
+                        <b id="month-name"></b>
+                        <b id="year"></b>
+                      </div>
+                      <div>
+                        <button title="Data Corrente" id="backToday" class="btn p-1" aria-label="Vaia alla data corrente">
+                          <svg class="icon icon-primary"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-calendar"></use></svg>
+                        </button>
+                        <button title="Mese precedente"  id="prev" class="btn p-1" aria-label="Mese Precedente">
+                          <svg class="icon icon-sm icon-primary">
+                            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-up"></use>
+                          </svg>
+                        </button>
+
+                        <button title="Mese successivo"  id="next" class="btn p-1" aria-label="Mese Successivo">
+                          <svg class="icon icon-sm icon-primary">
+                            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-down"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </header>
+                    <div id="days-of-week" sevenDays>
+                      <div title="Lunedì" aria-label="Lunedì">Lun</div><div title="Martedì" aria-label="Martedì">Mar</div><div title="Mercoledì" aria-label="Mercoledì">Mer</div><div title="Giovedì" aria-label="Giovedì">Gio</div>
+                      <div title="Venerdì" aria-label="Venerdì">Ven</div><div title="Sabato" aria-label="Sabato">Sab</div><div title="Domenica" aria-label="Domenica">Dom</div>
+                    </div>
+                    <main id="days" sevenDays></main>
+                  </div>
+
+                  <!-- Slots -->
+                  <div class="d-flex flex-wrap gap-2 justify-content-center" id="slotsDetails"></div>
+                </section>
+              </aside>
+
+              <!-- Riepilogo data selezionata (destra) -->
+              <aside class="col-12 col-lg-3 shadow-sm m-0 p-3 order-lg-3">
+                <h5 class="font-weight-bold" id="selectedDateTime">Orario Selezionato</h5>
+                <div>
+                  <div id="slotSelezionato"></div>
+                </div>
+
+                <button title="Avanti" class="btn btn-primary w-100 disabled" data-target-tab="#paziente" aria-label="Avanti">
+                  <svg class="icon icon-sm icon-padded icon-white mr-2">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                  </svg>Avanti
+                </button>
+              </aside>
+            </div>
+          </div>
+      
+          <!--! Tab 3: PAZIENTE -->
+          <div class="panel tab-pane" id="paziente">
+            <div class="row justify-content-center ">
+              <!-- Riepilogo prenotazione (sinistra) -->
+              <aside class="col-12 col-md-4 col-lg-3 shadow mb-4 m-0">
+                <h5 class="font-weight-bold" aria-label="Riepilogo Prenotazione">Riepilogo Prenotazione</h5>
+                <div>
+                  <div id="selectedPrestazioneC" class="selected-prestazione mb-4"></div>
+                  <hr>
+                  <div id="TselectedPatient" class="details d-none"></div>
+                </div>
+                <button title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
+                  <svg class="icon icon-sm icon-padded icon-white mr-2">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
+                  </svg>Indietro
+                </button>
+              </aside>
+          
+              <!-- Ricerca Paziente (centro) -->
+              <div class="col-12 col-md-8 col-lg-6 shadow-sm p-2 mb-4">
+                <div class="d-flex flex-column flex-md-row align-items-start justify-content-between px-3">
+                  <h5 class="font-weight-bold" aria-label="Ricerca Paziente">Ricerca Paziente</h5>
+                  <div class="mt-2 mt-md-0 ms-md-2">
+                    <button title="Nuovo Paziente" id="newPatient" class="btn btn-primary btn-xs" type="button" data-bs-toggle="modal" data-bs-target="#addPatient" aria-label="Nuovo Paziente">
+                      <svg class="icon icon-sm icon-padded icon-white mr-1">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-plus"></use>
+                      </svg>Nuovo Paziente
+                    </button>
+                  </div>
+                </div>
+          
+                <aside>
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="it-search-wrapper w-100" style="border-bottom: 1px solid;">
+                      <label for="filtroPazienti" class="visually-hidden" aria-label="Cerca paziente per nome, codice fiscale o telefono...">Cerca paziente per nome, codice fiscale o telefono...</label>
+                      <div class="input-group align-items-center">
+                        <svg class="icon icon-sm" aria-hidden="true">
+                          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use>
+                        </svg>
+                        <input id="patientsFilter" type="search" class="form-control m-0 border-0" placeholder="Cerca paziente per nome, codice fiscale o telefono...">
+                      </div>
+                    </div>
+                  </div>
+                  <section class="list-group mb-3" id="patientsList"></section>
+                </aside>
+              </div>
+          
+            </div>
+          </div>
+                          
+          <!--! Tab 4: CONFERMA -->
+          <div class="panel tab-pane" id="confirm">
+            <div class="row justify-content-center">
+              <div class="col-lg-8 offset-lg-2 shadow p-3 mb-5 m-0">
+                <h5 class="font-weight-bold mb-4 text-center" aria-label="Riepilogo Prenotazione">Riepilogo Prenotazione</h5>
+                <div class="card">
+                  <div class="card-body p-0">
+                    <div id="appointmentDetails"></div>
+
+                    <div>
+                      <div class="form-check mt-3">
+                        <input title="Promemoria via SMS" class="form-check-input" type="checkbox" id="sendSMSCheck">
+                        <label class="form-check-label" for="sendSMSCheck" aria-label="Invia promemoria SMS al paziente">Invia promemoria SMS al paziente</label>
+                      </div>
+                      <div class="form-check">
+                        <input title="Promemoria via Email" class="form-check-input" type="checkbox" id="sendEmailCheck">
+                        <label class="form-check-label" for="sendEmailCheck" aria-label="Invia promemoria Email al paziente">Invia promemoria Email al paziente</label>
+                      </div>                    
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-6">
+                    <div class="alert alert-info rounded" role="alert">
+                      <h6 class="text-uppercase text-muted small d-flex align-items-center">Note</h6>
+                      <p class="small" aria-label="Portare documentazione clinica precedente. Presentarsi 15 minuti prima dell'appuntamento per pratiche amministrative.">
+                        Portare documentazione clinica precedente. Presentarsi 15 minuti prima dell'appuntamento per pratiche amministrative.</p>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <h6 class="text-uppercase text-muted small d-flex align-items-center" aria-label="Documenti Richiesti">
+                      <svg class="icon icon-sm icon-padded icon-primary me-1">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-files"></use>
+                      </svg>Documenti Richiesti
+                    </h6>
+                    <ul class="list list-unstyled small ps-3 ">
+                      <li aria-label="Documento d'identità"><svg class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>Documento d'identità</li>
+                      <li aria-label="Tessera sanitaria"><svg class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>Tessera sanitaria</li>
+                      <li aria-label="Impegnativa medico curante"><svg class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>Impegnativa medico curante</li>
+                      <li aria-label="Eventuali esami precedenti"><svg class="icon icon-sm me-2"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>Eventuali esami precedenti</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                  <button title="Indietro" class="btn btn-primary" data-target-tab="#paziente" aria-label="Indietro">
+                    <svg class="icon icon-sm icon-padded icon-white mr-2">
+                      <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
+                    </svg>Indietro
+                  </button>
+                  <button title="Conferma Prenotazione" class="btn btn-primary" id="confermaPrenotazione" aria-label="Conferma Prenotazone">
+                    <svg class="icon icon-sm icon-padded icon-white mr-2">
+                      <use href="/assets/bootstrap-italia/svg/sprites.svg#it-check" class="d-none"></use>
+                    </svg>Conferma Prenotazione
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,135 @@
+/* !GENERALI */
+aside
+  padding: 10px
+  display: grid !important
+  grid-template-rows: max-content 70vh min-content
+  align-content: space-between
+
+aside>section
+  overflow-y: scroll 
+  
+
+.details
+  padding: 8px
+  transition: 0.3s
+
+.details.active
+  box-shadow: 0 0 5px #0066cc inset
+  
+
+/* !PRESTAZIONI */
+[prestazione]
+  display: flex
+  align-items: center
+  flex-flow: column nowrap
+  align-items: stretch
+  gap: 5px
+
+[prestazione]>button
+  padding: 8px
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+  
+
+/* !CALENDARIO */
+#calendar 
+  width: max-content
+  min-height: 300px
+  padding: 10px
+  margin: 10px auto
+ 
+
+#calendar header
+  padding-bottom: 10px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 10px
+  
+#calendar [sevenDays]
+  display: grid
+  grid-template-columns: auto auto auto auto auto auto auto
+  gap: 5px
+  align-items: center
+  text-align: center
+  
+#calendar main button
+  padding: 0
+  min-width: 30px
+  height: 30px
+  display: flex
+  align-items: center
+  justify-content: center
+    
+#datetime .giornoSelezionato
+  box-shadow: 0 2px 5px #0066cc
+  border: 3px solid #0066cc !important
+  
+
+.agenda-item 
+  transition: all 0.2s
+  cursor: pointer
+
+.agenda-item:hover 
+  background-color: #F0F6FC
+  transform: translateY(-2px)
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15)
+
+.agenda-item.selected 
+  background-color: #E6F3FD
+  border-left: 3px solid #0073e6
+  
+
+.page-item a.active 
+  background-color: #0073e6
+  color: white
+
+
+/* Nuovi stili per correggere la sovrapposizione */
+.form-group label 
+  display: block
+  margin-bottom: 0.25rem
+  font-size: 0.9rem
+  font-weight: 600
+
+.custom-select, .form-control 
+  margin-bottom: 0.75rem
+
+.tabs-container .panel 
+  display: none
+
+.tabs-container .panel.active 
+  display: block
+
+.tabs-navigation .nav-link 
+  padding: 0.5rem 1rem
+  border-radius: 0.25rem 0.25rem 0 0
+  margin-right: 0.25rem
+
+.selected-patient-container 
+  min-height: 100px
+  border: 1px dashed #dee2e6
+  padding: 10px
+  background-color: #f8f9fa
+  border-radius: 4px
+
+/* Stile per la form compatta */
+.compact-form label 
+  font-size: 0.85rem
+  margin-bottom: 0.15rem
+
+.compact-form .form-group 
+  margin-bottom: 0.5rem
+
+.compact-form .form-control 
+  height: calc(1.5em + 0.5rem + 2px)
+  padding: 0.25rem 0.5rem
+  font-size: 0.875rem
+
+
+/*! PAZIENTI */
+.pazienteSelezionato
+  background-color: #E6F3FD
+  border-left: 3px solid #0073e6
+  color:#0073e6
