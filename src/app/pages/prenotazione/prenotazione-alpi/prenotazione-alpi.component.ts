@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppPrestazioniService } from './app-prestazioni.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 
 @Component({
   selector: 'app-prenotazione-alpi',
@@ -12,7 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './prenotazione-alpi.component.sass'
 })
 export class PrenotazioneAlpiComponent {
-  constructor(public AppPrestazioni:AppPrestazioniService){}
+  constructor(
+    public main:PrenotazioneAlpiService,
+    public AppPrestazioni:AppPrestazioniService){}
+
+  // tabs
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:'active'},
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:'disabled'},
