@@ -1,15 +1,14 @@
-import { Injectable,  effect } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable,  effect, signal } from '@angular/core';
 import { PazientiService  } from '../../../api/pazienti.service';
 import { StoricoPazienteService } from '../../../api/storico-paziente.service';
-
-
+import { Paziente } from '../../../interfaces/paziente';
+import { StoricoPaziente } from '../../../interfaces/storicopaziente';
 
 @Injectable({providedIn: 'root'})
 export class AppPazienteService {
 
-  pazienti: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  storicoPazienti: any[] = [];
+  pazienti = signal<Paziente[]>([]);
+  storicoPazienti = signal<StoricoPaziente[]>([]);
   pazienteSelezionato: any = null;
 
   constructor(
@@ -22,12 +21,12 @@ export class AppPazienteService {
         
         effect(() => {
           const pazienti = this.PazientiService.pazienti();
-          this.pazienti.next(pazienti); 
+          this.pazienti.set(pazienti); 
         });
 
         const storicoPazienti = this.StoricoPazienteService.get();
         if (Array.isArray(storicoPazienti)) {
-          this.storicoPazienti = storicoPazienti;
+          this.storicoPazienti.set(storicoPazienti);
         }
       } catch (error) {
         console.error('Errore nel caricamento pazienti', error);
@@ -65,7 +64,7 @@ export class AppPazienteService {
   }
 
    updateNotes(id: string, notes: string, exemptionCode: string): void {
-    const paziente = this.pazienti.getValue().find(p => p.id === id);
+    const paziente = this.pazienti().find(p => p.id === id);
     if (paziente) {
       paziente.notes = notes;
       paziente.exemptionCode = exemptionCode;
@@ -73,7 +72,7 @@ export class AppPazienteService {
   }
 
   getStoricoPaziente(id: string): any {
-    return this.storicoPazienti.find(p => p.pazienteId === id);
+    return this.storicoPazienti().find(p => p.pazienteId === id);
   }
 
 }
