@@ -1,9 +1,10 @@
-import { Component, effect } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppPrestazioniService } from './app-prestazioni.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
+import { AppCalendarioService } from './app-calendario.service';
 
 @Component({
   selector: 'app-prenotazione-alpi',
@@ -15,14 +16,16 @@ import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 export class PrenotazioneAlpiComponent {
   constructor(
     public main:PrenotazioneAlpiService,
-    public AppPrestazioni:AppPrestazioniService){}
+    public AppPrestazioni:AppPrestazioniService,
+    public AppCalendario:AppCalendarioService,
+  ){}
 
   // tabs
   tabsDatas =[
-    {key:'prestazione', title:'Prestazione',icon:'it-note',     status:'active'},
-    {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:'disabled'},
-    {key:'paziente',    title:'Paziente',   icon:'it-user',     status:'disabled'},
-    {key:'confirm',     title:'Conferma',   icon:'it-check',    status:'disabled'},
+    {key:'prestazione', title:'Prestazione',icon:'it-note',     status:()=>'active'},
+    {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:()=> this.AppPrestazioni.selezionate().length>0 ?'' :'disabled'},
+    {key:'paziente',    title:'Paziente',   icon:'it-user',     status:()=>'disabled'},
+    {key:'confirm',     title:'Conferma',   icon:'it-check',    status:()=>'disabled'},
   ]
   tabsHandleClick(e:Event){
     const tab = e.target as HTMLButtonElement    

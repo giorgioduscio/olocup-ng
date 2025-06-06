@@ -24,10 +24,10 @@ import { StoricoPazienteService } from '../../../api/storico-paziente.service';
 export class PrenotazioneAlpiService {
 
   constructor(
-    private meidiciService: MediciService,
-    private struttureService:StrutturaService,
-    private repartoService:RepartiService,
-    private tipiStruttureService:TipiStruttureService,
+    private meidiciService :MediciService,
+    private struttureService :StrutturaService,
+    private repartoService :RepartiService,
+    private tipiStruttureService :TipiStruttureService,
     private agendeService :AgendeService,
     private prescrizioniService :PrescriptionsService,
     private prestazioniService :PrestazioniService,

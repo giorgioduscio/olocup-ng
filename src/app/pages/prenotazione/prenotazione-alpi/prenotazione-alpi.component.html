@@ -54,8 +54,9 @@
   <div class="row mb-4 justify-content-center">
     <div class="mx-auto" style="max-width: max-content;">
       <ul class="nav nav-tabs nav-tabs-icon-text" id="prenotationTabs" role="tablist" aria-label="Tab Prenotazione"> 
+
         <li *ngFor="let tab of tabsDatas" class="nav-item" role="presentation">
-          <a class="nav-link {{tab.status}} p-3" id="{{ tab.key }}-tab" data-bs-toggle="tab" 
+          <a class="nav-link p-3 {{tab.status()}}" id="{{ tab.key }}-tab" data-bs-toggle="tab" 
             href="#{{ tab.key }}" role="tab" title="{{ tab.title }}" aria-label="Secondo tab Data e Ora " 
             [attr.aria-controls]="tab.key" aria-selected="false"
             (click)="tabsHandleClick($event)"
@@ -63,6 +64,7 @@
             {{ tab.title }}
           </a>
         </li>
+
       </ul>
     </div>
   </div>
@@ -126,79 +128,101 @@
                     </button>
                   </div>
 
-                  <div id="selectedPrestazioneA" class="details"></div>
+                  <div id="selectedPrestazioneA" class="details">
+                    <div class="pe-2 border border-2 border-neutral-2-bg-a2 rounded-top p-3" style="max-height: 30vh; overflow-y: scroll;"
+                      *ngIf="AppPrestazioni.selezionate().length">
+                      @for (ps of AppPrestazioni.selezionate(); track $index) {
+                        <h6 class="font-weight-bold">{{ ps.name }}</h6>
+                        <div>
+                          <span class="badge bg-secondary">{{ AppPrestazioni.getReparto(ps.repartoId)?.name }}</span>
+                        </div>
+                        <div class="d-grid justify-content-between" style="grid-template-columns: auto auto;">
+                          <span>Durata:</span>
+                          <span class="font-weight-bold">{{ ps.defaultDuration }} minuti</span>
+                          <span>Codice prestazione:</span>
+                          <span class="font-weight-bold">{{ ps.code }}</span>
+                          <span>Costo prestazione:</span>
+                          <span class="font-weight-bold">€{{ ps.privatePrice }}</span>
+                        </div>
+                        <hr>
+                      }
+                    </div>
+                  </div>
                 </section>
               </div>
               <!-- Prestazioni -->
               <aside class="col-12 col-md-8 col-lg-6 shadow-sm p-3 m-0">
                 <h5 class="fw-bold mb-3">Risultati Prestazioni</h5>
-                <section class="list-group mb-3" id="prestazioniResults">
+                
+                <section class="list-group mb-3">
+                  @if(!AppPrestazioni.hasActiveFilters()){
+                    <!-- Messaggio: filtra almeno 3 caratteri -->
+                    <div class="alert alert-info rounded">
+                      Cerca le prestazioni attraverso i filtri.
+                    </div>
+                  }@else if(AppPrestazioni.isFiltroTestualeTroppoCorto()){
+                    <!-- Messaggio: testo troppo corto -->
+                    <div *ngIf="AppPrestazioni.isFiltroTestualeTroppoCorto()" class="alert alert-warning rounded">
+                      Il filtro testuale richiede almeno 3 caratteri per la ricerca.
+                    </div>
+                  }@else if(AppPrestazioni.prestazioniFiltrate().length === 0 && AppPrestazioni.hasActiveFilters()){
+                    <!-- Nessun risultato -->
+                    <div class="alert alert-warning rounded">
+                      Nessuna Prestazione trovata con i filtri applicati.
+                    </div>
 
-                <!-- Messaggio: filtra almeno 3 caratteri -->
-                <div *ngIf="!AppPrestazioni.hasActiveFilters()" class="alert alert-info rounded">
-                  Digita almeno 3 caratteri per filtrare le prestazioni.
-                </div>
-
-                <!-- Messaggio: testo troppo corto -->
-                <div *ngIf="AppPrestazioni.isFiltroTestualeTroppoCorto()" class="alert alert-warning rounded">
-                  Il filtro testuale richiede almeno 3 caratteri per la ricerca.
-                </div>
-
-                <!-- Nessun risultato -->
-                <div *ngIf="AppPrestazioni.prestazioniFiltrate().length === 0 && AppPrestazioni.hasActiveFilters()" class="alert alert-warning rounded">
-                  Nessuna Prestazione trovata con i filtri applicati.
-                </div>
-
-                <!-- Lista risultati -->
-                <div *ngFor="let p of AppPrestazioni.prestazioniFiltrate()" 
-                    class="agenda-item p-3 d-flex justify-content-between align-items-center"
-                    [class.selected]="AppPrestazioni.isSelected(p)"
-                    (click)="AppPrestazioni.togglePrestazione(p)">
-                  
-                  <div>
-                    <h6 class="mb-1">{{ p.name }}</h6>
-                    <!-- <p class="small mb-0">Agenda: {{ AppPrestazioni.getAgenda(p.agendaId)?.name }}</p>
-                    <p class="small text-muted mb-0">
-                      {{ AppPrestazioni.getStruttura(p.strutturaId)?.name }} -
-                      {{ AppPrestazioni.getReparto(p.repartoId)?.name }};
-                      {{ AppPrestazioni.getReparto(p.repartoId)?.branchTypeId }}° piano;
-                    </p>
-                    <p class="small text-muted mb-0">
-                      {{ AppPrestazioni.getMedico(p.medicoId)?.title }} 
-                      {{ AppPrestazioni.getMedico(p.medicoId)?.lastName }} 
-                      {{ AppPrestazioni.getMedico(p.medicoId)?.firstName }}
-                    </p> -->
-                    <p class="small text-muted mb-0">Codice: {{ p.code }}</p>
-                  </div>
-
-                  <div prestazione>
-                    <button class="btn btn-secondary" *ngIf="AppPrestazioni.firstDisponibilita(p)">
-                      <div class="text-nowrap text-truncate">
-                        <small>Prima data disponibile</small>
-                      </div>
+                  }@else {
+                    <!-- L1ista risultati -->
+                    <div *ngFor="let p of AppPrestazioni.prestazioniFiltrate()" 
+                        class="agenda-item p-3 d-flex justify-content-between align-items-center"
+                        [class.selected]="AppPrestazioni.isSelected(p)"
+                        (click)="AppPrestazioni.togglePrestazione(p)">
+                      
                       <div>
-                        <svg class="icon icon-sm icon-padded icon-white p-0 m-0">
-                          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
-                        </svg>
-                        <small>{{ AppPrestazioni.firstDisponibilita(p) }}</small>
+                        <h6 class="mb-1">{{ p.name }}</h6>
+                        <p class="small mb-0">Agenda: {{ AppPrestazioni.getAgenda(p.agendaId)?.name }}</p>
+                        <p class="small text-muted mb-0">
+                          {{ AppPrestazioni.getStruttura(p.strutturaId)?.name }} -
+                          {{ AppPrestazioni.getReparto(p.repartoId)?.name }};
+                          {{ AppPrestazioni.getReparto(p.repartoId)?.branchTypeId }}° piano;
+                        </p>
+                        <p class="small text-muted mb-0">
+                          {{ AppPrestazioni.getMedico(p.medicoId)?.title }} 
+                          {{ AppPrestazioni.getMedico(p.medicoId)?.lastName }} 
+                          {{ AppPrestazioni.getMedico(p.medicoId)?.firstName }}
+                        </p> 
+                        <p class="small text-muted mb-0">Codice: {{ p.code }}</p>
                       </div>
-                    </button>
-
-                    <button class="btn btn-primary" *ngIf="AppPrestazioni.firstDisponibilita(p)">
-                      <svg class="icon icon-sm icon-padded icon-white">
-                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
-                      </svg>
-                      <small>Altre disponibilità</small>
-                    </button>
-
-                    <small *ngIf="!AppPrestazioni.firstDisponibilita(p)" class="alert alert-danger rounded text-nowrap">
-                      Nessuna disponibilità
-                    </small>
-                  </div>
-                </div>
-
-                  
+    
+                      <div prestazione>
+                        <!-- Prima data disponibile -->
+                        <button class="btn btn-secondary" *ngIf="AppPrestazioni.firstDisponibilita(p)">
+                          <div class="text-nowrap text-truncate">
+                            <small>Prima data disponibile</small>
+                          </div>
+                          <div>
+                            <svg class="icon icon-sm icon-padded icon-white p-0 m-0">
+                              <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                            </svg>
+                            <small>{{ AppPrestazioni.firstDisponibilita(p) }}</small>
+                          </div>
+                        </button>
+                        <!-- Per andare i calendario -->
+                        <button class="btn btn-primary" *ngIf="AppPrestazioni.firstDisponibilita(p)">
+                          <svg class="icon icon-sm icon-padded icon-white">
+                            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                          </svg>
+                          <small>Altre disponibilità</small>
+                        </button>
+                        <!-- Alert nessuna disponibilità -->
+                        <small *ngIf="!AppPrestazioni.firstDisponibilita(p)" class="alert alert-danger rounded text-nowrap">
+                          Nessuna disponibilità
+                        </small>
+                      </div>
+                    </div>
+                  }
                 </section>
+
               </aside>
             </div>
           </div>
