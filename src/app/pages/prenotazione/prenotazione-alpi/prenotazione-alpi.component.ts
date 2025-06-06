@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { NgFor, NgIf } from '@angular/common';
+import { AppConfermaService } from './app-conferma.service';
 
 @Component({
   selector: 'app-prenotazione-alpi',
@@ -10,6 +11,7 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './prenotazione-alpi.component.sass'
 })
 export class PrenotazioneAlpiComponent {
+  constructor(public appConfirma:AppConfermaService) {}
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:'active'},
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:'disabled'},
