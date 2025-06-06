@@ -1,24 +1,20 @@
 import { Injectable, Signal, WritableSignal, effect, signal } from '@angular/core';
 import { Prestazione } from '../../../interfaces/prestazione';
-import { PrestazioniService } from '../../../api/prestazioni.service';
-import { StrutturaService } from '../../../api/struttura.service';
 import { Struttura } from '../../../interfaces/struttura';
-import { MediciService } from '../../../api/medici.service';
 import { Medico } from '../../../interfaces/medico';
+import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 
 @Injectable({ providedIn: 'root' })
 export class AppPrestazioniService {
 
-  constructor(private prestazioniService: PrestazioniService, 
-              private struttureService:StrutturaService,
-              private mediciService:MediciService,
-  ) {
+  constructor(private main:PrenotazioneAlpiService ) {
     // Effetto reattivo che aggiorna i dati da API e filtra le prestazioni
     effect(() => {
-      this.prestazioni = this.prestazioniService.prestazioni();
-      this.strutture = this.struttureService.strutture();
-      this.medici = this.mediciService.medici();
-      // console.log('Prestazioni filtrate:', this.prestazioniFiltrate());
+      this.prestazioni =this.main.prestazioni();
+      this.strutture = this.main.strutture();
+      this.medici = this.main.medici();
+
+      // if(this.prestazioni.length && this.strutture.length && this.medici.length)  console.log(this.prestazioni.length , this.strutture.length , this.medici.length);
     });
   }
 
@@ -45,22 +41,19 @@ export class AppPrestazioniService {
 
       if (medico) filtered = filtered.filter(p => p.medicoId === +medico);
       if (struttura) filtered = filtered.filter(p => p.strutturaId === +struttura);
-
-      if (filtroPrestazioni.length > 2) {
-        filtered = filtered.filter(p =>
-          p.name.toLowerCase().includes(filtroPrestazioni) ||
-          p.code.toLowerCase().includes(filtroPrestazioni)
-        );
-      }
-
+      if (filtroPrestazioni.length > 2) filtered = filtered.filter(p =>
+        p.name.toLowerCase().includes(filtroPrestazioni) ||
+        p.code.toLowerCase().includes(filtroPrestazioni)
+      );
+      
       // Ordina alfabeticamente
       return filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     getStruttura =(id: number)=> this.strutture.find(s => Number(s.id) === id);
-    getReparto =(id: number)=> 0//this.reparti.find(r => r.id === id);
-    getMedico =(id: number)=> 0//this.medici.find(m => Number(m.id) === id);
-    getAgenda =(id: number) => 0//this.agende.find(a => a.id === id);
+    getReparto =(id: number)=> this.main.reparti().find(r => Number(r.id) === id);
+    getMedico =(id: number)=> this.medici.find(m => Number(m.id) === id);
+    getAgenda =(id: number) => this.main.agende().find(a => Number(a.id) ==id);
     firstDisponibilita =(prestazioni: Prestazione | Prestazione[])=> 0//AppCalendario.firstTime(prestazioni);
     
 
@@ -95,7 +88,8 @@ export class AppPrestazioniService {
     resetFiltri() {
       this.filtroPrestazioni.set('');
       this.filtroStruttura.set('');
-      this.filtroMedico.set('');      
+      this.filtroMedico.set('');
+      this.resetSelezione();
     }
 
   // ───────────────────────────────────────────────
