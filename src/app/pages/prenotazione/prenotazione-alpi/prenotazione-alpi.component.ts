@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 import { AppConfermaService } from './app-conferma.service';
 import { AppCalendarioService } from './app-calendario.service';
+import { AppPazienteService } from './app-paziente.service';
 
 @Component({
   selector: 'app-prenotazione-alpi',
@@ -22,6 +23,7 @@ export class PrenotazioneAlpiComponent {
     public AppPrestazioni:AppPrestazioniService,
     public appConferma:AppConfermaService,
     public AppCalendario:AppCalendarioService,
+    public AppPaziente:AppPazienteService
   ){}
 
 
