@@ -26,13 +26,13 @@ export class PrenotazioneAlpiComponent {
     public AppPaziente:AppPazienteService
   ){}
 
-
   // tabs
-
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:()=>'active'},
-    {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:()=> this.AppPrestazioni.selezionate().length>0 ?'' :'disabled'},
-    {key:'paziente',    title:'Paziente',   icon:'it-user',     status:()=> this.AppCalendario.slotSelezionato() ?'' :'disabled'},
+    {key:'datetime',    title:'Data e Ora', icon:'it-calendar', 
+      status:()=> this.AppPrestazioni.selezionate().length ?'' :'disabled'},
+    {key:'paziente',    title:'Paziente',   icon:'it-user',     
+      status:()=> this.AppPrestazioni.selezionate().length && this.AppCalendario.slotSelezionato() ?'' :'disabled'},
     {key:'confirm',     title:'Conferma',   icon:'it-check',    status:()=>'disabled'},
   ]
   tabsHandleClick(e:Event){
@@ -43,5 +43,11 @@ export class PrenotazioneAlpiComponent {
     const tabEl = document.getElementById(tabKey+'-tab')
     if(!tabEl) return;
     setTimeout(()=> tabEl.click(), 200);
+  }
+
+  selezionaPrimaDisponibile(){
+    setTimeout(() => {
+      this.AppCalendario.selezionaPrimaDisponibile()
+    }, 200);
   }
 }
