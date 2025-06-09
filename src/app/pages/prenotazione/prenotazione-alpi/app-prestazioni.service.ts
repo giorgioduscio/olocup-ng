@@ -96,18 +96,20 @@ export class AppPrestazioniService {
 
     // Aggiunge o rimuove una prestazione dalla selezione multipla.
     // Se già selezionata, la deseleziona. Altrimenti, la aggiunge.
-    togglePrestazione(p: Prestazione, e:Event) {
+    selezionaPrestazioni(p: Prestazione, e:Event) {
       const btnCalendario = (e.target as HTMLButtonElement).closest('[calendario]');
       const btnPaziente = (e.target as HTMLButtonElement).closest('[paziente]');
+      if(this.isSelected(p) && (btnCalendario || btnPaziente)) return;
 
-      console.log(this.selezionate().length , btnCalendario?.className, this.isSelected(p));
-      
-      if(this.selezionate().length && btnCalendario) return;
-
+      // se l'elemento non era gia selezionato o se non si sono selezionati i pulsanti
       const attuali = this.selezionate();
       if (attuali.find(sel => sel.id === p.id)) 
-           this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
+          this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
       else this.selezionate.set([...attuali, p]);
+
+      // Disabilita pulsanti se cambiano le prestazioni selezionate
+      document.getElementById('paziente-tab')?.classList.add('disabled');
+      document.getElementById('confirm-tab')?.classList.add('disabled');
     }
 
     // Rimuove una prestazione specifica dalla selezione.

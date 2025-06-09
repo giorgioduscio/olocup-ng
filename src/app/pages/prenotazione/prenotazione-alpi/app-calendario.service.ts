@@ -201,6 +201,7 @@ export class AppCalendarioService {
   // ───────────────────────────────────────────────
   // SELEZIONE
   // ───────────────────────────────────────────────
+  //! NAVIGAZIONE CALENDARIO
     navigate(e:Event) {
     const button = (e.target as HTMLElement).closest('.btn');
     if(!button) return;
@@ -219,6 +220,28 @@ export class AppCalendarioService {
         this.currentYear.update(year => year + 1);
       }
     } else return;
+  }
+  backToday(e:Event) {
+    const today = new Date();
+    const todayMonth = today.getMonth() + 1;
+    const todayDate =this.formatDate(today);
+    const currentMonthIndex = this.currentMonth() + 1;
+  
+    const monthDiff = todayMonth - currentMonthIndex;
+    const container = (e.target as HTMLButtonElement).closest('div'); if(!container) return;
+    
+    const nextBtn :HTMLButtonElement|null =container.querySelector('#next'); if(!nextBtn) return;
+    const prevBtn :HTMLButtonElement|null =container.querySelector('#prev'); if(!prevBtn) return;
+  
+    // Navigazione al mese corrente con click
+    if (monthDiff > 0)      for (let i = 0; i < monthDiff; i++) nextBtn?.click();
+    else if (monthDiff < 0) for (let i = 0; i < Math.abs(monthDiff); i++) prevBtn?.click();
+  
+    // attente che il calendario venga rigenerato prima di cliccare il giorno
+    setTimeout(() => {
+      const todayBtn :HTMLButtonElement|null =document.querySelector(`button[slot-date="${todayDate}"]`);
+      todayBtn?.click();
+    }, 100);
   }
 
   selezionaGiorno = (dateStr: string) => this.giornoSelezionato.set(dateStr);
@@ -249,6 +272,56 @@ export class AppCalendarioService {
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);
     btn.classList.add('selected');
+  }
+
+  selezionaPrimaDisponibile() {
+    const prestazioni = this.appPrestazioniService.selezionate();
+    if (!prestazioni || !prestazioni.length) return;
+
+    const availableSlots = this.getSlots(prestazioni);
+
+    if (!availableSlots.length) return console.warn('Nessuno slot disponibile da oggi in poi per le prestazioni selezionate');
+
+    // Ordina per data e ora per ottenere il primo slot disponibile
+    const now = new Date();
+
+    const firstSlot = availableSlots
+      .filter(s => new Date(`${s.date}T${s.time}`) > now)
+      .sort((a, b) => new Date(`${a.date}T${a.time}`).getTime() - new Date(`${b.date}T${b.time}`).getTime())[0];
+
+    if (!firstSlot) return; 
+
+    const [slotYear, slotMonth] = firstSlot.date.split('-').map(Number);
+    const dateTarget = new Date(slotYear, slotMonth - 1);
+    const dateCurrent = new Date(this.currentYear(), this.currentMonth());
+    const monthDiff = (dateTarget.getFullYear() - dateCurrent.getFullYear()) * 12 + (dateTarget.getMonth() - dateCurrent.getMonth());
+
+    const nextBtn :HTMLButtonElement|null =document.querySelector('#next');
+    const prevBtn :HTMLButtonElement|null =document.querySelector('#prev');
+
+    if (monthDiff > 0) for (let i = 0; i < monthDiff; i++) nextBtn?.click();
+    else if (monthDiff < 0) for (let i = 0; i < Math.abs(monthDiff); i++) prevBtn?.click();
+
+    setTimeout(() => {
+      const dayBtn :HTMLButtonElement|null =document.querySelector(`button[slot-date="${firstSlot.date}"]`);
+      dayBtn?.click();
+
+      setTimeout(() => {
+        const slotBtn :HTMLButtonElement|null =document.querySelector(`button[slot-id="${firstSlot.id}"]`);        
+        slotBtn?.click();        
+
+        const result = slotBtn ? 'success' : 'danger';
+        const btnDate :HTMLButtonElement|null =document.querySelector('[date]'); if(!btnDate) return;
+        btnDate.classList.add('btn-' + result);
+        btnDate.classList.remove('btn-secondary');
+
+        setTimeout(() => {
+          btnDate.classList.remove('btn-' + result);
+          btnDate.classList.add('btn-secondary');
+        }, 1000);
+      }, 100);
+    }, 100);
+    setTimeout(()=> document.getElementById('paziente-tab')?.click(), 400);
   }
 
 }

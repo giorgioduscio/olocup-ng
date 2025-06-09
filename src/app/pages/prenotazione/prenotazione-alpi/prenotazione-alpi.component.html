@@ -176,7 +176,7 @@
                     <div *ngFor="let p of AppPrestazioni.renderPrestazioni()" 
                       class="agenda-item p-3 d-flex justify-content-between align-items-center"
                       [class.selected]="AppPrestazioni.isSelected(p)"
-                      (click)="AppPrestazioni.togglePrestazione(p, $event)"
+                      (click)="AppPrestazioni.selezionaPrestazioni(p, $event)"
                     >
                       <div>
                         <h6 class="mb-1">{{ p.name }}</h6>
@@ -196,8 +196,8 @@
     
                       <div prestazione>
                         <!-- Prima data disponibile -->
-                        <button paziente class="btn btn-secondary" (click)="routeToTab('paziente')"
-                        *ngIf="(!AppPrestazioni.isSelected(p) && !AppPrestazioni.selezionate().length) ||AppPrestazioni.isSelected(p)"
+                        <button paziente class="btn btn-secondary" (click)="selezionaPrimaDisponibile()"
+                          *ngIf="(!AppPrestazioni.isSelected(p) && !AppPrestazioni.selezionate().length) ||AppPrestazioni.isSelected(p)"
                         >
                           <div class="text-nowrap text-truncate small">Prima data disponibile</div>
                           <div>
@@ -261,7 +261,7 @@
 
                   </div>
                   
-                  <div class="btn-group-vertical" id="btn-first-available">
+                  <div class="btn-group-vertical" id="btn-first-available" (click)="AppCalendario.selezionaPrimaDisponibile()">
                     <button date class="btn btn-secondary w-100" title="Prima Data e Ora Disponibile e Avanti" aria-label="Prima Data e Ora Disponibile e Avanti">
                       <h6 class="font-weight-bold">Primo Disponibile</h6>
                       <svg class="icon icon-sm icon-padded icon-white m-0 me-1">
@@ -295,7 +295,7 @@
                         <b id="year">{{ AppCalendario.currentYear() }}</b>
                       </div>
                       <div>
-                        <button title="Data Corrente" id="backToday" class="btn p-1" aria-label="Vaia alla data corrente">
+                        <button (click)="AppCalendario.backToday($event)" title="Data Corrente" id="backToday" class="btn p-1" aria-label="Vaia alla data corrente">
                           <svg class="icon icon-primary"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-calendar"></use></svg>
                         </button>
                         <button (click)="AppCalendario.navigate($event)" title="Mese precedente" id="prev" class="btn p-1" aria-label="Mese Precedente">
@@ -339,7 +339,7 @@
                       <div class="alert alert-warning rounded">Nessuno slot disponibile per questa data.</div>
                     }@else {
                       <div *ngFor="let btn of AppCalendario.renderSlots()">
-                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" slot-id="slot.id" 
+                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" [attr.slot-id]="btn.slot.id" 
                           [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)"
                         >
                           <svg class="icon icon-sm icon-primary mr-2 me-2">
