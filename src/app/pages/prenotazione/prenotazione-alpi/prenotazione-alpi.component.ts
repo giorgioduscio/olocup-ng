@@ -24,11 +24,16 @@ export class PrenotazioneAlpiComponent {
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:()=>'active'},
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:()=> this.AppPrestazioni.selezionate().length>0 ?'' :'disabled'},
-    {key:'paziente',    title:'Paziente',   icon:'it-user',     status:()=>'disabled'},
+    {key:'paziente',    title:'Paziente',   icon:'it-user',     status:()=> this.AppCalendario.slotSelezionato() ?'' :'disabled'},
     {key:'confirm',     title:'Conferma',   icon:'it-check',    status:()=>'disabled'},
   ]
   tabsHandleClick(e:Event){
     const tab = e.target as HTMLButtonElement    
     tab.scrollIntoView({ behavior:'smooth', block:'start' }) 
+  }
+  routeToTab(tabKey:'prestazione'|'datetime'|'paziente'|'confirm'){
+    const tabEl = document.getElementById(tabKey+'-tab')
+    if(!tabEl) return;
+    setTimeout(()=> tabEl.click(), 200);
   }
 }

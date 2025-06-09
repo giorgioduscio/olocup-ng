@@ -1,4 +1,4 @@
-import { Injectable, Signal, WritableSignal, effect, signal } from '@angular/core';
+import { Injectable, Signal, WritableSignal, effect, inject, signal } from '@angular/core';
 import { Prestazione } from '../../../interfaces/prestazione';
 import { Struttura } from '../../../interfaces/struttura';
 import { Medico } from '../../../interfaces/medico';
@@ -6,8 +6,7 @@ import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 
 @Injectable({ providedIn: 'root' })
 export class AppPrestazioniService {
-
-  constructor(private main:PrenotazioneAlpiService ) {
+  constructor(private main:PrenotazioneAlpiService) {
     // Effetto reattivo che aggiorna i dati da API e filtra le prestazioni
     effect(() => {
       this.prestazioni =this.main.prestazioni();
@@ -25,7 +24,7 @@ export class AppPrestazioniService {
     strutture: Struttura[] = [];
     medici: Medico[] = [];
 
-    prestazioniFiltrate(): Prestazione[] {
+    renderPrestazioni(): Prestazione[] {
       let filtered = this.prestazioni;
 
       // Filtro per agenda se c’è almeno una selezionata
@@ -54,13 +53,8 @@ export class AppPrestazioniService {
     getReparto =(id: number)=> this.main.reparti().find(r => Number(r.id) === id);
     getMedico =(id: number)=> this.medici.find(m => Number(m.id) === id);
     getAgenda =(id: number) => this.main.agende().find(a => Number(a.id) ==id);
-    firstDisponibilita =(prestazioni: Prestazione | Prestazione[])=> 0//AppCalendario.firstTime(prestazioni);
     
-
-
-  // ───────────────────────────────────────────────
-  // FILTRAGGIO
-  // ───────────────────────────────────────────────
+  //! FILTRAGGIO
     filtroPrestazioni: WritableSignal<string> = signal('');
     filtroStruttura: WritableSignal<string> = signal('');
     filtroMedico: WritableSignal<string> = signal('');
@@ -97,19 +91,24 @@ export class AppPrestazioniService {
   // ───────────────────────────────────────────────
     // Signal che contiene tutte le prestazioni selezionate 
     selezionate: WritableSignal<Prestazione[]> = signal([]);
+    // Controlla se una prestazione specifica viene selezionata
     isSelected =(p: Prestazione)=> this.getPrestazioniSelezionate()().some(sel => sel.id === p.id);
 
     // Aggiunge o rimuove una prestazione dalla selezione multipla.
     // Se già selezionata, la deseleziona. Altrimenti, la aggiunge.
-    togglePrestazione(p: Prestazione) {
-      const attuali = this.selezionate();
-      if (attuali.find(sel => sel.id === p.id)) {
-        this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
-      } else {
-        this.selezionate.set([...attuali, p]);
-      }
-    }
+    togglePrestazione(p: Prestazione, e:Event) {
+      const btnCalendario = (e.target as HTMLButtonElement).closest('[calendario]');
+      const btnPaziente = (e.target as HTMLButtonElement).closest('[paziente]');
 
+      console.log(this.selezionate().length , btnCalendario?.className, this.isSelected(p));
+      
+      if(this.selezionate().length && btnCalendario) return;
+
+      const attuali = this.selezionate();
+      if (attuali.find(sel => sel.id === p.id)) 
+           this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
+      else this.selezionate.set([...attuali, p]);
+    }
 
     // Rimuove una prestazione specifica dalla selezione.
     deselezionaPrestazione(prestazioneId: number) {

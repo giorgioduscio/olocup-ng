@@ -128,7 +128,7 @@
                     </button>
                   </div>
 
-                  <div id="selectedPrestazioneA" class="details">
+                  <div class="details">
                     <div class="pe-2 border border-2 border-neutral-2-bg-a2 rounded-top p-3" style="max-height: 30vh; overflow-y: scroll;"
                       *ngIf="AppPrestazioni.selezionate().length">
                       @for (ps of AppPrestazioni.selezionate(); track $index) {
@@ -165,7 +165,7 @@
                     <div *ngIf="AppPrestazioni.isFiltroTestualeTroppoCorto()" class="alert alert-warning rounded">
                       Il filtro testuale richiede almeno 3 caratteri per la ricerca.
                     </div>
-                  }@else if(AppPrestazioni.prestazioniFiltrate().length === 0 && AppPrestazioni.hasActiveFilters()){
+                  }@else if(AppPrestazioni.renderPrestazioni().length === 0 && AppPrestazioni.hasActiveFilters()){
                     <!-- Nessun risultato -->
                     <div class="alert alert-warning rounded">
                       Nessuna Prestazione trovata con i filtri applicati.
@@ -173,11 +173,11 @@
 
                   }@else {
                     <!-- L1ista risultati -->
-                    <div *ngFor="let p of AppPrestazioni.prestazioniFiltrate()" 
-                        class="agenda-item p-3 d-flex justify-content-between align-items-center"
-                        [class.selected]="AppPrestazioni.isSelected(p)"
-                        (click)="AppPrestazioni.togglePrestazione(p)">
-                      
+                    <div *ngFor="let p of AppPrestazioni.renderPrestazioni()" 
+                      class="agenda-item p-3 d-flex justify-content-between align-items-center"
+                      [class.selected]="AppPrestazioni.isSelected(p)"
+                      (click)="AppPrestazioni.togglePrestazione(p, $event)"
+                    >
                       <div>
                         <h6 class="mb-1">{{ p.name }}</h6>
                         <p class="small mb-0">Agenda: {{ AppPrestazioni.getAgenda(p.agendaId)?.name }}</p>
@@ -196,26 +196,31 @@
     
                       <div prestazione>
                         <!-- Prima data disponibile -->
-                        <button class="btn btn-secondary" *ngIf="AppPrestazioni.firstDisponibilita(p)">
-                          <div class="text-nowrap text-truncate">
-                            <small>Prima data disponibile</small>
-                          </div>
+                        <button paziente class="btn btn-secondary" (click)="routeToTab('paziente')"
+                        *ngIf="(!AppPrestazioni.isSelected(p) && !AppPrestazioni.selezionate().length) ||AppPrestazioni.isSelected(p)"
+                        >
+                          <div class="text-nowrap text-truncate small">Prima data disponibile</div>
                           <div>
                             <svg class="icon icon-sm icon-padded icon-white p-0 m-0">
                               <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                             </svg>
-                            <small>{{ AppPrestazioni.firstDisponibilita(p) }}</small>
+                            <small>{{ AppCalendario.firstTime(
+                              AppPrestazioni.selezionate().length >1
+                              ?AppPrestazioni.selezionate() :[p]
+                            ) }}</small>
                           </div>
                         </button>
-                        <!-- Per andare i calendario -->
-                        <button class="btn btn-primary" *ngIf="AppPrestazioni.firstDisponibilita(p)">
+                        <!-- Altre disponibilità -->
+                        <button calendario class="btn btn-primary" (click)="routeToTab('datetime')"
+                        *ngIf="AppCalendario.firstTime([p])"
+                        >
                           <svg class="icon icon-sm icon-padded icon-white">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                           </svg>
                           <small>Altre disponibilità</small>
                         </button>
                         <!-- Alert nessuna disponibilità -->
-                        <small *ngIf="!AppPrestazioni.firstDisponibilita(p)" class="alert alert-danger rounded text-nowrap">
+                        <small *ngIf="!AppCalendario.firstTime([p])" class="alert alert-danger rounded text-nowrap">
                           Nessuna disponibilità
                         </small>
                       </div>
@@ -234,14 +239,34 @@
               <aside class="col-12 col-md-4 col-lg-3 shadow-sm m-0 p-3 order-lg-1">
                 <h5 class="font-weight-bold mb-3" aria-label="Prestazione Selezionta"p-0>Prestazione Selezionata</h5>
                 <div>
-                  <div id="selectedPrestazioneB" class="selected-prestazione mb-4"></div>
+                  <div class="selected-prestazione mb-4">
+                    <div class="pe-2 border border-2 border-neutral-2-bg-a2 rounded-top p-3" style="max-height: 30vh; overflow-y: scroll;"
+                      *ngIf="AppPrestazioni.selezionate().length">
+                      @for (ps of AppPrestazioni.selezionate(); track $index) {
+                        <h6 class="font-weight-bold">{{ ps.name }}</h6>
+                        <div>
+                          <span class="badge bg-secondary">{{ AppPrestazioni.getReparto(ps.repartoId)?.name }}</span>
+                        </div>
+                        <div class="d-grid justify-content-between" style="grid-template-columns: auto auto;">
+                          <span>Durata:</span>
+                          <span class="font-weight-bold">{{ ps.defaultDuration }} minuti</span>
+                          <span>Codice prestazione:</span>
+                          <span class="font-weight-bold">{{ ps.code }}</span>
+                          <span>Costo prestazione:</span>
+                          <span class="font-weight-bold">€{{ ps.privatePrice }}</span>
+                        </div>
+                        <hr>
+                      }
+                    </div>
+
+                  </div>
                   
                   <div class="btn-group-vertical" id="btn-first-available">
                     <button date class="btn btn-secondary w-100" title="Prima Data e Ora Disponibile e Avanti" aria-label="Prima Data e Ora Disponibile e Avanti">
                       <h6 class="font-weight-bold">Primo Disponibile</h6>
                       <svg class="icon icon-sm icon-padded icon-white m-0">
                         <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
-                      </svg> <span></span>
+                      </svg> <span>{{ AppCalendario.firstTime(AppPrestazioni.selezionate()) }}</span>
                     </button>
                   </div>
 
@@ -265,21 +290,21 @@
                   <!-- Calendario -->
                   <div id="calendar" class="w-100">
                     <header id="month-year" class="d-flex justify-content-between align-items-center mb-2">
-                      <div>
-                        <b id="month-name"></b>
-                        <b id="year"></b>
+                      <div class="d-flex align-items-center gap-2">
+                        <b id="month-name">{{ AppCalendario.monthNames[AppCalendario.currentMonth()] }}</b>
+                        <b id="year">{{ AppCalendario.currentYear() }}</b>
                       </div>
                       <div>
                         <button title="Data Corrente" id="backToday" class="btn p-1" aria-label="Vaia alla data corrente">
                           <svg class="icon icon-primary"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-calendar"></use></svg>
                         </button>
-                        <button title="Mese precedente"  id="prev" class="btn p-1" aria-label="Mese Precedente">
+                        <button (click)="AppCalendario.navigate($event)" title="Mese precedente" id="prev" class="btn p-1" aria-label="Mese Precedente">
                           <svg class="icon icon-sm icon-primary">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-up"></use>
                           </svg>
                         </button>
 
-                        <button title="Mese successivo"  id="next" class="btn p-1" aria-label="Mese Successivo">
+                        <button (click)="AppCalendario.navigate($event)" title="Mese successivo" id="next" class="btn p-1" aria-label="Mese Successivo">
                           <svg class="icon icon-sm icon-primary">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-down"></use>
                           </svg>
@@ -290,11 +315,41 @@
                       <div title="Lunedì" aria-label="Lunedì">Lun</div><div title="Martedì" aria-label="Martedì">Mar</div><div title="Mercoledì" aria-label="Mercoledì">Mer</div><div title="Giovedì" aria-label="Giovedì">Gio</div>
                       <div title="Venerdì" aria-label="Venerdì">Ven</div><div title="Sabato" aria-label="Sabato">Sab</div><div title="Domenica" aria-label="Domenica">Dom</div>
                     </div>
-                    <main id="days" sevenDays></main>
+                    
+                    <main id="days" sevenDays>
+                      @for (g of AppCalendario.renderCalendario(); track $index) {
+                        <!-- Spazi vuoti per il primo giorno -->
+                        <b *ngIf="!g.day"></b>
+  
+                        <!-- Giorni del mese -->
+                        <button *ngIf="g.day" class="btn"
+                                [ngClass]="g.colorClass"
+                                [attr.slot-date]="g.todayStr"
+                                (click)="AppCalendario.selezionaGiorno(g.todayStr)">
+                          {{ g.day }}
+                        </button>
+                      }
+                    </main>
+
                   </div>
 
                   <!-- Slots -->
-                  <div class="d-flex flex-wrap gap-2 justify-content-center" id="slotsDetails"></div>
+                  <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    @if (!AppCalendario.renderSlots()){
+                      <div class="alert alert-warning rounded">Nessuno slot disponibile per questa data.</div>
+                    }@else {
+                      <div *ngFor="let btn of AppCalendario.renderSlots()">
+                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" slot-id="slot.id" 
+                          [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)"
+                        >
+                          <svg class="icon icon-sm icon-primary mr-2">
+                            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
+                          </svg>
+                          <span>{{btn.slot.time}} - {{btn.endTime}}</span>
+                        </button>
+                      </div>
+                    }
+                  </div>
                 </section>
               </aside>
 
@@ -302,7 +357,22 @@
               <aside class="col-12 col-lg-3 shadow-sm m-0 p-3 order-lg-3">
                 <h5 class="font-weight-bold" id="selectedDateTime">Orario Selezionato</h5>
                 <div>
-                  <div id="slotSelezionato"></div>
+                  <div *ngIf="AppCalendario.slotSelezionato()">
+                    <div>
+                      <b class="font-weight-bold">{{AppCalendario.slotSelezionato()?.time}} - {{AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date || '')}}</b>
+                    </div>
+                    <hr>  
+                    <div class="location-info mb-4">
+                      <h6 class="text-uppercase text-muted small">
+                        <svg class="icon icon-sm icon-padded icon-primary mr-1">
+                          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pa"></use>
+                        </svg>Struttura
+                      </h6>  
+                      <p class="font-weight-bold mb-1">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.name }}</p>
+                      <p class="small mb-1">{{ main.getAgenda(AppPrestazioni.selezionate()[0].agendaId)?.name }}</p>
+                      <p class="small">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.address }}</p> 
+                    </div> 
+                  </div>
                 </div>
 
                 <button title="Avanti" class="btn btn-primary w-100 disabled" data-target-tab="#paziente" aria-label="Avanti">

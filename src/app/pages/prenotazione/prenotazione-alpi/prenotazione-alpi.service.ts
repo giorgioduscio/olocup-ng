@@ -63,4 +63,9 @@ export class PrenotazioneAlpiService {
   slots = signal<Slot[]>([]);
   pazienti = signal<Paziente[]>([]);
   storicoPazienti = signal<StoricoPaziente[]>([]);
+
+  getStruttura =(id: number)=> this.strutture().find(s => Number(s.id) === id);
+  getReparto =(id: number)=> this.reparti().find(r => Number(r.id) === id);
+  getMedico =(id: number)=> this.medici().find(m => Number(m.id) === id);
+  getAgenda =(id: number) => this.agende().find(a => Number(a.id) ==id);
 }
