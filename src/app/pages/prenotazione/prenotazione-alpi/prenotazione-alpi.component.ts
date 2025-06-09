@@ -4,7 +4,9 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppPrestazioniService } from './app-prestazioni.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
+import { AppConfermaService } from './app-conferma.service';
 import { AppCalendarioService } from './app-calendario.service';
+import { AppPazienteService } from './app-paziente.service';
 
 @Component({
   selector: 'app-prenotazione-alpi',
@@ -14,13 +16,19 @@ import { AppCalendarioService } from './app-calendario.service';
   styleUrl: './prenotazione-alpi.component.sass'
 })
 export class PrenotazioneAlpiComponent {
+
+
   constructor(
     public main:PrenotazioneAlpiService,
     public AppPrestazioni:AppPrestazioniService,
+    public appConferma:AppConfermaService,
     public AppCalendario:AppCalendarioService,
+    public AppPaziente:AppPazienteService
   ){}
 
+
   // tabs
+
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:()=>'active'},
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', status:()=> this.AppPrestazioni.selezionate().length>0 ?'' :'disabled'},

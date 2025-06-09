@@ -35,14 +35,14 @@
     <div class="col-md-6 text-md-right mt-3 mt-md-0">
       <div class="btn-group" role="group">
         <button title="Guida" type="button" class="btn btn-primary btn-sm" aria-label="Guida">
-          <svg class="icon icon-sm icon-padded icon-white mr-2">
+          <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-help-circle">
             </use>
           </svg>Guida
         </button>
 
         <button title="Stampa" type="button" class="btn btn-primary btn-sm" aria-label="Stampa">
-          <svg class="icon icon-sm icon-padded icon-white mr-2">
+          <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-print"></use>
           </svg>Stampa
         </button>
@@ -121,7 +121,7 @@
 
                   <div class="text-end mb-2">
                     <button (click)="AppPrestazioni.resetFiltri()" class="btn btn-primary p-2" aria-label="Reset">
-                      <svg class="icon icon-sm icon-padded icon-white m-0">
+                      <svg class="icon icon-sm icon-padded icon-white m-0 me-1">
                         <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close-circle"></use>
                       </svg>
                       <span>Reset</span>
@@ -158,7 +158,7 @@
                   @if(!AppPrestazioni.hasActiveFilters()){
                     <!-- Messaggio: filtra almeno 3 caratteri -->
                     <div class="alert alert-info rounded">
-                      Cerca le prestazioni attraverso i filtri.
+                     Digita almeno 3 caratteri per filtrare le prestazioni.
                     </div>
                   }@else if(AppPrestazioni.isFiltroTestualeTroppoCorto()){
                     <!-- Messaggio: testo troppo corto -->
@@ -441,7 +441,7 @@
                 <h5 class="font-weight-bold mb-4 text-center" aria-label="Riepilogo Prenotazione">Riepilogo Prenotazione</h5>
                 <div class="card">
                   <div class="card-body p-0">
-                    <div id="appointmentDetails"></div>
+                    <div #appointmentDetails id="appointmentDetails"></div>
 
                     <div>
                       <div class="form-check mt-3">

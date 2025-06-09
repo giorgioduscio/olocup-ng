@@ -10,13 +10,13 @@
               <div class="header-item buttontext-white d-flex gap-2">
                 @if (user){
                     <a class="header-link button-toggle d-flex align-items-center text-white" routerLink="/users" role="button" data-bs-toggle="button" aria-expanded="false">
-                      <svg class="icon icon-sm icon-lg icon-white mr-2">
+                      <svg class="icon icon-sm icon-lg icon-white mr-2 me-1">
                         <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
                       </svg>
                       <span>{{ user?.role }}</span>
                     </a>
-                    <a (click)="auth.logout()" class="header-link button-toggle d-flex align-items-center text-white">
-                      <svg class="icon icon-sm icon-lg icon-white mr-2">
+                    <a (click)="auth.logout()" class="header-link button-toggle d-flex align-items-center text-white me-2">
+                      <svg class="icon icon-sm icon-lg icon-white mr-2 me-1">
                         <use href="/assets/bootstrap-italia/svg/sprites.svg#it-logout"></use>
                       </svg>
                       <span class="d-none d-sm-inline">Logout</span>
