@@ -21,6 +21,7 @@ export class AppCalendarioService {
     this.currentYear.set(today.getFullYear()) 
     this.currentMonth.set(today.getMonth()) 
     this.giornoSelezionato.set(null)
+    // this.orarioSelezionato.set(null)
 
     // Quando le prestazioni selezionate cambiano, ricarico il calendario
     effect(() => {
@@ -42,6 +43,9 @@ export class AppCalendarioService {
   // ───────────────────────────────────────────────
   // MOSTRARE DATI
   // ───────────────────────────────────────────────
+
+  // orarioSelezionato = signal<string | null>(null);
+
   //* seleziona gli slot inerenti alle prestazioni selezionate
   getSlots(prestazioniSelezionate: Prestazione[]): Slot[] {
     if (!Array.isArray(prestazioniSelezionate) || prestazioniSelezionate.length === 0) return [];
@@ -217,13 +221,34 @@ export class AppCalendarioService {
     } else return;
   }
 
-  selezionaGiorno =(dateStr: string)=> this.giornoSelezionato.set(dateStr);
-  slotSelezionato =signal<Slot|undefined>(undefined)
+  selezionaGiorno = (dateStr: string) => this.giornoSelezionato.set(dateStr);
+  slotSelezionato = signal<Slot|undefined>(undefined)
+  // selezionaSlot = (slotStr: string) => this.orarioSelezionato.set(slotStr);
   selezionaSlot(e: Event, slot:Slot) {
     const btn = (e.target as HTMLElement).closest('.btn');
     if (!btn) return;
     
-    this.slotSelezionato.set(slot); 
+      const selectedSlot = this.slotSelezionato();
+
+    // Confronto tramite ID (mai oggetti interi)
+    const isSameSlot = selectedSlot && selectedSlot.id === slot.id;
+
+    if (isSameSlot) {
+      // Deseleziona
+      this.slotSelezionato.set(undefined);
+      btn.classList.remove('selected');
+      return;
+    }
+
+    // Rimuove la classe "selected" da qualsiasi altro bottone
+    const previousSelected = document.querySelector('.btn.selected');
+    if (previousSelected && previousSelected !== btn) {
+      previousSelected.classList.remove('selected');
+    }
+
+    // Imposta nuovo selezionato
+    this.slotSelezionato.set(slot);
+    btn.classList.add('selected');
   }
 
 }

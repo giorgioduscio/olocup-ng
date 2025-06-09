@@ -9,7 +9,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="pb-0 mb-0 text-primary">Registra Paziente</h3>
       <button title="Chiudi" class="btn btn-white btn-xs float-end" type="button" data-bs-dismiss="modal" aria-label="Chiudi">
-        <svg class="icon icon-lg icon-primary mr-2">
+        <svg class="icon icon-lg icon-primary mr-2 me-2">
           <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
         </svg>
       </button>
@@ -201,7 +201,7 @@
                         >
                           <div class="text-nowrap text-truncate small">Prima data disponibile</div>
                           <div>
-                            <svg class="icon icon-sm icon-padded icon-white p-0 m-0">
+                            <svg class="icon icon-sm icon-padded icon-white p-0 m-0 me-1">
                               <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                             </svg>
                             <small>{{ AppCalendario.firstTime(
@@ -214,7 +214,7 @@
                         <button calendario class="btn btn-primary" (click)="routeToTab('datetime')"
                         *ngIf="AppCalendario.firstTime([p])"
                         >
-                          <svg class="icon icon-sm icon-padded icon-white">
+                          <svg class="icon icon-sm icon-padded icon-white me-2">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                           </svg>
                           <small>Altre disponibilità</small>
@@ -264,7 +264,7 @@
                   <div class="btn-group-vertical" id="btn-first-available">
                     <button date class="btn btn-secondary w-100" title="Prima Data e Ora Disponibile e Avanti" aria-label="Prima Data e Ora Disponibile e Avanti">
                       <h6 class="font-weight-bold">Primo Disponibile</h6>
-                      <svg class="icon icon-sm icon-padded icon-white m-0">
+                      <svg class="icon icon-sm icon-padded icon-white m-0 me-1">
                         <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                       </svg> <span>{{ AppCalendario.firstTime(AppPrestazioni.selezionate()) }}</span>
                     </button>
@@ -272,7 +272,7 @@
 
                 </div>
                 <button class="btn btn-primary w-100" data-target-tab="#prestazione" title="Indietro" aria-label="Indietro">
-                  <svg class="icon icon-sm icon-padded icon-white mr-2">
+                  <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
                   </svg>Indietro
                 </button>
@@ -342,7 +342,7 @@
                         <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" slot-id="slot.id" 
                           [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)"
                         >
-                          <svg class="icon icon-sm icon-primary mr-2">
+                          <svg class="icon icon-sm icon-primary mr-2 me-2">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
                           </svg>
                           <span>{{btn.slot.time}} - {{btn.endTime}}</span>
