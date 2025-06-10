@@ -254,23 +254,7 @@ export class AppCalendarioService {
     if (slot.prestazioneId === undefined) return console.warn('Slot senza prestazione associata');
     if (slot.prestazioneId === null) return console.warn('Slot senza prestazione associata (null)');
 
-    // Confronto tramite ID (mai oggetti interi)
-    // const isSameSlot = selectedSlot && selectedSlot.id === slot.id;
-    const isSameSlot = this.slotSelezionato() && this.slotSelezionato()?.id === slot.id;
-    this.slotSelezionato.set(isSameSlot ? undefined : slot);
-
-    if (isSameSlot) {
-      // Deseleziona
-      this.slotSelezionato.set(undefined);
-      btn.classList.remove('selected', 'btn-success');
-      return;
-    }
-
-    // Rimuove la classe "selected" da qualsiasi altro bottone
-    const previousSelected = document.querySelector('.btn.selected, .btn.success');
-    if (previousSelected && previousSelected !== btn) {
-      previousSelected.classList.remove('selected', 'btn-success');
-    }
+    
 
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);

@@ -334,8 +334,11 @@
                       <div class="alert alert-warning rounded">Nessuno slot disponibile per questa data.</div>
                     }@else {
                       <div *ngFor="let btn of AppCalendario.renderSlots()">
-                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" [attr.slot-id]="btn.slot.id" 
-                          [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)">
+                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" 
+                          [ngClass]="{'giornoSelezionato': AppCalendario.slotSelezionato()?.id === btn.slot.id}"
+                          [attr.slot-id]="btn.slot.id" 
+                          [disabled]="btn.disabled" 
+                          (click)="AppCalendario.selezionaSlot($event, btn.slot)">
                           <svg class="icon icon-sm icon-primary mr-2 me-2">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
                           </svg>
