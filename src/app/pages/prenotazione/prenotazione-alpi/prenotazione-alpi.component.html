@@ -326,7 +326,6 @@
                         </button>
                       }
                     </main>
-
                   </div>
 
                   <!-- Slots -->
@@ -336,8 +335,7 @@
                     }@else {
                       <div *ngFor="let btn of AppCalendario.renderSlots()">
                         <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" [attr.slot-id]="btn.slot.id" 
-                          [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)"
-                        >
+                          [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)">
                           <svg class="icon icon-sm icon-primary mr-2 me-2">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
                           </svg>
@@ -371,7 +369,7 @@
                   </div>
                 </div>
 
-                <button title="Avanti" class="btn btn-primary w-100 disabled" data-target-tab="#paziente" aria-label="Avanti">
+                <button title="Avanti" class="btn btn-primary w-100" [disabled]="!AppCalendario.slotSelezionato()" data-target-tab="#paziente" aria-label="Avanti">
                   <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                   </svg>Avanti
