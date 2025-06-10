@@ -21,7 +21,7 @@ export class AppCalendarioService {
     this.currentYear.set(today.getFullYear()) 
     this.currentMonth.set(today.getMonth()) 
     this.giornoSelezionato.set(null)
-    // this.orarioSelezionato.set(null)
+    
 
     // Quando le prestazioni selezionate cambiano, ricarico il calendario
     effect(() => {
@@ -43,8 +43,6 @@ export class AppCalendarioService {
   // ───────────────────────────────────────────────
   // MOSTRARE DATI
   // ───────────────────────────────────────────────
-
-  // orarioSelezionato = signal<string | null>(null);
 
   //* seleziona gli slot inerenti alle prestazioni selezionate
   getSlots(prestazioniSelezionate: Prestazione[]): Slot[] {
@@ -246,34 +244,39 @@ export class AppCalendarioService {
 
   selezionaGiorno = (dateStr: string) => this.giornoSelezionato.set(dateStr);
   slotSelezionato = signal<Slot|undefined>(undefined)
-  // selezionaSlot = (slotStr: string) => this.orarioSelezionato.set(slotStr);
+  
   selezionaSlot(e: Event, slot:Slot) {
     const btn = (e.target as HTMLElement).closest('.btn');
     if (!btn) return;
     
-    const selectedSlot = this.slotSelezionato();
+    if (!slot || !slot.id) return console.warn('Slot non valido o senza ID');
+    if (slot.status !== 'available') return console.warn('Slot non disponibile');   
+    if (slot.prestazioneId === undefined) return console.warn('Slot senza prestazione associata');
+    if (slot.prestazioneId === null) return console.warn('Slot senza prestazione associata (null)');
 
     // Confronto tramite ID (mai oggetti interi)
-    const isSameSlot = selectedSlot && selectedSlot.id === slot.id;
+    // const isSameSlot = selectedSlot && selectedSlot.id === slot.id;
+    const isSameSlot = this.slotSelezionato() && this.slotSelezionato()?.id === slot.id;
+    this.slotSelezionato.set(isSameSlot ? undefined : slot);
 
     if (isSameSlot) {
       // Deseleziona
       this.slotSelezionato.set(undefined);
-      btn.classList.remove('selected');
+      btn.classList.remove('selected', 'btn-success');
       return;
     }
 
     // Rimuove la classe "selected" da qualsiasi altro bottone
-    const previousSelected = document.querySelector('.btn.selected');
+    const previousSelected = document.querySelector('.btn.selected, .btn.success');
     if (previousSelected && previousSelected !== btn) {
-      previousSelected.classList.remove('selected');
+      previousSelected.classList.remove('selected', 'btn-success');
     }
 
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);
-    btn.classList.add('selected');
-    
+    btn.classList.add('selected', 'btn-success');
   }
+
 
   selezionaPrimaDisponibile() {
     const prestazioni = this.appPrestazioniService.selezionate();
