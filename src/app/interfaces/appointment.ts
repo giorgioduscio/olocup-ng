@@ -1,6 +1,6 @@
 export interface Appointment {
     id: string;
-    patientId: number;
+    pazienteId: number;
     appointmentDate: string;
     appointmentTime: string;
     agendaId: number;

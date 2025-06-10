@@ -19,6 +19,8 @@ import { PrestazioniService } from '../../../api/prestazioni.service';
 import { SlotService } from '../../../api/slot.service';
 import { PazientiService } from '../../../api/pazienti.service';
 import { StoricoPazienteService } from '../../../api/storico-paziente.service';
+import { InvoicesService } from '../../../api/invoices.service';
+import { Invoice } from '../../../interfaces/invoice';
 
 @Injectable({  providedIn: 'root'})
 export class PrenotazioneAlpiService {
@@ -34,6 +36,7 @@ export class PrenotazioneAlpiService {
     private slotsService :SlotService,
     private pazientiService :PazientiService,
     private storicoPazientiService :StoricoPazienteService,
+    private invoiceService:InvoicesService,
   ) {
     effect(() => {
       this.medici.set(this.meidiciService.medici());
@@ -46,6 +49,7 @@ export class PrenotazioneAlpiService {
       this.slots.set(this.slotsService.slots());
       this.pazienti.set(this.pazientiService.pazienti());
       this.storicoPazienti.set(this.storicoPazientiService.storicoPazienti());
+      this.invoices.set(this.invoiceService.invoices());
 
       // if(this.medici().length && this.strutture().length && this.reparti().length && this.tipiStrutture().length && this.agende().length && this.prescrizioni().length && this.prestazioni().length && this.slots().length && this.pazienti().length && this.storicoPazienti().length)
       //   console.log('PrenotazioneAlpiService: dati caricati');
@@ -63,6 +67,7 @@ export class PrenotazioneAlpiService {
   slots = signal<Slot[]>([]);
   pazienti = signal<Paziente[]>([]);
   storicoPazienti = signal<StoricoPaziente[]>([]);
+  invoices = signal<Invoice[]>([]);
 
   getStruttura =(id: number)=> this.strutture().find(s => Number(s.id) === id);
   getReparto =(id: number)=> this.reparti().find(r => Number(r.id) === id);
