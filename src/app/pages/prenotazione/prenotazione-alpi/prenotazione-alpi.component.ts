@@ -33,7 +33,10 @@ export class PrenotazioneAlpiComponent {
       status:()=> this.AppPrestazioni.selezionate().length ?'' :'disabled'},
     {key:'paziente',    title:'Paziente',   icon:'it-user',     
       status:()=> this.AppPrestazioni.selezionate().length && this.AppCalendario.slotSelezionato() ?'' :'disabled'},
-    {key:'confirm',     title:'Conferma',   icon:'it-check',    status:()=>'disabled'},
+    {key:'confirm',     title:'Conferma',   icon:'it-check',    
+      status:()=> this.AppPrestazioni.selezionate().length && 
+                  this.AppCalendario.slotSelezionato() &&
+                  this.AppPaziente.pazienteSelezionato()?'' :'disabled'},
   ]
   tabsHandleClick(e:Event){
     const tab = e.target as HTMLButtonElement    

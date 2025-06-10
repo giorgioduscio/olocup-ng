@@ -10,7 +10,17 @@ export interface Paziente {
     address: string;
     city: string;
     postalCode: string;
-    province: string;
     exemptionCode: string | null;
     notes: string;
+
+    recidenceAddress:string
+    recidenceMunicipality:string
+    recidencePostalCode:string
+
+    recidenceProvince:string
+    domicileAddress:string
+    domicileMunicipality:string
+    domicilePostalCode:string
+    domicileProvince:string
+
 }
