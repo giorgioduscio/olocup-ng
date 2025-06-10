@@ -559,8 +559,8 @@
                               </svg>Data e Ora
                             </h6>
                             <p class="small text-muted">
-                              {{ AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date ||'') }},  
-                              {{ AppCalendario.slotSelezionato()?.time }}
+                              <b>{{ AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date ||'') }}</b>,  
+                              <b>{{ AppCalendario.slotSelezionato()?.time }}</b>
                             </p>
                           </div>          
 
@@ -570,10 +570,10 @@
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
                               </svg>Paziente
                             </h6>
-                            <div>{{ AppPaziente.pazienteSelezionato()?.lastName}} {{ AppPaziente.pazienteSelezionato()?.firstName}}</div>
-                            <div class="small text-muted">CF: {{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</div>
-                            <div class="small text-muted">Nato il: {{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }}</div>
-                            <div class="small text-muted">Genere: {{ AppPaziente.pazienteSelezionato()?.gender }}</div>
+                            <div><b>{{ AppPaziente.pazienteSelezionato()?.lastName}} {{ AppPaziente.pazienteSelezionato()?.firstName}}</b></div>
+                            <div class="small text-muted">CF:<b>{{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</b></div>
+                            <div class="small text-muted">Nato il: <b>{{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }}</b></div>
+                            <div class="small text-muted">Genere: <b>{{ AppPaziente.pazienteSelezionato()?.gender }}</b></div>
                           </div>
 
                           <div class="col-md-6">
@@ -582,11 +582,11 @@
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
                               </svg>Medico
                             </h6>
-                            <div>{{ appConferma.render()?.medico?.title }} 
+                            <div><b>{{ appConferma.render()?.medico?.title }} 
                                  {{ appConferma.render()?.medico?.lastName }} 
-                                 {{ appConferma.render()?.medico?.firstName }}</div>
-                            <div class="small text-muted">Email:    {{ appConferma.render()?.medico?.email }}</div>
-                            <div class="small text-muted">Telefono: {{ appConferma.render()?.medico?.phone }}</div>
+                                 {{ appConferma.render()?.medico?.firstName }}</b></div>
+                            <div class="small text-muted">Email: <b>{{ appConferma.render()?.medico?.email }}</b></div>
+                            <div class="small text-muted">Telefono: <b>{{ appConferma.render()?.medico?.phone }}</b></div>
                           </div>
                           
                           <div class="col-md-6">  
