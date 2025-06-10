@@ -36,8 +36,7 @@
       <div class="btn-group" role="group">
         <button title="Guida" type="button" class="btn btn-primary btn-sm" aria-label="Guida">
           <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
-            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-help-circle">
-            </use>
+            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-help-circle"></use>
           </svg>Guida
         </button>
 
@@ -391,9 +390,37 @@
               <aside class="col-12 col-md-4 col-lg-3 shadow mb-4 m-0">
                 <h5 class="font-weight-bold" aria-label="Riepilogo Prenotazione">Riepilogo Prenotazione</h5>
                 <div>
-                  <div id="selectedPrestazioneC" class="selected-prestazione mb-4"></div>
+                  <div id="selectedPrestazioneC" class="selected-prestazione mb-4">
+                    <div class="pe-2 border border-2 border-neutral-2-bg-a2 rounded-top p-3" style="max-height: 30vh; overflow-y: scroll;"
+                      *ngIf="AppPrestazioni.selezionate().length">
+                      @for (ps of AppPrestazioni.selezionate(); track $index) {
+                        <h6 class="font-weight-bold">{{ ps.name }}</h6>
+                        <div>
+                          <span class="badge bg-secondary">{{ AppPrestazioni.getReparto(ps.repartoId)?.name }}</span>
+                        </div>
+                        <div class="d-grid justify-content-between" style="grid-template-columns: auto auto;">
+                          <span>Durata:</span>
+                          <span class="font-weight-bold">{{ ps.defaultDuration }} minuti</span>
+                          <span>Codice prestazione:</span>
+                          <span class="font-weight-bold">{{ ps.code }}</span>
+                          <span>Costo prestazione:</span>
+                          <span class="font-weight-bold">€{{ ps.privatePrice }}</span>
+                        </div>
+                        <hr>
+                      }
+                    </div>
+                  </div>
                   <hr>
-                  <div id="TselectedPatient" class="details d-none"></div>
+                  <div id="TselectedPatient" class="details" *ngIf="AppPaziente.pazienteSelezionato()">
+                    <h6>{{ AppPaziente.pazienteSelezionato()?.firstName }} {{ AppPaziente.pazienteSelezionato()?.lastName }}</h6>
+                    <p class="small mb-1">CF: {{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</p>
+                    <p class="small mb-1">Nato il: {{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }} ({{ AppPaziente.calcoloEta() }} anni)</p>
+                    <p class="small mb-1">Tel: {{ AppPaziente.pazienteSelezionato()?.phoneNumber }}</p>
+                    <p class="small mb-0">{{AppPaziente.pazienteSelezionato()?.address}} 
+                                          {{AppPaziente.pazienteSelezionato()?.postalCode}} 
+                                          {{AppPaziente.pazienteSelezionato()?.city}} 
+                                          ({{AppPaziente.pazienteSelezionato()?.recidenceProvince}})</p>
+                  </div>
                 </div>
                 <button title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
                   <svg class="icon icon-sm icon-padded icon-white mr-2">
@@ -423,11 +450,46 @@
                         <svg class="icon icon-sm" aria-hidden="true">
                           <use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use>
                         </svg>
-                        <input id="patientsFilter" type="search" class="form-control m-0 border-0" placeholder="Cerca paziente per nome, codice fiscale o telefono...">
+                        <input [(ngModel)]="AppPaziente.filtroPaziente" id="patientsFilter" type="search" class="form-control m-0 border-0" placeholder="Cerca paziente per nome, codice fiscale o telefono...">
                       </div>
                     </div>
                   </div>
-                  <section class="list-group mb-3" id="patientsList"></section>
+
+                  <section class="list-group mb-3" id="patientsList">
+                    @if (AppPaziente.renderPatients().pazienti.length===0 && AppPaziente.filtroPaziente.length<3) {
+                      <div class="alert alert-info rounded">Digita almeno 3 caratteri per filtrare i pazienti. </div>
+
+                    }@else if (AppPaziente.renderPatients().pazienti.length===0 && AppPaziente.filtroPaziente.length) {
+                      <div class="alert alert-warning rounded">Nessun Paziente trovato con i filtri applicati.</div>
+
+                    }@else {
+                      <div class="list-group" *ngFor="let paziente of AppPaziente.renderPatients().pazienti">
+                        <div class="agenda-item d-flex justify-content-between align-items-center p-3 {{AppPaziente.renderPatients().isSel(paziente)}}"
+                          (click)="AppPaziente.selezionaPaziente($event, paziente)"
+                        > <div>
+                            <h6 class="mb-1">{{paziente.lastName}} {{paziente.firstName}}</h6>
+                            <p class="small text-muted mb-0">{{paziente.fiscalCode}}</p>
+                            <p class="small text-muted mb-0">{{ AppCalendario.itaDate(paziente.birthDate)}} - {{paziente.gender}}</p>
+                            <p class="small text-muted mb-0">Tel: {{paziente.phoneNumber}}</p>
+                            <p class="small text-muted mb-0">{{paziente.city}} ({{paziente}})</p>
+                          </div>
+                          <div class="text-right btn-group-vertical">
+                            <button name="storicoPaziente" class="btn btn-sm btn-primary mt-1"
+                              data-bs-toggle="modal" data-bs-target="#historyModal" type="button">
+                              <svg class="icon icon-sm icon-white">
+                                <use href="/assets/bootstrap-italia/svg/sprites.svg#it-note"></use>
+                              </svg> <small>Storico</small> 
+                            </button>
+                            <button class="btn btn-primary p-1 pe-3 text-nowrap" nextBtn>
+                              <svg class="icon icon-sm icon-padded icon-white">
+                                <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                              </svg> <small>Conferma</small> 
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </section>
                 </aside>
               </div>
           
