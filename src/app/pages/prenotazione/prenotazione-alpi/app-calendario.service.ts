@@ -251,7 +251,7 @@ export class AppCalendarioService {
     const btn = (e.target as HTMLElement).closest('.btn');
     if (!btn) return;
     
-      const selectedSlot = this.slotSelezionato();
+    const selectedSlot = this.slotSelezionato();
 
     // Confronto tramite ID (mai oggetti interi)
     const isSameSlot = selectedSlot && selectedSlot.id === slot.id;
