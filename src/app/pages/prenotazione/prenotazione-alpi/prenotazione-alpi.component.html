@@ -212,8 +212,8 @@
                         </button>
                         <!-- Altre disponibilità -->
                         <button calendario class="btn btn-primary" (click)="routeToTab('datetime')"
-                        *ngIf="AppCalendario.firstTime([p])"
-                        >
+                        *ngIf="AppCalendario.firstTime([p])">
+                        
                           <svg class="icon icon-sm icon-padded icon-white me-2">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                           </svg>
@@ -258,13 +258,12 @@
                         <hr>
                       }
                     </div>
-
                   </div>
                   
                   <div class="btn-group-vertical" id="btn-first-available" (click)="AppCalendario.selezionaPrimaDisponibile()">
                     <button date class="btn btn-secondary w-100" title="Prima Data e Ora Disponibile e Avanti" aria-label="Prima Data e Ora Disponibile e Avanti">
                       <h6 class="font-weight-bold">Primo Disponibile</h6>
-                      <svg class="icon icon-sm icon-padded icon-white m-0 me-1">
+                      <svg class="icon icon-sm icon-padded icon-white m-0 me-2">
                         <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                       </svg> <span>{{ AppCalendario.firstTime(AppPrestazioni.selezionate()) }}</span>
                     </button>
@@ -281,9 +280,7 @@
               <!-- Calendario (centro) -->
               <aside class="col-12 col-md-8 col-lg-6 shadow-sm m-0 p-3 order-lg-2">
                 <h5 aria-label="Calendario Disponibilità">
-                  <svg class="icon icon-sm icon-padded icon-primary mr-1">
-                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-calendar"></use>
-                  </svg>Calendario Disponibilità
+                  Calendario Disponibilità
                 </h5>
                 <section>
 
@@ -376,7 +373,7 @@
                 </div>
 
                 <button title="Avanti" class="btn btn-primary w-100 disabled" data-target-tab="#paziente" aria-label="Avanti">
-                  <svg class="icon icon-sm icon-padded icon-white mr-2">
+                  <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                   </svg>Avanti
                 </button>
@@ -396,7 +393,7 @@
                   <div id="TselectedPatient" class="details d-none"></div>
                 </div>
                 <button title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
-                  <svg class="icon icon-sm icon-padded icon-white mr-2">
+                  <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
                   </svg>Indietro
                 </button>
@@ -430,7 +427,6 @@
                   <section class="list-group mb-3" id="patientsList"></section>
                 </aside>
               </div>
-          
             </div>
           </div>
                           
@@ -479,7 +475,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center gap-3">
                   <button title="Indietro" class="btn btn-primary" data-target-tab="#paziente" aria-label="Indietro">
-                    <svg class="icon icon-sm icon-padded icon-white mr-2">
+                    <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                       <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
                     </svg>Indietro
                   </button>
