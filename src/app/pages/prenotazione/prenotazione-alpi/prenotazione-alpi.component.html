@@ -327,7 +327,6 @@
                         </button>
                       }
                     </main>
-
                   </div>
 
                   <!-- Slots -->
@@ -372,7 +371,7 @@
                   </div>
                 </div>
 
-                <button title="Avanti" class="btn btn-primary w-100 disabled" data-target-tab="#paziente" aria-label="Avanti">
+                <button title="Avanti" class="btn btn-primary w-100" [disabled]="!AppCalendario.slotSelezionato()" data-target-tab="#paziente" aria-label="Avanti">
                   <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                   </svg>Avanti

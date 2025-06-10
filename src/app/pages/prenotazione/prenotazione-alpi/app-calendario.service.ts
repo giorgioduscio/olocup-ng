@@ -272,6 +272,7 @@ export class AppCalendarioService {
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);
     btn.classList.add('selected');
+    
   }
 
   selezionaPrimaDisponibile() {
