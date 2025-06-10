@@ -3,7 +3,7 @@ export interface Invoice {
     invoiceNumber: string;
     invoiceDate: string;
     invoiceType: string;
-    patientId: number;
+    pazienteId: number;
     patientName: string;
     fiscalCode: string;
     address: string;

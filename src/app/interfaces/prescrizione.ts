@@ -13,4 +13,5 @@ export interface Prescrizione {
     province: string;
     exemptionCode: string | null;
     notes: string;
+    prescriptionNumber :string
 }
