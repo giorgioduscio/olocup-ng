@@ -401,8 +401,11 @@
                       <div class="alert alert-warning rounded">Nessuno slot disponibile per questa data.</div>
                     }@else {
                       <div *ngFor="let btn of AppCalendario.renderSlots()">
-                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" [attr.slot-id]="btn.slot.id" 
-                          [disabled]="btn.disabled" (click)="AppCalendario.selezionaSlot($event, btn.slot)">
+                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" 
+                          [ngClass]="{'giornoSelezionato': AppCalendario.slotSelezionato()?.id === btn.slot.id}"
+                          [attr.slot-id]="btn.slot.id" 
+                          [disabled]="btn.disabled" 
+                          (click)="AppCalendario.selezionaSlot($event, btn.slot)">
                           <svg class="icon icon-sm icon-primary mr-2 me-2">
                             <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
                           </svg>
@@ -435,12 +438,12 @@
                     </div> 
                   </div>
                 </div>
-
-                <button title="Avanti" class="btn btn-primary w-100" [disabled]="!AppCalendario.slotSelezionato()" data-target-tab="#paziente" aria-label="Avanti">
-                  <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
-                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
-                  </svg>Avanti
-                </button>
+               <button title="Avanti" class="btn btn-primary w-100" 
+                  [disabled]="!AppCalendario.slotSelezionato()" (click)="routeToTab('paziente')"aria-label="Avanti">
+                      <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
+                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                      </svg>Avanti
+               </button>
               </aside>
             </div>
           </div>
@@ -468,21 +471,28 @@
                           <span>Costo prestazione:</span>
                           <span class="font-weight-bold">€{{ ps.privatePrice }}</span>
                         </div>
-                        <hr>
-                      }
+                        <hr> 
+                      } 
                     </div>
+                      <h5 class="font-weight-bold" id="selectedDateTime">Orario Selezionato</h5>
+                      <div *ngIf="AppCalendario.slotSelezionato()">
+                        <div>
+                          <b class="font-weight-bold">{{AppCalendario.slotSelezionato()?.time}} - {{AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date || '')}}</b>
+                        </div>
+                        <hr>  
+                        <div class="location-info mb-4">
+                          <h6 class="text-uppercase text-muted small">
+                            <svg class="icon icon-sm icon-padded icon-primary mr-1">
+                              <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pa"></use>
+                            </svg>Struttura
+                          </h6>  
+                          <p class="font-weight-bold mb-1">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.name }}</p>
+                          <p class="small mb-1">{{ main.getAgenda(AppPrestazioni.selezionate()[0].agendaId)?.name }}</p>
+                          <p class="small">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.address }}</p> 
+                        </div> 
+                      </div>
                   </div>
-                  <hr>
-                  <div id="TselectedPatient" class="details" *ngIf="AppPaziente.pazienteSelezionato()">
-                    <h6>{{ AppPaziente.pazienteSelezionato()?.firstName }} {{ AppPaziente.pazienteSelezionato()?.lastName }}</h6>
-                    <p class="small mb-1">CF: {{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</p>
-                    <p class="small mb-1">Nato il: {{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }} ({{ AppPaziente.calcoloEta() }} anni)</p>
-                    <p class="small mb-1">Tel: {{ AppPaziente.pazienteSelezionato()?.phoneNumber }}</p>
-                    <p class="small mb-0">{{AppPaziente.pazienteSelezionato()?.address}} 
-                                          {{AppPaziente.pazienteSelezionato()?.postalCode}} 
-                                          {{AppPaziente.pazienteSelezionato()?.city}} 
-                                          ({{AppPaziente.pazienteSelezionato()?.recidenceProvince}})</p>
-                  </div>
+                  <hr>   
                 </div>
                 <button title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
                   <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
@@ -623,8 +633,8 @@
                               </svg>Data e Ora
                             </h6>
                             <p class="small text-muted">
-                              {{ AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date ||'') }},  
-                              {{ AppCalendario.slotSelezionato()?.time }}
+                              <b>{{ AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date ||'') }}</b>,  
+                              <b>{{ AppCalendario.slotSelezionato()?.time }}</b>
                             </p>
                           </div>          
 
@@ -634,10 +644,10 @@
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
                               </svg>Paziente
                             </h6>
-                            <div>{{ AppPaziente.pazienteSelezionato()?.lastName}} {{ AppPaziente.pazienteSelezionato()?.firstName}}</div>
-                            <div class="small text-muted">CF: {{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</div>
-                            <div class="small text-muted">Nato il: {{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }}</div>
-                            <div class="small text-muted">Genere: {{ AppPaziente.pazienteSelezionato()?.gender }}</div>
+                            <div><b>{{ AppPaziente.pazienteSelezionato()?.lastName}} {{ AppPaziente.pazienteSelezionato()?.firstName}}</b></div>
+                            <div class="small text-muted">CF:<b>{{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</b></div>
+                            <div class="small text-muted">Nato il: <b>{{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }}</b></div>
+                            <div class="small text-muted">Genere: <b>{{ AppPaziente.pazienteSelezionato()?.gender }}</b></div>
                           </div>
 
                           <div class="col-md-6">
@@ -646,11 +656,11 @@
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-user"></use>
                               </svg>Medico
                             </h6>
-                            <div>{{ appConferma.render()?.medico?.title }} 
+                            <div><b>{{ appConferma.render()?.medico?.title }} 
                                  {{ appConferma.render()?.medico?.lastName }} 
-                                 {{ appConferma.render()?.medico?.firstName }}</div>
-                            <div class="small text-muted">Email:    {{ appConferma.render()?.medico?.email }}</div>
-                            <div class="small text-muted">Telefono: {{ appConferma.render()?.medico?.phone }}</div>
+                                 {{ appConferma.render()?.medico?.firstName }}</b></div>
+                            <div class="small text-muted">Email: <b>{{ appConferma.render()?.medico?.email }}</b></div>
+                            <div class="small text-muted">Telefono: <b>{{ appConferma.render()?.medico?.phone }}</b></div>
                           </div>
                           
                           <div class="col-md-6">  
