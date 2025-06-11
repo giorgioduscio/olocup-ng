@@ -28,14 +28,22 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               },
               {
                 "glob": "**/*",
                 "input": "src/assets/bootstrap-italia/svg",
                 "output": "/assets/bootstrap-italia/svg"
               }
-            ],            "styles": [
+            ],
+            
+            "styles": [
               "src/styles.sass",
               "src/assets/bootstrap-italia/css/bootstrap-italia.min.css"
             ],

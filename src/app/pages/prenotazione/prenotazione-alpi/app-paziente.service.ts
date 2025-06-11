@@ -2,14 +2,17 @@ import { Injectable,  effect, signal } from '@angular/core';
 import { Paziente } from '../../../interfaces/paziente';
 import { StoricoPaziente } from '../../../interfaces/storicopaziente';
 import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class AppPazienteService {
-  constructor(private main:PrenotazioneAlpiService) {
+  constructor(private main:PrenotazioneAlpiService, private http:HttpClient) {
     effect(() => {
       this.pazienti =this.main.pazienti();
-      this.storicoPazienti = this.main.storicoPazienti();
+      this.storicoPazienti = this.main.storicoPazienti();      
     });
+    this.buildForm()
   }
 
   //* MOSTRA DATI
@@ -63,4 +66,182 @@ export class AppPazienteService {
       document.getElementById('confirm-tab')?.click();
     }, 200);
   }
+
+
+  //* MODALE NUOVO PAZIENTE
+  fields = [
+    {
+      key: 'firstName',
+      label: 'Nome',
+      control: new FormControl('', [Validators.required])
+    },
+    {
+      key: 'lastName',
+      label: 'Cognome',
+      control: new FormControl('', [Validators.required])
+    },
+    {
+      key: 'email',
+      label: 'Email',
+      type: 'email',
+      control: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+      ]),
+      errorMessage: 'Deve contenere "@" e "."'
+    },
+    {
+      key: 'birthDate',
+      label: 'Data di Nascita',
+      type: 'date',
+      control: new FormControl('', [
+        Validators.required,
+        // Custom validator for date not future, to be implemented separately
+      ]),
+      errorMessage: 'La data non può essere presente o futura'
+    },
+    {
+      key: 'fiscalCode',
+      label: 'Codice Fiscale',
+      control: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$/i)
+      ]),
+      errorMessage: 'Inserire il pattern corretto: 6 lettere, 2 numeri, 1 lettera, 2 numeri, 1 lettera, 3 numeri, 1 lettera'
+    },
+    {
+      key: 'phoneNumber',
+      label: 'Telefono',
+      type: 'tel',
+      control: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{10}$/)
+      ]),
+      errorMessage: 'Richiede 10 cifre numeriche'
+    },
+    {
+      key: 'notes',
+      label: 'Note',
+      type: 'textarea',
+      control: new FormControl('')
+    },
+    {
+      key: 'gender',
+      label: 'Genere',
+      type: 'radio',
+      control: new FormControl('', [Validators.required])
+    },
+    // Campi Residenza
+    {
+      key: 'recidenceAddress',
+      label: 'Indirizzo',
+      control: new FormControl('', [Validators.required])
+    },
+    {
+      key: 'recidenceMunicipality',
+      label: 'Comune e Regione',
+      type: 'autocomplete',
+      control: new FormControl('', [Validators.required])
+    },
+    {
+      key: 'recidencePostalCode',
+      label: 'CAP',
+      type: 'autocomplete',
+      control: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{5}$/)
+      ]),
+      errorMessage: 'Richiede 5 cifre numeriche'
+    },
+    {
+      key: 'recidenceProvince',
+      label: 'Provincia e Città',
+      type: 'autocomplete',
+      control: new FormControl('', [Validators.required])
+    },
+    // Campi Domicilio (non obbligatori, quindi no Validators.required)
+    {
+      key: 'domicileAddress',
+      label: 'Indirizzo',
+      control: new FormControl('')
+    },
+    {
+      key: 'domicileMunicipality',
+      label: 'Comune e Regione',
+      type: 'autocomplete',
+      control: new FormControl('')
+    },
+    {
+      key: 'domicilePostalCode',
+      label: 'CAP',
+      type: 'autocomplete',
+      control: new FormControl('', [
+        Validators.pattern(/^\d{5}$/)
+      ]),
+      errorMessage: 'Richiede 5 cifre numeriche'
+    },
+    {
+      key: 'domicileProvince',
+      label: 'Provincia e Città',
+      type: 'autocomplete',
+      control: new FormControl('')
+    },
+  ];
+  form!: FormGroup;
+  regioni :{comune:string, regione:string}[] =[];
+  caps :{codice_istat: string, cap: string}[] =[];
+  provinces :{codice_regione: string, 
+    denominazione_provincia: string, 
+    codice_sovracomunale: string, 
+    numero_comuni: string, 
+    sigla_provincia: string, 
+    superficie_kmq: string, 
+    tipologia_provincia: string 
+  }[] =[];
+
+  buildForm() {
+    const group: { [key: string]: any } = {};
+    this.fields.forEach(field => {
+      group[field.key] = field.control;
+    });
+    this.form = new FormGroup(group);
+
+    this.http.get<typeof this.regioni>('https://italia.github.io/bootstrap-italia/docs/esempi/form/comuni.json').subscribe((data) => {
+      this.regioni = data
+    })
+    this.http.get<typeof this.provinces>('/assets/datas/gi_province.json').subscribe((data) => {
+      this.provinces = data
+    })
+    this.http.get<typeof this.caps>('/assets/datas/gi_cap.json').subscribe((data) => {
+      this.caps = data
+    })
+  }
+  labelsBehavior(event: Event) {
+    const target = event.target as HTMLElement;
+    const formGroup = target.closest('.form-group');
+    if (!formGroup) return;
+    const label = formGroup.querySelector('label');
+    if (!label || (target as HTMLInputElement).type === 'date') return;
+
+    if (event.type === 'focusout') label.classList.remove('active');
+    if (event.type === 'click') label.classList.add('active');
+    if ((target as HTMLInputElement).value) label.classList.add('active');
+  }
+
+  onSubmit() {
+    this.validationFlag = true;
+    if (this.form.invalid) return; // Non inviare, i messaggi ora saranno mostrati
+    
+    // procedi con il form valido
+    console.log(this.form.value);
+  }
+
+  validationFlag = false;
+  isInvalid(fieldKey: string): boolean {
+    if (!this.validationFlag) return false;
+    const control = this.form.get(fieldKey);
+    return control ? control.invalid && (control.dirty || control.touched || this.validationFlag) : false;
+  }
+
+
 }
