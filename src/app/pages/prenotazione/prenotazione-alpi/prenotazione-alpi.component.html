@@ -404,21 +404,28 @@
                           <span>Costo prestazione:</span>
                           <span class="font-weight-bold">€{{ ps.privatePrice }}</span>
                         </div>
-                        <hr>
-                      }
+                        <hr> 
+                      } 
                     </div>
+                      <h5 class="font-weight-bold" id="selectedDateTime">Orario Selezionato</h5>
+                      <div *ngIf="AppCalendario.slotSelezionato()">
+                        <div>
+                          <b class="font-weight-bold">{{AppCalendario.slotSelezionato()?.time}} - {{AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date || '')}}</b>
+                        </div>
+                        <hr>  
+                        <div class="location-info mb-4">
+                          <h6 class="text-uppercase text-muted small">
+                            <svg class="icon icon-sm icon-padded icon-primary mr-1">
+                              <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pa"></use>
+                            </svg>Struttura
+                          </h6>  
+                          <p class="font-weight-bold mb-1">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.name }}</p>
+                          <p class="small mb-1">{{ main.getAgenda(AppPrestazioni.selezionate()[0].agendaId)?.name }}</p>
+                          <p class="small">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.address }}</p> 
+                        </div> 
+                      </div>
                   </div>
-                  <hr>
-                  <div id="TselectedPatient" class="details" *ngIf="AppPaziente.pazienteSelezionato()">
-                    <h6>{{ AppPaziente.pazienteSelezionato()?.firstName }} {{ AppPaziente.pazienteSelezionato()?.lastName }}</h6>
-                    <p class="small mb-1">CF: {{ AppPaziente.pazienteSelezionato()?.fiscalCode }}</p>
-                    <p class="small mb-1">Nato il: {{ AppCalendario.itaDate(AppPaziente.pazienteSelezionato()?.birthDate ||'') }} ({{ AppPaziente.calcoloEta() }} anni)</p>
-                    <p class="small mb-1">Tel: {{ AppPaziente.pazienteSelezionato()?.phoneNumber }}</p>
-                    <p class="small mb-0">{{AppPaziente.pazienteSelezionato()?.address}} 
-                                          {{AppPaziente.pazienteSelezionato()?.postalCode}} 
-                                          {{AppPaziente.pazienteSelezionato()?.city}} 
-                                          ({{AppPaziente.pazienteSelezionato()?.recidenceProvince}})</p>
-                  </div>
+                  <hr>   
                 </div>
                 <button title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
                   <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
