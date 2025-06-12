@@ -2,30 +2,34 @@
   <div class="modal-body">
     <div id="historyContent">
       <div class="d-flex gap-4 align-items-start">
-        <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Chiudi</button>
+        <button title="button" class="btn btn-primary btn-xs btn-me p-0" type="button" data-bs-dismiss="modal">
+          <svg class="icon icon-lg icon-padded-xs icon-white mr-2 me-2 ps-2">
+          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
+          </svg>
+        </button>
         <div>
           <h5 class="mb-1"> Storico visite di {{ AppPaziente.pazienteSelezionato()?.lastName}} {{ AppPaziente.pazienteSelezionato()?.firstName}}</h5>
-          <p class="small mb-1">{{AppPaziente.pazienteSelezionato()?.fiscalCode}} Tell: {{AppPaziente.pazienteSelezionato()?.phoneNumber}}</p>
+          <p class="small mb-1 text-muted"><b>{{AppPaziente.pazienteSelezionato()?.fiscalCode}} Tell: {{AppPaziente.pazienteSelezionato()?.phoneNumber}}</b></p>
         </div>
       </div>
       <hr>
     </div>
   </div>
-  <div *ngIf="AppPaziente.storicoPazienti.length; else noStoricoPazienti">
+  <div *ngIf="AppPaziente.storicoPazienti.length; else noStoricoPazienti" class="container p-5">
     @for(storicoPaziente of AppPaziente.storicoPazienti; track storicoPaziente) {
       @for(visit of storicoPaziente.visits; track visit) {
       <div class="d-flex justify-content-between align-items-start">
         <div>
             <h6 class="mb-1">{{visit.name}} {{AppCalendario.itaDate(visit.date)}} - {{visit.time}}</h6> 
-            <p class="small mb-1">{{main.getStruttura(visit.strutturaId)?.name}} {{main.getStruttura(visit.strutturaId)?.address}} - {{main.getStruttura(visit.strutturaId)?.city}}</p>
-            <div class="small mb-1">{{main.getReparto(visit.repartoId)?.name}}
+            <p class="small mb-1 text-muted"><b>{{main.getStruttura(visit.strutturaId)?.name}} {{main.getStruttura(visit.strutturaId)?.address}} - {{main.getStruttura(visit.strutturaId)?.city}}</b></p>
+            <div class="small mb-1 text-muted"><b>{{main.getReparto(visit.repartoId)?.name}}</b>
               <div class="badge bg-secondary">{{main.getReparto(visit.repartoId)?.code}}</div>
             </div>
-            <p class="small mb-1">{{main.getMedico(visit.medicoId)?.title}} {{main.getMedico(visit.medicoId)?.lastName}} {{main.getMedico(visit.medicoId)?.firstName}}</p>
+            <p class="small mb-1 text-muted"><b>{{main.getMedico(visit.medicoId)?.title}} {{main.getMedico(visit.medicoId)?.lastName}} {{main.getMedico(visit.medicoId)?.firstName}}</b></p>
         </div>
         <div class="text-end">
-          <p class="small mb-0">{{visit.payment.paymentMode}}</p>
-          <div class="badge bg-success">{{visit.payment.code}}</div>
+          <p class="small mb-0 text-muted"><b>{{visit.payment.paymentMode}}</b></p>
+          <div class="badge bg-success"><b>{{visit.payment.code}}</b></div>
         </div>
       </div>
       <hr>
