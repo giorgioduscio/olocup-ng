@@ -55,62 +55,60 @@
     <form [formGroup]="AppPaziente.form" *ngIf="AppPaziente.form" (ngSubmit)="AppPaziente.onSubmit()" 
     (input)="AppPaziente.labelsBehavior($event)" (click)="AppPaziente.labelsBehavior($event)" (focusout)="AppPaziente.labelsBehavior($event)">
       <div class="row">
-        <!-- aggiungere titoli residenza e domicilio  -->
-        <div *ngFor="let field of AppPaziente.fields" 
-          [ngClass]="{'col-4': field.type !== 'radio', 'col-8': field.type === 'radio'}"
-        > <div class="form-group mb-5">
-            <ng-container [ngSwitch]="field.type">
-              
-              <textarea *ngSwitchCase="'textarea'" class="form-control" 
-                [formControlName]="field.key" [id]="field.key" [name]="field.key"></textarea>
-
-              <div *ngSwitchCase="'radio'">
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" [id]="field.key + '-m'" [name]="field.key" [value]="'M'" [formControlName]="field.key">
-                  <label class="form-check-label" [for]="field.key + '-m'"><small>Maschio</small></label>
+        @for (field of AppPaziente.fields; track $index) {
+          <!-- aggiungere titoli residenza e domicilio  -->
+          <div *ngIf="field.key == 'recidenceAddress' || field.key == 'domicileAddress'" class="col-12">
+            <h5>{{ field.key == 'recidenceAddress' ?'Residenza' :'Domicilio' }}</h5>
+          </div>
+          <div [ngClass]="{'col-4': field.type !== 'radio', 'col-8': field.type === 'radio'}"> 
+            <div class="form-group mb-5">
+              <ng-container [ngSwitch]="field.type">
+                
+                <textarea *ngSwitchCase="'textarea'" class="form-control" 
+                  [formControlName]="field.key" [id]="field.key" [name]="field.key"></textarea>
+  
+                <div *ngSwitchCase="'radio'">
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" [id]="field.key + '-m'" [name]="field.key" [value]="'M'" [formControlName]="field.key">
+                    <label class="form-check-label" [for]="field.key + '-m'"><small>Maschio</small></label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" [id]="field.key + '-f'" [name]="field.key" [value]="'F'" [formControlName]="field.key">
+                    <label class="form-check-label" [for]="field.key + '-f'"><small>Femmina</small></label>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" [id]="field.key + '-f'" [name]="field.key" [value]="'F'" [formControlName]="field.key">
-                  <label class="form-check-label" [for]="field.key + '-f'"><small>Femmina</small></label>
+  
+                <div *ngSwitchDefault>
+                  <input
+                    [type]="field.type && field.type!=='autocomplete' ?field.type :'text'"
+                    class="form-control"
+                    [id]="field.key"
+                    [name]="field.key"
+                    [formControlName]="field.key"
+                    [attr.list]="field.type ==='autocomplete' ?field.key+'-list' : ''"
+                  />
+                  <datalist *ngIf="field.type ==='autocomplete'" [id]="field.key+'-list' ">
+                    <option *ngFor="let opt of AppPaziente.stato" [value]="
+                      field.key.includes('PostalCode') ?opt.cap :
+                      field.key.includes('Municipality') ?opt.regione+', '+opt.comune:
+                      field.key.includes('Province') ?opt.sigla_provincia+', '+opt.provincia :''
+                    "></option>
+                  </datalist>
                 </div>
+              </ng-container>
+  
+              <label [for]="field.key"class="text-whitespace"
+                [class.active]="field.type === 'date' || field.type === 'radio'"
+              > {{ field.label }}
+                <b *ngIf="AppPaziente.form.get(field.key)?.errors?.['required'] " class="text-danger">*</b>
+              </label>
+  
+              <div class="invalid-feedback d-block" *ngIf="AppPaziente.isInvalid(field.key)">
+                Campo obbligatorio. {{ field.errorMessage || '' }}
               </div>
-
-              <div *ngSwitchDefault>
-                <input
-                  [type]="field.type && field.type!=='autocomplete' ?field.type :'text'"
-                  class="form-control"
-                  [id]="field.key"
-                  [name]="field.key"
-                  [formControlName]="field.key"
-                  [attr.list]="field.type ==='autocomplete' ?field.key+'-list' : ''"
-                />
-                <datalist *ngIf="field.type ==='autocomplete'" [id]="field.key+'-list' ">
-                  @if (field.key.includes('PostalCode')){ <!--CAP-->
-                    <option *ngFor="let opt of AppPaziente.caps" value="{{ opt.cap }}"></option> 
-                    
-                  }@else if (field.key.includes('Municipality')){ <!--COMUNE-->
-                    <option *ngFor="let opt of AppPaziente.regioni" 
-                    value="{{ opt.regione }}, {{ opt.comune }}"></option>
-                    
-                  }@else if (field.key.includes('Province')){ <!--PROVINCIA-->
-                    <option *ngFor="let opt of AppPaziente.provinces"
-                    value="{{ opt.sigla_provincia }}, {{ opt.denominazione_provincia }}"></option>
-                  }
-                </datalist>
-              </div>
-            </ng-container>
-
-            <label [for]="field.key"class="text-whitespace"
-              [class.active]="field.type === 'date' || field.type === 'radio'"
-            > {{ field.label }}
-              <b *ngIf="AppPaziente.form.get(field.key)?.errors?.['required'] " class="text-danger">*</b>
-            </label>
-
-            <div class="invalid-feedback d-block" *ngIf="AppPaziente.isInvalid(field.key)">
-              Campo obbligatorio. {{ field.errorMessage || '' }}
             </div>
           </div>
-        </div>
+        }
 
         <div class="col-12">
           <button title="Annulla" class="btn btn-outline-primary btn-sm" type="button" data-bs-dismiss="modal" aria-label="Annulla">Annulla</button>
