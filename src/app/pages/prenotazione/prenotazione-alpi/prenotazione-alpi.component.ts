@@ -30,7 +30,7 @@ export class PrenotazioneAlpiComponent {
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:()=>'active'},
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', 
-      status:()=> this.AppPrestazioni.selezionate().length ?'' :'active'},
+      status:()=> this.AppPrestazioni.selezionate().length ?'' :'disabled'},
     {key:'paziente',    title:'Paziente',   icon:'it-user',     
       status:()=> this.AppPrestazioni.selezionate().length && this.AppCalendario.slotSelezionato() ?'' :'disabled'},
     {key:'confirm',     title:'Conferma',   icon:'it-check',    

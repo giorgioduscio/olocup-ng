@@ -188,16 +188,14 @@ export class AppPazienteService {
     },
   ];
   form!: FormGroup;
-  regioni :{comune:string, regione:string}[] =[];
-  caps :{codice_istat: string, cap: string}[] =[];
-  provinces :{codice_regione: string, 
-    denominazione_provincia: string, 
-    codice_sovracomunale: string, 
-    numero_comuni: string, 
-    sigla_provincia: string, 
-    superficie_kmq: string, 
-    tipologia_provincia: string 
-  }[] =[];
+  stato :{
+    cap: string;
+    codice_istat: string;
+    comune: string;
+    provincia: string;
+    regione: string;
+    sigla_provincia: string; 
+  }[] = [];
 
   buildForm() {
     const group: { [key: string]: any } = {};
@@ -206,14 +204,9 @@ export class AppPazienteService {
     });
     this.form = new FormGroup(group);
 
-    this.http.get<typeof this.regioni>('https://italia.github.io/bootstrap-italia/docs/esempi/form/comuni.json').subscribe((data) => {
-      this.regioni = data
-    })
-    this.http.get<typeof this.provinces>('/assets/datas/gi_province.json').subscribe((data) => {
-      this.provinces = data
-    })
-    this.http.get<typeof this.caps>('/assets/datas/gi_cap.json').subscribe((data) => {
-      this.caps = data
+    this.http.get<typeof this.stato>('/assets/datas/italia.json').subscribe((data) => {
+      this.stato = data
+      console.log(this.stato.length, this.stato[0]);
     })
   }
   labelsBehavior(event: Event) {
