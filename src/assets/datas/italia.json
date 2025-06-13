@@ -4886,5 +4886,1933 @@
     "cap": "11013",
     "codice_istat": "007003",
     "sigla_provincia": "AO"
+  },
+    {
+    "regione": "Lombardia",
+    "provincia": "Milano",
+    "comune": "Baranzate",
+    "cap": "20021",
+    "codice_istat": "015249",
+    "sigla_provincia": "MI"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Venezia",
+    "comune": "Cavallino-Treporti",
+    "cap": "30013",
+    "codice_istat": "027042",
+    "sigla_provincia": "VE"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Bari",
+    "comune": "Capurso",
+    "cap": "70010",
+    "codice_istat": "072015",
+    "sigla_provincia": "BA"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Catania",
+    "comune": "Tremestieri Etneo",
+    "cap": "95030",
+    "codice_istat": "087053",
+    "sigla_provincia": "CT"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Torino",
+    "comune": "Beinasco",
+    "cap": "10092",
+    "codice_istat": "001023",
+    "sigla_provincia": "TO"
+  },
+    {
+    "regione": "Emilia-Romagna",
+    "provincia": "Bologna",
+    "comune": "Calderara di Reno",
+    "cap": "40012",
+    "codice_istat": "037048",
+    "sigla_provincia": "BO"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Firenze",
+    "comune": "Bagno a Ripoli",
+    "cap": "50012",
+    "codice_istat": "048028",
+    "sigla_provincia": "FI"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Salerno",
+    "comune": "Battipaglia",
+    "cap": "84091",
+    "codice_istat": "065013",
+    "sigla_provincia": "SA"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Roma",
+    "comune": "Anguillara Sabazia",
+    "cap": "00061",
+    "codice_istat": "058057",
+    "sigla_provincia": "RM"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Genova",
+    "comune": "Arenzano",
+    "cap": "16011",
+    "codice_istat": "010038",
+    "sigla_provincia": "GE"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Ancona",
+    "comune": "Osimo",
+    "cap": "60027",
+    "codice_istat": "042028",
+    "sigla_provincia": "AN"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Pescara",
+    "comune": "Spoltore",
+    "cap": "65010",
+    "codice_istat": "068041",
+    "sigla_provincia": "PE"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Udine",
+    "comune": "Tavagnacco",
+    "cap": "33010",
+    "codice_istat": "030118",
+    "sigla_provincia": "UD"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Cagliari",
+    "comune": "Quartucciu",
+    "cap": "09044",
+    "codice_istat": "092051",
+    "sigla_provincia": "CA"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Trento",
+    "comune": "Lavis",
+    "cap": "38015",
+    "codice_istat": "022104",
+    "sigla_provincia": "TN"
+  },
+    {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "Saint-Pierre",
+    "cap": "11010",
+    "codice_istat": "007058",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Isernia",
+    "comune": "Agnone",
+    "cap": "86081",
+    "codice_istat": "094001",
+    "sigla_provincia": "IS"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Matera",
+    "comune": "Pisticci",
+    "cap": "75015",
+    "codice_istat": "077020",
+    "sigla_provincia": "MT"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Castiglione del Lago",
+    "cap": "06061",
+    "codice_istat": "054008",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Macerata",
+    "comune": "Recanati",
+    "cap": "62019",
+    "codice_istat": "043044",
+    "sigla_provincia": "MC"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Crotone",
+    "comune": "Cirò Marina",
+    "cap": "88811",
+    "codice_istat": "101007",
+    "sigla_provincia": "KR"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Ragusa",
+    "comune": "Comiso",
+    "cap": "97013",
+    "codice_istat": "088003",
+    "sigla_provincia": "RG"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Taranto",
+    "comune": "Grottaglie",
+    "cap": "74023",
+    "codice_istat": "073008",
+    "sigla_provincia": "TA"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Chieti",
+    "comune": "Ortona",
+    "cap": "66026",
+    "codice_istat": "069057",
+    "sigla_provincia": "CH"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Imperia",
+    "comune": "Bordighera",
+    "cap": "18012",
+    "codice_istat": "008009",
+    "sigla_provincia": "IM"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Biella",
+    "comune": "Candelo",
+    "cap": "13878",
+    "codice_istat": "096011",
+    "sigla_provincia": "BI"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Rovigo",
+    "comune": "Lendinara",
+    "cap": "45026",
+    "codice_istat": "029028",
+    "sigla_provincia": "RO"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Gorizia",
+    "comune": "Grado",
+    "cap": "34073",
+    "codice_istat": "031008",
+    "sigla_provincia": "GO"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "Chiusa",
+    "cap": "39043",
+    "codice_istat": "021021",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Sud Sardegna",
+    "comune": "Iglesias",
+    "cap": "09016",
+    "codice_istat": "111035",
+    "sigla_provincia": "SU"
+  },
+    {
+    "regione": "Piemonte",
+    "provincia": "Cuneo",
+    "comune": "Dogliani",
+    "cap": "12063",
+    "codice_istat": "004081",
+    "sigla_provincia": "CN"
+  },
+  {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "Gressoney-Saint-Jean",
+    "cap": "11025",
+    "codice_istat": "007033",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Sondrio",
+    "comune": "Tirano",
+    "cap": "23037",
+    "codice_istat": "014066",
+    "sigla_provincia": "SO"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Trento",
+    "comune": "Mezzolombardo",
+    "cap": "38017",
+    "codice_istat": "022118",
+    "sigla_provincia": "TN"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Belluno",
+    "comune": "Cortina d'Ampezzo",
+    "cap": "32043",
+    "codice_istat": "025016",
+    "sigla_provincia": "BL"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Pordenone",
+    "comune": "Sacile",
+    "cap": "33077",
+    "codice_istat": "093037",
+    "sigla_provincia": "PN"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Modena",
+    "comune": "Castelfranco Emilia",
+    "cap": "41013",
+    "codice_istat": "036006",
+    "sigla_provincia": "MO"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Siena",
+    "comune": "Montepulciano",
+    "cap": "53045",
+    "codice_istat": "052018",
+    "sigla_provincia": "SI"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Deruta",
+    "cap": "06053",
+    "codice_istat": "054014",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Pesaro e Urbino",
+    "comune": "Gradara",
+    "cap": "61012",
+    "codice_istat": "041017",
+    "sigla_provincia": "PU"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Viterbo",
+    "comune": "Bagnaia",
+    "cap": "01100",
+    "codice_istat": "056059",
+    "sigla_provincia": "VT"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Teramo",
+    "comune": "Atri",
+    "cap": "64032",
+    "codice_istat": "067004",
+    "sigla_provincia": "TE"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Campobasso",
+    "comune": "Campomarino",
+    "cap": "86042",
+    "codice_istat": "070009",
+    "sigla_provincia": "CB"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Caserta",
+    "comune": "Piedimonte Matese",
+    "cap": "81016",
+    "codice_istat": "061057",
+    "sigla_provincia": "CE"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Lecce",
+    "comune": "Otranto",
+    "cap": "73028",
+    "codice_istat": "075058",
+    "sigla_provincia": "LE"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Potenza",
+    "comune": "Venosa",
+    "cap": "85029",
+    "codice_istat": "076095",
+    "sigla_provincia": "PZ"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Vibo Valentia",
+    "comune": "Tropea",
+    "cap": "89861",
+    "codice_istat": "102045",
+    "sigla_provincia": "VV"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Agrigento",
+    "comune": "Sciacca",
+    "cap": "92019",
+    "codice_istat": "084041",
+    "sigla_provincia": "AG"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Nuoro",
+    "comune": "Bosa",
+    "cap": "08013",
+    "codice_istat": "091009",
+    "sigla_provincia": "NU"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "La Spezia",
+    "comune": "Portovenere",
+    "cap": "19025",
+    "codice_istat": "011022",
+    "sigla_provincia": "SP"
+  },
+    {
+    "regione": "Piemonte",
+    "provincia": "Asti",
+    "comune": "Nizza Monferrato",
+    "cap": "14049",
+    "codice_istat": "005017",
+    "sigla_provincia": "AT"
+  },
+  {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "Courmayeur",
+    "cap": "11013",
+    "codice_istat": "007012",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Brescia",
+    "comune": "Gardone Riviera",
+    "cap": "25083",
+    "codice_istat": "017075",
+    "sigla_provincia": "BS"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "Ortisei",
+    "cap": "39046",
+    "codice_istat": "021058",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Verona",
+    "comune": "Malcesine",
+    "cap": "37018",
+    "codice_istat": "023045",
+    "sigla_provincia": "VR"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Udine",
+    "comune": "Venzone",
+    "cap": "33010",
+    "codice_istat": "030133",
+    "sigla_provincia": "UD"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Parma",
+    "comune": "Langhirano",
+    "cap": "43013",
+    "codice_istat": "034018",
+    "sigla_provincia": "PR"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Grosseto",
+    "comune": "Pitigliano",
+    "cap": "58017",
+    "codice_istat": "053019",
+    "sigla_provincia": "GR"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Terni",
+    "comune": "Amelia",
+    "cap": "05022",
+    "codice_istat": "055004",
+    "sigla_provincia": "TR"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Ancona",
+    "comune": "Offagna",
+    "cap": "60020",
+    "codice_istat": "042033",
+    "sigla_provincia": "AN"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Rieti",
+    "comune": "Greccio",
+    "cap": "02040",
+    "codice_istat": "057030",
+    "sigla_provincia": "RI"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "L'Aquila",
+    "comune": "Santo Stefano di Sessanio",
+    "cap": "67020",
+    "codice_istat": "066092",
+    "sigla_provincia": "AQ"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Campobasso",
+    "comune": "Sepino",
+    "cap": "86017",
+    "codice_istat": "070076",
+    "sigla_provincia": "CB"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Avellino",
+    "comune": "Nusco",
+    "cap": "83051",
+    "codice_istat": "064066",
+    "sigla_provincia": "AV"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Foggia",
+    "comune": "Vieste",
+    "cap": "71019",
+    "codice_istat": "071060",
+    "sigla_provincia": "FG"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Potenza",
+    "comune": "Castelmezzano",
+    "cap": "85010",
+    "codice_istat": "076023",
+    "sigla_provincia": "PZ"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Cosenza",
+    "comune": "Morano Calabro",
+    "cap": "87016",
+    "codice_istat": "078083",
+    "sigla_provincia": "CS"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Siracusa",
+    "comune": "Noto",
+    "cap": "96017",
+    "codice_istat": "089013",
+    "sigla_provincia": "SR"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Sassari",
+    "comune": "Castelsardo",
+    "cap": "07031",
+    "codice_istat": "090024",
+    "sigla_provincia": "SS"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Savona",
+    "comune": "Finalborgo",
+    "cap": "17024",
+    "codice_istat": "009028",
+    "sigla_provincia": "SV"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Torino",
+    "comune": "Avigliana",
+    "cap": "10051",
+    "codice_istat": "001013",
+    "sigla_provincia": "TO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Bergamo",
+    "comune": "Lovere",
+    "cap": "24065",
+    "codice_istat": "016128",
+    "sigla_provincia": "BG"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Lucca",
+    "comune": "Barga",
+    "cap": "55051",
+    "codice_istat": "046002",
+    "sigla_provincia": "LU"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Montefalco",
+    "cap": "06036",
+    "codice_istat": "054028",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Vicenza",
+    "comune": "Marostica",
+    "cap": "36063",
+    "codice_istat": "024057",
+    "sigla_provincia": "VI"
+  },
+    {
+    "regione": "Piemonte",
+    "provincia": "Novara",
+    "comune": "Orta San Giulio",
+    "cap": "28016",
+    "codice_istat": "003108",
+    "sigla_provincia": "NO"
+  },
+  {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "La Thuile",
+    "cap": "11016",
+    "codice_istat": "007041",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Lecco",
+    "comune": "Bellano",
+    "cap": "23822",
+    "codice_istat": "097006",
+    "sigla_provincia": "LC"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Trento",
+    "comune": "Canazei",
+    "cap": "38032",
+    "codice_istat": "022040",
+    "sigla_provincia": "TN"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Treviso",
+    "comune": "Asolo",
+    "cap": "31011",
+    "codice_istat": "026003",
+    "sigla_provincia": "TV"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Gorizia",
+    "comune": "Palmanova",
+    "cap": "33057",
+    "codice_istat": "031011",
+    "sigla_provincia": "GO"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Reggio Emilia",
+    "comune": "Castelnovo ne' Monti",
+    "cap": "42035",
+    "codice_istat": "035015",
+    "sigla_provincia": "RE"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Arezzo",
+    "comune": "Anghiari",
+    "cap": "52031",
+    "codice_istat": "051001",
+    "sigla_provincia": "AR"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Gubbio",
+    "cap": "06024",
+    "codice_istat": "054023",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Macerata",
+    "comune": "Sarnano",
+    "cap": "62028",
+    "codice_istat": "043049",
+    "sigla_provincia": "MC"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Viterbo",
+    "comune": "Civita di Bagnoregio",
+    "cap": "01022",
+    "codice_istat": "056021",
+    "sigla_provincia": "VT"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Pescara",
+    "comune": "Caramanico Terme",
+    "cap": "65023",
+    "codice_istat": "068007",
+    "sigla_provincia": "PE"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Isernia",
+    "comune": "Pesche",
+    "cap": "86090",
+    "codice_istat": "094034",
+    "sigla_provincia": "IS"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Benevento",
+    "comune": "Sant'Agata de' Goti",
+    "cap": "82019",
+    "codice_istat": "062059",
+    "sigla_provincia": "BN"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Brindisi",
+    "comune": "Ostuni",
+    "cap": "72017",
+    "codice_istat": "074011",
+    "sigla_provincia": "BR"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Matera",
+    "comune": "Montescaglioso",
+    "cap": "75024",
+    "codice_istat": "077017",
+    "sigla_provincia": "MT"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Reggio Calabria",
+    "comune": "Gerace",
+    "cap": "89040",
+    "codice_istat": "080037",
+    "sigla_provincia": "RC"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Messina",
+    "comune": "Savoca",
+    "cap": "98038",
+    "codice_istat": "083089",
+    "sigla_provincia": "ME"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Nuoro",
+    "comune": "Orgosolo",
+    "cap": "08027",
+    "codice_istat": "091054",
+    "sigla_provincia": "NU"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Genova",
+    "comune": "Camogli",
+    "cap": "16032",
+    "codice_istat": "010010",
+    "sigla_provincia": "GE"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Cuneo",
+    "comune": "Neive",
+    "cap": "12052",
+    "codice_istat": "004149",
+    "sigla_provincia": "CN"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Sondrio",
+    "comune": "Chiavenna",
+    "cap": "23022",
+    "codice_istat": "014018",
+    "sigla_provincia": "SO"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "San Candido",
+    "cap": "39038",
+    "codice_istat": "021073",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Vicenza",
+    "comune": "Recoaro Terme",
+    "cap": "36076",
+    "codice_istat": "024082",
+    "sigla_provincia": "VI"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Udine",
+    "comune": "Cividale del Friuli",
+    "cap": "33043",
+    "codice_istat": "030025",
+    "sigla_provincia": "UD"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Forlì-Cesena",
+    "comune": "Bertinoro",
+    "cap": "47032",
+    "codice_istat": "040003",
+    "sigla_provincia": "FC"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Siena",
+    "comune": "San Gimignano",
+    "cap": "53037",
+    "codice_istat": "052028",
+    "sigla_provincia": "SI"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Terni",
+    "comune": "Arrone",
+    "cap": "05031",
+    "codice_istat": "055005",
+    "sigla_provincia": "TR"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Ascoli Piceno",
+    "comune": "Offida",
+    "cap": "63073",
+    "codice_istat": "044038",
+    "sigla_provincia": "AP"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Roma",
+    "comune": "Subiaco",
+    "cap": "00028",
+    "codice_istat": "058104",
+    "sigla_provincia": "RM"
+  },
+    {
+    "regione": "Piemonte",
+    "provincia": "Verbano-Cusio-Ossola",
+    "comune": "Cannobio",
+    "cap": "28822",
+    "codice_istat": "103015",
+    "sigla_provincia": "VB"
+  },
+  {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "Etroubles",
+    "cap": "11014",
+    "codice_istat": "007027",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Pavia",
+    "comune": "Zavattarello",
+    "cap": "27059",
+    "codice_istat": "018182",
+    "sigla_provincia": "PV"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "Glorenza",
+    "cap": "39020",
+    "codice_istat": "021035",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Padova",
+    "comune": "Monselice",
+    "cap": "35043",
+    "codice_istat": "028053",
+    "sigla_provincia": "PD"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Udine",
+    "comune": "Palazzolo dello Stella",
+    "cap": "33056",
+    "codice_istat": "030070",
+    "sigla_provincia": "UD"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Piacenza",
+    "comune": "Vigoleno",
+    "cap": "29010",
+    "codice_istat": "033047",
+    "sigla_provincia": "PC"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Lucca",
+    "comune": "Coreglia Antelminelli",
+    "cap": "55025",
+    "codice_istat": "046010",
+    "sigla_provincia": "LU"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Paciano",
+    "cap": "06060",
+    "codice_istat": "054037",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Fermo",
+    "comune": "Moresco",
+    "cap": "63826",
+    "codice_istat": "109011",
+    "sigla_provincia": "FM"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Rieti",
+    "comune": "Roccantica",
+    "cap": "02040",
+    "codice_istat": "057059",
+    "sigla_provincia": "RI"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Chieti",
+    "comune": "Guardiagrele",
+    "cap": "66016",
+    "codice_istat": "069042",
+    "sigla_provincia": "CH"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Campobasso",
+    "comune": "Frosolone",
+    "cap": "86095",
+    "codice_istat": "070025",
+    "sigla_provincia": "CB"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Salerno",
+    "comune": "Cetara",
+    "cap": "84010",
+    "codice_istat": "065041",
+    "sigla_provincia": "SA"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Taranto",
+    "comune": "Crispiano",
+    "cap": "74012",
+    "codice_istat": "073004",
+    "sigla_provincia": "TA"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Potenza",
+    "comune": "Guardia Perticara",
+    "cap": "85010",
+    "codice_istat": "076038",
+    "sigla_provincia": "PZ"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Catanzaro",
+    "comune": "Squillace",
+    "cap": "88069",
+    "codice_istat": "079140",
+    "sigla_provincia": "CZ"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Enna",
+    "comune": "Piazza Armerina",
+    "cap": "94015",
+    "codice_istat": "086014",
+    "sigla_provincia": "EN"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Oristano",
+    "comune": "Fordongianus",
+    "cap": "09083",
+    "codice_istat": "095018",
+    "sigla_provincia": "OR"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Imperia",
+    "comune": "Dolceacqua",
+    "cap": "18035",
+    "codice_istat": "008031",
+    "sigla_provincia": "IM"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Biella",
+    "comune": "Candelo",
+    "cap": "13878",
+    "codice_istat": "096011",
+    "sigla_provincia": "BI"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Cremona",
+    "comune": "Soncino",
+    "cap": "26029",
+    "codice_istat": "019097",
+    "sigla_provincia": "CR"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Trento",
+    "comune": "Stenico",
+    "cap": "38070",
+    "codice_istat": "022182",
+    "sigla_provincia": "TN"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Belluno",
+    "comune": "Sovramonte",
+    "cap": "32030",
+    "codice_istat": "025052",
+    "sigla_provincia": "BL"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Pordenone",
+    "comune": "Valvasone Arzene",
+    "cap": "33098",
+    "codice_istat": "093046",
+    "sigla_provincia": "PN"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Modena",
+    "comune": "Montefiorino",
+    "cap": "41045",
+    "codice_istat": "036025",
+    "sigla_provincia": "MO"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Pisa",
+    "comune": "Peccioli",
+    "cap": "56037",
+    "codice_istat": "050026",
+    "sigla_provincia": "PI"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Scheggia e Pascelupo",
+    "cap": "06027",
+    "codice_istat": "054047",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Macerata",
+    "comune": "Sefro",
+    "cap": "62030",
+    "codice_istat": "043050",
+    "sigla_provincia": "MC"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Frosinone",
+    "comune": "Arpino",
+    "cap": "03033",
+    "codice_istat": "060010",
+    "sigla_provincia": "FR"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Teramo",
+    "comune": "Civitella del Tronto",
+    "cap": "64010",
+    "codice_istat": "067017",
+    "sigla_provincia": "TE"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Isernia",
+    "comune": "Pescolanciano",
+    "cap": "86097",
+    "codice_istat": "094035",
+    "sigla_provincia": "IS"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Caserta",
+    "comune": "Piedimonte Matese",
+    "cap": "81016",
+    "codice_istat": "061057",
+    "sigla_provincia": "CE"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Lecce",
+    "comune": "Specchia",
+    "cap": "73040",
+    "codice_istat": "075079",
+    "sigla_provincia": "LE"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Matera",
+    "comune": "Aliano",
+    "cap": "75010",
+    "codice_istat": "077002",
+    "sigla_provincia": "MT"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Reggio Calabria",
+    "comune": "Bova",
+    "cap": "89033",
+    "codice_istat": "080011",
+    "sigla_provincia": "RC"
+  },
+    {
+    "regione": "Piemonte",
+    "provincia": "Alessandria",
+    "comune": "Garbagna",
+    "cap": "15050",
+    "codice_istat": "006080",
+    "sigla_provincia": "AL"
+  },
+  {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "Doues",
+    "cap": "11010",
+    "codice_istat": "007024",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Mantova",
+    "comune": "Sabbioneta",
+    "cap": "46018",
+    "codice_istat": "020057",
+    "sigla_provincia": "MN"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "Velturno",
+    "cap": "39040",
+    "codice_istat": "021111",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Vicenza",
+    "comune": "Posina",
+    "cap": "36010",
+    "codice_istat": "024081",
+    "sigla_provincia": "VI"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Trieste",
+    "comune": "Sgonico",
+    "cap": "34010",
+    "codice_istat": "032004",
+    "sigla_provincia": "TS"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Bologna",
+    "comune": "Dozza",
+    "cap": "40060",
+    "codice_istat": "037025",
+    "sigla_provincia": "BO"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Massa-Carrara",
+    "comune": "Fivizzano",
+    "cap": "54013",
+    "codice_istat": "045007",
+    "sigla_provincia": "MS"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Terni",
+    "comune": "Calvi dell'Umbria",
+    "cap": "05032",
+    "codice_istat": "055006",
+    "sigla_provincia": "TR"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Pesaro e Urbino",
+    "comune": "Frontino",
+    "cap": "61020",
+    "codice_istat": "041018",
+    "sigla_provincia": "PU"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Latina",
+    "comune": "Sperlonga",
+    "cap": "04029",
+    "codice_istat": "059027",
+    "sigla_provincia": "LT"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "L'Aquila",
+    "comune": "Navelli",
+    "cap": "67020",
+    "codice_istat": "066057",
+    "sigla_provincia": "AQ"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Campobasso",
+    "comune": "Tufara",
+    "cap": "86010",
+    "codice_istat": "070081",
+    "sigla_provincia": "CB"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Avellino",
+    "comune": "Nusco",
+    "cap": "83051",
+    "codice_istat": "064066",
+    "sigla_provincia": "AV"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Foggia",
+    "comune": "Rodi Garganico",
+    "cap": "71012",
+    "codice_istat": "071041",
+    "sigla_provincia": "FG"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Potenza",
+    "comune": "Castelluccio Superiore",
+    "cap": "85040",
+    "codice_istat": "076025",
+    "sigla_provincia": "PZ"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Cosenza",
+    "comune": "Aieta",
+    "cap": "87020",
+    "codice_istat": "078006",
+    "sigla_provincia": "CS"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Trapani",
+    "comune": "Erice",
+    "cap": "91016",
+    "codice_istat": "081008",
+    "sigla_provincia": "TP"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Sud Sardegna",
+    "comune": "Tempio Pausania",
+    "cap": "07029",
+    "codice_istat": "090090",
+    "sigla_provincia": "SS"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "La Spezia",
+    "comune": "Vernazza",
+    "cap": "19018",
+    "codice_istat": "011030",
+    "sigla_provincia": "SP"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Torino",
+    "comune": "Usseaux",
+    "cap": "10060",
+    "codice_istat": "001281",
+    "sigla_provincia": "TO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Bergamo",
+    "comune": "Castro",
+    "cap": "24063",
+    "codice_istat": "016063",
+    "sigla_provincia": "BG"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Trento",
+    "comune": "Mezzano",
+    "cap": "38050",
+    "codice_istat": "022115",
+    "sigla_provincia": "TN"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Verona",
+    "comune": "Brenzone",
+    "cap": "37010",
+    "codice_istat": "023011",
+    "sigla_provincia": "VR"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Gorizia",
+    "comune": "Farra d'Isonzo",
+    "cap": "34070",
+    "codice_istat": "031003",
+    "sigla_provincia": "GO"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Ravenna",
+    "comune": "Brisighella",
+    "cap": "48013",
+    "codice_istat": "039004",
+    "sigla_provincia": "RA"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Grosseto",
+    "comune": "Capalbio",
+    "cap": "58011",
+    "codice_istat": "053003",
+    "sigla_provincia": "GR"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Piegaro",
+    "cap": "06066",
+    "codice_istat": "054039",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Ancona",
+    "comune": "Corinaldo",
+    "cap": "60013",
+    "codice_istat": "042013",
+    "sigla_provincia": "AN"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Viterbo",
+    "comune": "Bomarzo",
+    "cap": "01020",
+    "codice_istat": "056011",
+    "sigla_provincia": "VT"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Pescara",
+    "comune": "Penne",
+    "cap": "65017",
+    "codice_istat": "068028",
+    "sigla_provincia": "PE"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Isernia",
+    "comune": "Scapoli",
+    "cap": "86070",
+    "codice_istat": "094048",
+    "sigla_provincia": "IS"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Benevento",
+    "comune": "Cusano Mutri",
+    "cap": "82033",
+    "codice_istat": "062025",
+    "sigla_provincia": "BN"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Barletta-Andria-Trani",
+    "comune": "Trani",
+    "cap": "76125",
+    "codice_istat": "110009",
+    "sigla_provincia": "BT"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Matera",
+    "comune": "Accettura",
+    "cap": "75011",
+    "codice_istat": "077001",
+    "sigla_provincia": "MT"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Vibo Valentia",
+    "comune": "Pizzo",
+    "cap": "89812",
+    "codice_istat": "102027",
+    "sigla_provincia": "VV"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Messina",
+    "comune": "Novara di Sicilia",
+    "cap": "98058",
+    "codice_istat": "083063",
+    "sigla_provincia": "ME"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Nuoro",
+    "comune": "Oliena",
+    "cap": "08025",
+    "codice_istat": "091053",
+    "sigla_provincia": "NU"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Savona",
+    "comune": "Finalborgo",
+    "cap": "17024",
+    "codice_istat": "009028",
+    "sigla_provincia": "SV"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Cuneo",
+    "comune": "Vernante",
+    "cap": "12019",
+    "codice_istat": "004239",
+    "sigla_provincia": "CN"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Como",
+    "comune": "Bellagio",
+    "cap": "22021",
+    "codice_istat": "013019",
+    "sigla_provincia": "CO"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "San Martino in Badia",
+    "cap": "39030",
+    "codice_istat": "021076",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Treviso",
+    "comune": "Follina",
+    "cap": "31051",
+    "codice_istat": "026025",
+    "sigla_provincia": "TV"
+  },
+    {
+    "regione": "Piemonte",
+    "provincia": "Biella",
+    "comune": "Sordevolo",
+    "cap": "13817",
+    "codice_istat": "096062",
+    "sigla_provincia": "BI"
+  },
+  {
+    "regione": "Valle d'Aosta",
+    "provincia": "Aosta",
+    "comune": "Champdepraz",
+    "cap": "11020",
+    "codice_istat": "007017",
+    "sigla_provincia": "AO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Monza e Brianza",
+    "comune": "Vedano al Lambro",
+    "cap": "20854",
+    "codice_istat": "108046",
+    "sigla_provincia": "MB"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "San Leonardo in Passiria",
+    "cap": "39015",
+    "codice_istat": "021079",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Padova",
+    "comune": "Cartura",
+    "cap": "35050",
+    "codice_istat": "028024",
+    "sigla_provincia": "PD"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Udine",
+    "comune": "Pasian di Prato",
+    "cap": "33037",
+    "codice_istat": "030072",
+    "sigla_provincia": "UD"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Ferrara",
+    "comune": "Goro",
+    "cap": "44020",
+    "codice_istat": "038013",
+    "sigla_provincia": "FE"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Pistoia",
+    "comune": "Cutigliano",
+    "cap": "51024",
+    "codice_istat": "047003",
+    "sigla_provincia": "PT"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Lisciano Niccone",
+    "cap": "06060",
+    "codice_istat": "054025",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Ascoli Piceno",
+    "comune": "Montemonaco",
+    "cap": "63088",
+    "codice_istat": "044032",
+    "sigla_provincia": "AP"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Roma",
+    "comune": "Nazzano",
+    "cap": "00060",
+    "codice_istat": "058069",
+    "sigla_provincia": "RM"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Teramo",
+    "comune": "Castellalto",
+    "cap": "64020",
+    "codice_istat": "067011",
+    "sigla_provincia": "TE"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Campobasso",
+    "comune": "Ripalimosani",
+    "cap": "86025",
+    "codice_istat": "070056",
+    "sigla_provincia": "CB"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Salerno",
+    "comune": "Corbara",
+    "cap": "84010",
+    "codice_istat": "065045",
+    "sigla_provincia": "SA"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Bari",
+    "comune": "Rutigliano",
+    "cap": "70018",
+    "codice_istat": "072037",
+    "sigla_provincia": "BA"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Potenza",
+    "comune": "Marsico Nuovo",
+    "cap": "85052",
+    "codice_istat": "076046",
+    "sigla_provincia": "PZ"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Catanzaro",
+    "comune": "Tiriolo",
+    "cap": "88056",
+    "codice_istat": "079147",
+    "sigla_provincia": "CZ"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Palermo",
+    "comune": "Polizzi Generosa",
+    "cap": "90028",
+    "codice_istat": "082057",
+    "sigla_provincia": "PA"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Oristano",
+    "comune": "Samugheo",
+    "cap": "09086",
+    "codice_istat": "095046",
+    "sigla_provincia": "OR"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Genova",
+    "comune": "Zoagli",
+    "cap": "16030",
+    "codice_istat": "010067",
+    "sigla_provincia": "GE"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Novara",
+    "comune": "Cureggio",
+    "cap": "28060",
+    "codice_istat": "003056",
+    "sigla_provincia": "NO"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Brescia",
+    "comune": "Ome",
+    "cap": "25050",
+    "codice_istat": "017124",
+    "sigla_provincia": "BS"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Trento",
+    "comune": "Drena",
+    "cap": "38074",
+    "codice_istat": "022075",
+    "sigla_provincia": "TN"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Verona",
+    "comune": "Colognola ai Colli",
+    "cap": "37030",
+    "codice_istat": "023026",
+    "sigla_provincia": "VR"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Pordenone",
+    "comune": "Cordenons",
+    "cap": "33084",
+    "codice_istat": "093018",
+    "sigla_provincia": "PN"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Modena",
+    "comune": "Fiorano Modenese",
+    "cap": "41042",
+    "codice_istat": "036012",
+    "sigla_provincia": "MO"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Siena",
+    "comune": "Radicondoli",
+    "cap": "53030",
+    "codice_istat": "052024",
+    "sigla_provincia": "SI"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Terni",
+    "comune": "Montecastrilli",
+    "cap": "05026",
+    "codice_istat": "055017",
+    "sigla_provincia": "TR"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Macerata",
+    "comune": "Apiro",
+    "cap": "62021",
+    "codice_istat": "043003",
+    "sigla_provincia": "MC"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Frosinone",
+    "comune": "Arnara",
+    "cap": "03020",
+    "codice_istat": "060009",
+    "sigla_provincia": "FR"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Chieti",
+    "comune": "Torrevecchia Teatina",
+    "cap": "66010",
+    "codice_istat": "069094",
+    "sigla_provincia": "CH"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Isernia",
+    "comune": "Macchia d'Isernia",
+    "cap": "86070",
+    "codice_istat": "094026",
+    "sigla_provincia": "IS"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Caserta",
+    "comune": "Pietramelara",
+    "cap": "81051",
+    "codice_istat": "061058",
+    "sigla_provincia": "CE"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Lecce",
+    "comune": "Tuglie",
+    "cap": "73058",
+    "codice_istat": "075087",
+    "sigla_provincia": "LE"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Matera",
+    "comune": "Garaguso",
+    "cap": "75010",
+    "codice_istat": "077010",
+    "sigla_provincia": "MT"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Reggio Calabria",
+    "comune": "Cardeto",
+    "cap": "89060",
+    "codice_istat": "080022",
+    "sigla_provincia": "RC"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Catania",
+    "comune": "Milo",
+    "cap": "95010",
+    "codice_istat": "087023",
+    "sigla_provincia": "CT"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Sassari",
+    "comune": "Florinas",
+    "cap": "07030",
+    "codice_istat": "090028",
+    "sigla_provincia": "SS"
+  },
+  {
+    "regione": "Liguria",
+    "provincia": "Imperia",
+    "comune": "Dolcedo",
+    "cap": "18020",
+    "codice_istat": "008028",
+    "sigla_provincia": "IM"
+  },
+  {
+    "regione": "Piemonte",
+    "provincia": "Cuneo",
+    "comune": "Villar San Costanzo",
+    "cap": "12020",
+    "codice_istat": "004247",
+    "sigla_provincia": "CN"
+  },
+  {
+    "regione": "Lombardia",
+    "provincia": "Pavia",
+    "comune": "Zerbolò",
+    "cap": "27020",
+    "codice_istat": "018185",
+    "sigla_provincia": "PV"
+  },
+  {
+    "regione": "Trentino-Alto Adige",
+    "provincia": "Bolzano",
+    "comune": "Vandoies",
+    "cap": "39030",
+    "codice_istat": "021108",
+    "sigla_provincia": "BZ"
+  },
+  {
+    "regione": "Veneto",
+    "provincia": "Vicenza",
+    "comune": "Zugliano",
+    "cap": "36030",
+    "codice_istat": "024121",
+    "sigla_provincia": "VI"
+  },
+  {
+    "regione": "Friuli-Venezia Giulia",
+    "provincia": "Gorizia",
+    "comune": "Savogna d'Isonzo",
+    "cap": "34070",
+    "codice_istat": "031022",
+    "sigla_provincia": "GO"
+  },
+  {
+    "regione": "Emilia-Romagna",
+    "provincia": "Piacenza",
+    "comune": "Ziano Piacentino",
+    "cap": "29010",
+    "codice_istat": "033048",
+    "sigla_provincia": "PC"
+  },
+  {
+    "regione": "Toscana",
+    "provincia": "Livorno",
+    "comune": "Rio Marina",
+    "cap": "57038",
+    "codice_istat": "049014",
+    "sigla_provincia": "LI"
+  },
+  {
+    "regione": "Umbria",
+    "provincia": "Perugia",
+    "comune": "Valfabbrica",
+    "cap": "06029",
+    "codice_istat": "054056",
+    "sigla_provincia": "PG"
+  },
+  {
+    "regione": "Marche",
+    "provincia": "Ancona",
+    "comune": "Mergo",
+    "cap": "60030",
+    "codice_istat": "042024",
+    "sigla_provincia": "AN"
+  },
+  {
+    "regione": "Lazio",
+    "provincia": "Rieti",
+    "comune": "Poggio Bustone",
+    "cap": "02018",
+    "codice_istat": "057053",
+    "sigla_provincia": "RI"
+  },
+  {
+    "regione": "Abruzzo",
+    "provincia": "Pescara",
+    "comune": "Manoppello",
+    "cap": "65024",
+    "codice_istat": "068023",
+    "sigla_provincia": "PE"
+  },
+  {
+    "regione": "Molise",
+    "provincia": "Campobasso",
+    "comune": "Vinchiaturo",
+    "cap": "86019",
+    "codice_istat": "070084",
+    "sigla_provincia": "CB"
+  },
+  {
+    "regione": "Campania",
+    "provincia": "Avellino",
+    "comune": "Montemarano",
+    "cap": "83040",
+    "codice_istat": "064059",
+    "sigla_provincia": "AV"
+  },
+  {
+    "regione": "Puglia",
+    "provincia": "Taranto",
+    "comune": "Fragagnano",
+    "cap": "74022",
+    "codice_istat": "073007",
+    "sigla_provincia": "TA"
+  },
+  {
+    "regione": "Basilicata",
+    "provincia": "Potenza",
+    "comune": "Vietri di Potenza",
+    "cap": "85058",
+    "codice_istat": "076097",
+    "sigla_provincia": "PZ"
+  },
+  {
+    "regione": "Calabria",
+    "provincia": "Crotone",
+    "comune": "Verzino",
+    "cap": "88819",
+    "codice_istat": "101027",
+    "sigla_provincia": "KR"
+  },
+  {
+    "regione": "Sicilia",
+    "provincia": "Agrigento",
+    "comune": "Montaperto",
+    "cap": "92010",
+    "codice_istat": "084023",
+    "sigla_provincia": "AG"
+  },
+  {
+    "regione": "Sardegna",
+    "provincia": "Nuoro",
+    "comune": "Loculi",
+    "cap": "08020",
+    "codice_istat": "091041",
+    "sigla_provincia": "NU"
   }
 ]

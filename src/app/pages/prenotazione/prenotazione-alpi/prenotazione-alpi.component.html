@@ -150,9 +150,15 @@
       <ul class="nav nav-tabs nav-tabs-icon-text" id="prenotationTabs" role="tablist" aria-label="Tab Prenotazione"> 
 
         <li *ngFor="let tab of tabsDatas" class="nav-item" role="presentation">
-          <a class="nav-link p-3 {{tab.status()}}" id="{{ tab.key }}-tab" data-bs-toggle="tab" 
-            href="#{{ tab.key }}" role="tab" title="{{ tab.title }}" aria-label="Secondo tab Data e Ora " 
-            [attr.aria-controls]="tab.key" aria-selected="false"
+          <a #tabRef class="nav-link p-3 {{tab.status()}}" 
+            id="{{ tab.key }}-tab"
+            data-bs-toggle="tab" 
+            href="#{{ tab.key }}" 
+            role="tab" 
+            title="{{ tab.title }}" 
+            aria-label="Secondo tab Data e Ora " 
+            [attr.aria-controls]="tab.key" 
+            aria-selected="false"
             (click)="tabsHandleClick($event)"
           > <svg class="icon"><use [attr.href]="'/assets/bootstrap-italia/svg/sprites.svg#' + tab.icon"></use></svg>
             {{ tab.title }}

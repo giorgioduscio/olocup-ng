@@ -1,5 +1,5 @@
 import { StoricoPaziente } from './../../../interfaces/storicopaziente';
-import { Component, signal } from '@angular/core';
+import { Component, ElementRef, QueryList, signal, ViewChildren } from '@angular/core';
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppPrestazioniService } from './app-prestazioni.service';
@@ -27,7 +27,8 @@ export class PrenotazioneAlpiComponent {
     public AppPaziente:AppPazienteService
   ){}
 
-  // tabs
+  // tabs  
+  @ViewChildren('tabRef') tabElements!: QueryList<ElementRef<HTMLAnchorElement>>;
   tabsDatas =[
     {key:'prestazione', title:'Prestazione',icon:'it-note',     status:()=>'active'},
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', 
@@ -45,9 +46,8 @@ export class PrenotazioneAlpiComponent {
     tab.scrollIntoView({ behavior:'smooth', block:'start' }) 
   }
   routeToTab(tabKey:'prestazione'|'datetime'|'paziente'|'confirm'){
-    const tabEl = document.getElementById(tabKey+'-tab')
-    if(!tabEl) return;
-    setTimeout(()=> tabEl.click(), 200);
+    const el =this.tabElements.find(tab=> tab.nativeElement.id ==`${tabKey}-tab`);
+    el?.nativeElement?.click();
   }
 
   selezionaPrimaDisponibile(){
