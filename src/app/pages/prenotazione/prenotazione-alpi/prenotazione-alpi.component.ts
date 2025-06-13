@@ -19,8 +19,6 @@ import { Paziente } from '../../../interfaces/paziente';
 })
 export class PrenotazioneAlpiComponent {
   aggiornaStorico(_t445: Paziente) {throw new Error('Method not implemented.');} //!DA ELIMINARE
-
-
   constructor(
     public main:PrenotazioneAlpiService,
     public AppPrestazioni:AppPrestazioniService,
@@ -35,7 +33,8 @@ export class PrenotazioneAlpiComponent {
     {key:'datetime',    title:'Data e Ora', icon:'it-calendar', 
       status:()=> this.AppPrestazioni.selezionate().length ?'' :'disabled'},
     {key:'paziente',    title:'Paziente',   icon:'it-user',     
-      status:()=> this.AppPrestazioni.selezionate().length && this.AppCalendario.slotSelezionato() ?'' :'disabled'},
+      status:()=> this.AppPrestazioni.selezionate().length && 
+                  this.AppCalendario.slotSelezionato() ?'' :'disabled'},
     {key:'confirm',     title:'Conferma',   icon:'it-check',    
       status:()=> this.AppPrestazioni.selezionate().length && 
                   this.AppCalendario.slotSelezionato() &&
