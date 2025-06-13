@@ -236,5 +236,26 @@ export class AppPazienteService {
     return control ? control.invalid && (control.dirty || control.touched || this.validationFlag) : false;
   }
 
+  datiModale = signal <StoricoPaziente|null>(null);
+  
+  aggiornaStorico(paziente:Paziente){
+    // Trova lo storico del paziente selezionato
+    const storicoPaziente = this.storicoPazienti.find(    
+      sp => sp.pazienteId === paziente.id);
+    
+    this.datiModale.set(storicoPaziente || null);
+  }
+
+  getVisitePazienteSelezionato() {
+    const pazienteId = this.pazienteSelezionato()?.id;
+    if (!pazienteId) return [];
+    
+    // Cerca nello storico pazienti le visite corrispondenti all'ID del paziente selezionato
+    const storicoPaziente = this.storicoPazienti.find(
+      sp => sp.pazienteId === pazienteId
+    );
+    
+    return storicoPaziente?.visits || [];
+  }
 
 }

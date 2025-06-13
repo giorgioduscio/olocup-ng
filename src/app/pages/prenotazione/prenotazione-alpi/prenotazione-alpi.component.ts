@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { StoricoPaziente } from './../../../interfaces/storicopaziente';
+import { Component, signal } from '@angular/core';
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { AppPrestazioniService } from './app-prestazioni.service';
@@ -7,6 +8,7 @@ import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 import { AppConfermaService } from './app-conferma.service';
 import { AppCalendarioService } from './app-calendario.service';
 import { AppPazienteService } from './app-paziente.service';
+import { Paziente } from '../../../interfaces/paziente';
 
 @Component({
   selector: 'app-prenotazione-alpi',
@@ -16,6 +18,9 @@ import { AppPazienteService } from './app-paziente.service';
   styleUrl: './prenotazione-alpi.component.sass'
 })
 export class PrenotazioneAlpiComponent {
+aggiornaStorico(_t445: Paziente) {
+throw new Error('Method not implemented.');
+}
 
 
   constructor(
@@ -53,5 +58,8 @@ export class PrenotazioneAlpiComponent {
       this.AppCalendario.selezionaPrimaDisponibile()
     }, 200);
   }
-  
+  StoricoPazienti(): StoricoPaziente[] {
+    return this.AppPaziente.storicoPazienti;
+  }
+
 }
