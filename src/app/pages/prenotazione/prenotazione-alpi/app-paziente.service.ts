@@ -196,6 +196,14 @@ export class AppPazienteService {
     regione: string;
     sigla_provincia: string; 
   }[] = [];
+  getStato(key:string){ 
+    let result :string[] = []
+    if(key.includes('PostalCode'))    result =this.stato.map(p=>p.cap)
+    if(key.includes('Municipality'))  result =this.stato.map(p=>p.regione+', '+p.comune)
+    if(key.includes('Province'))      result =this.stato.map(p=>p.sigla_provincia+', '+p.provincia)
+    return result
+    .filter((value, index, self) => self.indexOf(value) === index)
+  }
 
   buildForm() {
     const group: { [key: string]: any } = {};
@@ -206,9 +214,35 @@ export class AppPazienteService {
 
     this.http.get<typeof this.stato>('/assets/datas/italia.json').subscribe((data) => {
       this.stato = data
-      console.log(this.stato.length, this.stato[0]);
     })
+
+    // COSTRUZIONE AUTOCOMPLETE
+    let counter =0
+    let timeout =setInterval(() => {
+      counter++
+      let isFind =true
+      this.fields.forEach(field => {
+        if (field.type === 'autocomplete') {
+          const element = document.getElementById(field.key+'Autocomplete') as HTMLInputElement;
+          if(!element){ isFind =false; return; }
+          
+          //@ts-ignore
+          new bootstrap.SelectAutocomplete(element, {
+            id: field.key,
+            name: field.key,
+            source: (query:any, callback:any) => {
+              const filteredResults = this.getStato(field.key).filter(
+                result => result.toLowerCase().includes(query.toLowerCase())
+              );
+              callback(filteredResults);
+            }
+          })
+        }
+      })
+      if(isFind ||counter>3) clearInterval(timeout)
+    }, 1000);
   }
+  
   labelsBehavior(event: Event) {
     const target = event.target as HTMLElement;
     const formGroup = target.closest('.form-group');

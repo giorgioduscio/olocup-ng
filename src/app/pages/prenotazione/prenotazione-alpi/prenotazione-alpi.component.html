@@ -21,46 +21,39 @@
     (input)="AppPaziente.labelsBehavior($event)" (click)="AppPaziente.labelsBehavior($event)" (focusout)="AppPaziente.labelsBehavior($event)">
       <div class="row">
         @for (field of AppPaziente.fields; track $index) {
-          <!-- aggiungere titoli residenza e domicilio  -->
-          <div *ngIf="field.key == 'recidenceAddress' || field.key == 'domicileAddress'" class="col-12">
+          <!-- titoli residenza e domicilio  -->
+          <div *ngIf="field.key == 'recidenceAddress' || field.key == 'domicileAddress'" class="col-12 mb-3">
             <h5>{{ field.key == 'recidenceAddress' ?'Residenza' :'Domicilio' }}</h5>
           </div>
           <div [ngClass]="{'col-4': field.type !== 'radio', 'col-8': field.type === 'radio'}"> 
             <div class="form-group mb-5">
-              <ng-container [ngSwitch]="field.type">
-                
-                <textarea *ngSwitchCase="'textarea'" class="form-control" 
-                  [formControlName]="field.key" [id]="field.key" [name]="field.key"></textarea>
-  
-                <div *ngSwitchCase="'radio'">
-                  <div class="form-check">
-                    <input type="radio" class="form-check-input" [id]="field.key + '-m'" [name]="field.key" [value]="'M'" [formControlName]="field.key">
-                    <label class="form-check-label" [for]="field.key + '-m'"><small>Maschio</small></label>
-                  </div>
-                  <div class="form-check">
-                    <input type="radio" class="form-check-input" [id]="field.key + '-f'" [name]="field.key" [value]="'F'" [formControlName]="field.key">
-                    <label class="form-check-label" [for]="field.key + '-f'"><small>Femmina</small></label>
-                  </div>
+              @switch (field.type) {
+                @case ('textarea') {
+                <textarea class="form-control" [formControlName]="field.key" [id]="field.key" [name]="field.key"></textarea>
+
+                }@case ('radio') {
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" [id]="field.key + '-m'" [name]="field.key" [value]="'M'" [formControlName]="field.key">
+                  <label class="form-check-label" [for]="field.key + '-m'"><small>Maschio</small></label>
                 </div>
-  
-                <div *ngSwitchDefault>
-                  <input
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" [id]="field.key + '-f'" [name]="field.key" [value]="'F'" [formControlName]="field.key">
+                  <label class="form-check-label" [for]="field.key + '-f'"><small>Femmina</small></label>
+                </div>
+
+              }@case('autocomplete') {
+                <div [id]="field.key+'Autocomplete'" [attr.name]="field.key+'Autocomplete'" class="autocomplete-wrapper"></div>
+                
+              }@default {
+                <div>
+                  <input class="form-control"
                     [type]="field.type && field.type!=='autocomplete' ?field.type :'text'"
-                    class="form-control"
-                    [id]="field.key"
-                    [name]="field.key"
-                    [formControlName]="field.key"
+                    [id]="field.key" [name]="field.key" [formControlName]="field.key"
                     [attr.list]="field.type ==='autocomplete' ?field.key+'-list' : ''"
                   />
-                  <datalist *ngIf="field.type ==='autocomplete'" [id]="field.key+'-list' ">
-                    <option *ngFor="let opt of AppPaziente.stato" [value]="
-                      field.key.includes('PostalCode') ?opt.cap :
-                      field.key.includes('Municipality') ?opt.regione+', '+opt.comune:
-                      field.key.includes('Province') ?opt.sigla_provincia+', '+opt.provincia :''
-                    "></option>
-                  </datalist>
                 </div>
-              </ng-container>
+                }
+              }
   
               <label [for]="field.key"class="text-whitespace"
                 [class.active]="field.type === 'date' || field.type === 'radio'"
@@ -80,7 +73,6 @@
           <button title="Invio" class="btn btn-primary btn-sm mx-2" type="submit" aria-label="Invio">Invio</button>
         </div>
       </div><!-- row -->
-
     </form>
 
   </div>

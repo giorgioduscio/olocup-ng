@@ -16,8 +16,6 @@ import { AppPazienteService } from './app-paziente.service';
   styleUrl: './prenotazione-alpi.component.sass'
 })
 export class PrenotazioneAlpiComponent {
-
-
   constructor(
     public main:PrenotazioneAlpiService,
     public AppPrestazioni:AppPrestazioniService,
