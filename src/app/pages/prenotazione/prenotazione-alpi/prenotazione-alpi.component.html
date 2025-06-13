@@ -44,9 +44,9 @@
 </app-modal>
 
 <app-modal modalId="addPatient">
-  <div class="container my-5">
+  <div class="container my-5 pt-3 p-5 pb-5">
     <div class="d-flex justify-content-between align-items-center">
-      <h3 class="pb-0 m-0 text-primary">Registra Paziente</h3>
+      <h3 class="pb-0 mb-0 text-primary mt-n2">Registra Paziente</h3>
       <button title="Chiudi" class="btn btn-white btn-xs float-end btn-me p-0" type="button" data-bs-dismiss="modal" aria-label="Chiudi">
         <svg class="icon icon-lg icon-primary mr-2 me-2 ps-2">
           <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
@@ -61,7 +61,7 @@
       <div class="row">
         @for (field of AppPaziente.fields; track $index) {
           <!-- titoli residenza e domicilio  -->
-          <div *ngIf="field.key == 'recidenceAddress' || field.key == 'domicileAddress'" class="col-12 mb-3">
+          <div *ngIf="field.key == 'recidenceAddress' || field.key == 'domicileAddress'" class="col-12 mb-3 text-primary">
             <h5>{{ field.key == 'recidenceAddress' ?'Residenza' :'Domicilio' }}</h5>
           </div>
           <div [ngClass]="{'col-4': field.type !== 'radio', 'col-8': field.type === 'radio'}"> 
