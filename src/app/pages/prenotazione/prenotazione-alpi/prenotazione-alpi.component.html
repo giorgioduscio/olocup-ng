@@ -1,15 +1,55 @@
 <app-modal modalId="historyModal">
   <div class="modal-body">
-    <div id="historyContent"></div>
+    <div id="historyContent">
+      <div class="d-flex gap-4 align-items-start">
+        <button title="button" class="btn btn-white btn-xs btn-me p-0" type="button" data-bs-dismiss="modal">
+          <svg class="icon icon-lg icon-padded-xs icon-primary mr-2 me-2 ps-2">
+          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
+          </svg>
+        </button>
+        <div>
+          <h5 class="mb-1"> Storico visite di {{ AppPaziente.pazienteSelezionato()?.lastName}} {{ AppPaziente.pazienteSelezionato()?.firstName}}</h5>
+          <p class="small mb-1 text-muted"><b>{{AppPaziente.pazienteSelezionato()?.fiscalCode}} Tell: {{AppPaziente.pazienteSelezionato()?.phoneNumber}}</b></p>
+        </div>
+      </div>
+      <hr>
+    </div>
   </div>
+  <div *ngIf="AppPaziente.datiModale(); else noStoricoPazienti" class="container p-5">
+    @for(storicoPaziente of AppPaziente.storicoPazienti; track storicoPaziente) {
+      @for(visit of storicoPaziente.visits; track visit) {
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h6 class="mb-1">{{visit.name}} {{AppCalendario.itaDate(visit.date)}} - {{visit.time}}</h6> 
+            <p class="small mb-1 text-muted"><b>{{main.getStruttura(visit.strutturaId)?.name}} {{main.getStruttura(visit.strutturaId)?.address}} - {{main.getStruttura(visit.strutturaId)?.city}}</b></p>
+            <div class="small mb-1 text-muted"><b>{{main.getReparto(visit.repartoId)?.name}}</b>
+              <div class="badge bg-secondary">{{main.getReparto(visit.repartoId)?.code}}</div>
+            </div>
+            <p class="small mb-1 text-muted"><b>{{main.getMedico(visit.medicoId)?.title}} {{main.getMedico(visit.medicoId)?.lastName}} {{main.getMedico(visit.medicoId)?.firstName}}</b></p>
+        </div>
+        <div class="text-end">
+          <p class="small mb-0 text-muted"><b>{{visit.payment.paymentMode}}</b></p>
+          <div class="badge bg-success"><b>{{visit.payment.code}}</b></div>
+        </div>
+      </div>
+      <hr>
+      }
+    }
+  </div>
+  <ng-template #noStoricoPazienti>
+
+    <div class="alert alert-info rounded w-75 container justify-content-center align-items-center" role="alert">
+      Nessuna visita registrata per questo paziente.
+    </div>
+  </ng-template>
 </app-modal>
 
 <app-modal modalId="addPatient">
   <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="pb-0 mb-0 text-primary">Registra Paziente</h3>
-      <button title="Chiudi" class="btn btn-white btn-xs float-end" type="button" data-bs-dismiss="modal" aria-label="Chiudi">
-        <svg class="icon icon-lg icon-primary mr-2 me-2">
+      <button title="Chiudi" class="btn btn-white btn-xs float-end btn-me p-0" type="button" data-bs-dismiss="modal" aria-label="Chiudi">
+        <svg class="icon icon-lg icon-primary mr-2 me-2 ps-2">
           <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
         </svg>
       </button>
@@ -464,7 +504,7 @@
                         <hr> 
                       } 
                     </div>
-                      <h5 class="font-weight-bold" id="selectedDateTime">Orario Selezionato</h5>
+                      <h5 class="font-weight-bold mt-3" id="selectedDateTime">Orario Selezionato</h5>
                       <div *ngIf="AppCalendario.slotSelezionato()">
                         <div>
                           <b class="font-weight-bold">{{AppCalendario.slotSelezionato()?.time}} - {{AppCalendario.itaDate(AppCalendario.slotSelezionato()?.date || '')}}</b>
@@ -519,10 +559,10 @@
 
                   <section class="list-group mb-3" id="patientsList">
                     @if (AppPaziente.renderPatients().pazienti.length===0 && AppPaziente.filtroPaziente.length<3) {
-                      <div class="alert alert-info rounded">Digita almeno 3 caratteri per filtrare i pazienti. </div>
+                      <div class="alert alert-info rounded">Digita almeno 3 caratteri per cercare i pazienti. </div>
 
                     }@else if (AppPaziente.renderPatients().pazienti.length===0 && AppPaziente.filtroPaziente.length) {
-                      <div class="alert alert-warning rounded">Nessun Paziente trovato con i filtri applicati.</div>
+                      <div class="alert alert-warning rounded">Nessun Paziente trovato.</div>
 
                     }@else {
                       <div class="list-group" *ngFor="let paziente of AppPaziente.renderPatients().pazienti">
@@ -536,7 +576,7 @@
                             <p class="small text-muted mb-0">{{paziente.city}} ({{paziente}})</p>
                           </div>
                           <div class="text-right btn-group-vertical">
-                            <button name="storicoPaziente" class="btn btn-sm btn-primary mt-1"
+                            <button (click)="aggiornaStorico(paziente)" name="storicoPaziente" class="btn btn-sm btn-primary mt-1"
                               data-bs-toggle="modal" data-bs-target="#historyModal" type="button">
                               <svg class="icon icon-sm icon-white">
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-note"></use>
