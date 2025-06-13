@@ -21,6 +21,7 @@ import { PazientiService } from '../../../api/pazienti.service';
 import { StoricoPazienteService } from '../../../api/storico-paziente.service';
 import { InvoicesService } from '../../../api/invoices.service';
 import { Invoice } from '../../../interfaces/invoice';
+import { AppPrestazioniService } from './app-prestazioni.service';
 
 @Injectable({  providedIn: 'root'})
 export class PrenotazioneAlpiService {
@@ -56,6 +57,10 @@ export class PrenotazioneAlpiService {
       
     },{ allowSignalWrites: true });
   }
+  AppPrestazioni! :any
+  AppCalendario! :any
+  AppPazienti! :any
+  AppConferma! :any
 
   medici = signal<Medico[]>([]);
   strutture = signal<Struttura[]>([]);

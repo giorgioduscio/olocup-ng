@@ -37,7 +37,6 @@
     }
   </div>
   <ng-template #noStoricoPazienti>
-
     <div class="alert alert-info rounded w-75 container justify-content-center align-items-center" role="alert">
       Nessuna visita registrata per questo paziente.
     </div>
@@ -47,14 +46,14 @@
 <app-modal modalId="addPatient">
   <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center">
-      <h3 class="pb-0 mb-0 text-primary">Registra Paziente</h3>
+      <h3 class="pb-0 m-0 text-primary">Registra Paziente</h3>
       <button title="Chiudi" class="btn btn-white btn-xs float-end btn-me p-0" type="button" data-bs-dismiss="modal" aria-label="Chiudi">
         <svg class="icon icon-lg icon-primary mr-2 me-2 ps-2">
           <use href="/assets/bootstrap-italia/svg/sprites.svg#it-close"></use> 
         </svg>
       </button>
     </div>    
-    <div class="alert alert-primary rounded w-75 container mb-5" role="alert">
+    <div class="alert alert-primary rounded w-75 container mb-5 mt-3" role="alert">
       I campi contrassegnati da "<b>*</b>" sono obbligatori.   </div>
 
     <form [formGroup]="AppPaziente.form" *ngIf="AppPaziente.form" (ngSubmit)="AppPaziente.onSubmit()" 
@@ -89,7 +88,6 @@
                   <input class="form-control"
                     [type]="field.type && field.type!=='autocomplete' ?field.type :'text'"
                     [id]="field.key" [name]="field.key" [formControlName]="field.key"
-                    [attr.list]="field.type ==='autocomplete' ?field.key+'-list' : ''"
                   />
                 </div>
                 }
@@ -185,8 +183,7 @@
                     <div class="input-group mb-3">
                       <span class="input-group-text bg-white border-end-0">
                         <svg class="icon icon-sm" aria-hidden="true">
-                          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use>
-                        </svg>
+                          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use></svg>
                       </span>
                       <!--TEST: Visita cardiologica, Elettrocardiogramma, Ecocardiogramma, RX Torace, TAC Cranio-->
                       <input type="search" class="form-control border-start-0 m-0" 
@@ -273,8 +270,7 @@
                       class="agenda-item p-3 d-flex justify-content-between align-items-center"
                       [class.selected]="AppPrestazioni.isSelected(p)"
                       (click)="AppPrestazioni.selezionaPrestazioni(p, $event)"
-                    >
-                      <div>
+                    > <div>
                         <h6 class="mb-1">{{ p.name }}</h6>
                         <p class="small mb-0">Agenda: {{ AppPrestazioni.getAgenda(p.agendaId)?.name }}</p>
                         <p class="small text-muted mb-0">
@@ -291,34 +287,34 @@
                       </div>
     
                       <div prestazione>
-                        <!-- Prima data disponibile -->
-                        <button paziente class="btn btn-secondary" (click)="selezionaPrimaDisponibile()"
-                          *ngIf="(!AppPrestazioni.isSelected(p) && !AppPrestazioni.selezionate().length) ||AppPrestazioni.isSelected(p)"
-                        >
-                          <div class="text-nowrap text-truncate small">Prima data disponibile</div>
-                          <div>
-                            <svg class="icon icon-sm icon-padded icon-white p-0 m-0 me-1">
+                        @if(AppCalendario.firstTime(AppPrestazioni.selezionate().length >1 ?AppPrestazioni.selezionate() :[p] )){
+                          <!-- Prima data disponibile -->
+                          <button paziente class="btn btn-secondary" (click)="selezionaPrimaDisponibile()"
+                            *ngIf="(!AppPrestazioni.isSelected(p) && !AppPrestazioni.selezionate().length) ||AppPrestazioni.isSelected(p)"
+                          > <div class="text-nowrap text-truncate small">Prima data disponibile</div>
+                            <div>
+                              <svg class="icon icon-sm icon-padded icon-white p-0 m-0 me-1">
+                                <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                              </svg>
+                              <small>{{ AppCalendario.firstTime(
+                                AppPrestazioni.selezionate().length >1
+                                ?AppPrestazioni.selezionate() :[p]
+                              ) }}</small>
+                            </div>
+                          </button>
+                          <!-- Altre disponibilità -->
+                          <button calendario class="btn btn-primary" (click)="routeToTab('datetime')" *ngIf="AppCalendario.firstTime([p])"
+                          > <svg class="icon icon-sm icon-padded icon-white me-2">
                               <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
                             </svg>
-                            <small>{{ AppCalendario.firstTime(
-                              AppPrestazioni.selezionate().length >1
-                              ?AppPrestazioni.selezionate() :[p]
-                            ) }}</small>
-                          </div>
-                        </button>
-                        <!-- Altre disponibilità -->
-                        <button calendario class="btn btn-primary" (click)="routeToTab('datetime')"
-                        *ngIf="AppCalendario.firstTime([p])">
-                        
-                          <svg class="icon icon-sm icon-padded icon-white me-2">
-                            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
-                          </svg>
-                          <small>Altre disponibilità</small>
-                        </button>
-                        <!-- Alert nessuna disponibilità -->
-                        <small *ngIf="!AppCalendario.firstTime([p])" class="alert alert-danger rounded text-nowrap">
-                          Nessuna disponibilità
-                        </small>
+                            <small>Altre disponibilità</small>
+                          </button>
+                        }@else {
+                          <!-- Alert nessuna disponibilità -->
+                          <small class="alert alert-danger rounded text-nowrap">
+                            Nessuna disponibilità
+                          </small>
+                        }
                       </div>
                     </div>
                   }
@@ -366,7 +362,7 @@
                   </div>
 
                 </div>
-                <button class="btn btn-primary w-100" data-target-tab="#prestazione" title="Indietro" aria-label="Indietro">
+                <button (click)="routeToTab('prestazione')" class="btn btn-primary w-100" data-target-tab="#prestazione" title="Indietro" aria-label="Indietro">
                   <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
                   </svg>Indietro
@@ -430,18 +426,20 @@
                     @if (!AppCalendario.renderSlots()){
                       <div class="alert alert-warning rounded">Nessuno slot disponibile per questa data.</div>
                     }@else {
-                      <div *ngFor="let btn of AppCalendario.renderSlots()">
-                        <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" 
-                          [ngClass]="{'giornoSelezionato': AppCalendario.slotSelezionato()?.id === btn.slot.id}"
-                          [attr.slot-id]="btn.slot.id" 
-                          [disabled]="btn.disabled" 
-                          (click)="AppCalendario.selezionaSlot($event, btn.slot)">
-                          <svg class="icon icon-sm icon-primary mr-2 me-2">
-                            <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
-                          </svg>
-                          <span>{{btn.slot.time}} - {{btn.endTime}}</span>
-                        </button>
-                      </div>
+                      @for (btn of AppCalendario.renderSlots(); track $index){
+                        <div>
+                          <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" 
+                            [ngClass]="{'giornoSelezionato': AppCalendario.slotSelezionato()?.id === btn.slot.id}"
+                            [attr.slot-id]="btn.slot.id" 
+                            [disabled]="btn.disabled" 
+                            (click)="AppCalendario.selezionaSlot($event, btn.slot)"
+                          > <svg class="icon icon-sm icon-primary mr-2 me-2">
+                              <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
+                            </svg>
+                            <span>{{btn.slot.time}} - {{btn.endTime}}</span>
+                          </button>
+                        </div>
+                      }
                     }
                   </div>
                 </section>
@@ -468,12 +466,12 @@
                     </div> 
                   </div>
                 </div>
-               <button title="Avanti" class="btn btn-primary w-100" 
-                  [disabled]="!AppCalendario.slotSelezionato()" (click)="routeToTab('paziente')"aria-label="Avanti">
-                      <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
-                        <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
-                      </svg>Avanti
-               </button>
+                <button title="Avanti" class="btn btn-primary w-100" 
+                    [disabled]="!AppCalendario.slotSelezionato()" (click)="routeToTab('paziente')" aria-label="Avanti"
+                > <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
+                    <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-circle"></use>
+                  </svg>Avanti
+                </button>
               </aside>
             </div>
           </div>
@@ -524,7 +522,7 @@
                   </div>
                   <hr>   
                 </div>
-                <button title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
+                <button (click)="routeToTab('datetime')" title="Indietro" class="btn btn-primary btn-block mt-3 w-100" data-target-tab="#datetime" aria-label="Indietro">
                   <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                     <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
                   </svg>Indietro
@@ -745,7 +743,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center gap-3">
-                  <button title="Indietro" class="btn btn-primary" data-target-tab="#paziente" aria-label="Indietro">
+                  <button (click)="routeToTab('paziente')" title="Indietro" class="btn btn-primary" data-target-tab="#paziente" aria-label="Indietro">
                     <svg class="icon icon-sm icon-padded icon-white mr-2 me-2">
                       <use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-left-circle"></use>
                     </svg>Indietro

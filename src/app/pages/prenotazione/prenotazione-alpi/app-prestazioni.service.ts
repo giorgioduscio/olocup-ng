@@ -7,6 +7,7 @@ import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
 @Injectable({ providedIn: 'root' })
 export class AppPrestazioniService {
   constructor(private main:PrenotazioneAlpiService) {
+    main.AppPrestazioni =this
     // Effetto reattivo che aggiorna i dati da API e filtra le prestazioni
     effect(() => {
       this.prestazioni =this.main.prestazioni();
@@ -108,8 +109,8 @@ export class AppPrestazioniService {
       else this.selezionate.set([...attuali, p]);
 
       // Disabilita pulsanti se cambiano le prestazioni selezionate
-      document.getElementById('paziente-tab')?.classList.add('disabled');
-      document.getElementById('confirm-tab')?.classList.add('disabled');
+      this.main.AppCalendario.slotSelezionato.set(null);
+      this.main.AppPazienti.pazienteSelezionato.set(null);
     }
 
     // Rimuove una prestazione specifica dalla selezione.

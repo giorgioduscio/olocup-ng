@@ -15,17 +15,17 @@ export interface Giorno {
 @Injectable({ providedIn: 'root' })
 export class AppCalendarioService {
   constructor(private main:PrenotazioneAlpiService, 
-              private appPrestazioniService: AppPrestazioniService
+              private AppPrestazioni: AppPrestazioniService
   ) {
+    main.AppCalendario =this
     const today = new Date();
     this.currentYear.set(today.getFullYear()) 
     this.currentMonth.set(today.getMonth()) 
     this.giornoSelezionato.set(null)
-    
 
     // Quando le prestazioni selezionate cambiano, ricarico il calendario
     effect(() => {
-      appPrestazioniService.selezionate()
+      AppPrestazioni.selezionate()
       this.renderCalendario();
     })
 
@@ -120,7 +120,7 @@ export class AppCalendarioService {
     }
 
     // Giorni del mese
-    const prestazioniSelezionate = this.appPrestazioniService.selezionate();
+    const prestazioniSelezionate = this.AppPrestazioni.selezionate();
     for (let i = 1; i <= daysCount; i++) {
       const todayStr = `${this.currentYear()}-${String(this.currentMonth() + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
 
@@ -156,7 +156,7 @@ export class AppCalendarioService {
     const todayStr = this.formatDate(new Date());
 
     // Filtra gli slot per giorno selezionato e da oggi in avanti
-    let slotsMatch = this.getSlots(this.appPrestazioniService.selezionate())
+    let slotsMatch = this.getSlots(this.AppPrestazioni.selezionate())
       .filter(s => (s.date >= todayStr) && (s.date === this.giornoSelezionato()));
 
     // Ordina per orario
@@ -254,16 +254,12 @@ export class AppCalendarioService {
     if (slot.prestazioneId === undefined) return console.warn('Slot senza prestazione associata');
     if (slot.prestazioneId === null) return console.warn('Slot senza prestazione associata (null)');
 
-    
-
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);
-    btn.classList.add('selected', 'btn-success');
   }
 
-
   selezionaPrimaDisponibile() {
-    const prestazioni = this.appPrestazioniService.selezionate();
+    const prestazioni = this.AppPrestazioni.selezionate();
     if (!prestazioni || !prestazioni.length) return;
 
     const availableSlots = this.getSlots(prestazioni);

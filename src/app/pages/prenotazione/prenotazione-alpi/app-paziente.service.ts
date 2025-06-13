@@ -2,12 +2,13 @@ import { Injectable,  effect, signal } from '@angular/core';
 import { Paziente } from '../../../interfaces/paziente';
 import { StoricoPaziente } from '../../../interfaces/storicopaziente';
 import { PrenotazioneAlpiService } from './prenotazione-alpi.service';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
 export class AppPazienteService {
   constructor(private main:PrenotazioneAlpiService, private http:HttpClient) {
+    main.AppPazienti =this
     effect(() => {
       this.pazienti =this.main.pazienti();
       this.storicoPazienti = this.main.storicoPazienti();      
@@ -230,6 +231,7 @@ export class AppPazienteService {
           new bootstrap.SelectAutocomplete(element, {
             id: field.key,
             name: field.key,
+            formControlName:field.key,
             source: (query:any, callback:any) => {
               const filteredResults = this.getStato(field.key).filter(
                 result => result.toLowerCase().includes(query.toLowerCase())
