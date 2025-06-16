@@ -92,25 +92,35 @@ export class AppPrestazioniService {
   // ───────────────────────────────────────────────
     // Signal che contiene tutte le prestazioni selezionate 
     selezionate: WritableSignal<Prestazione[]> = signal([]);
-    // Controlla se una prestazione specifica viene selezionata
-    isSelected =(p: Prestazione)=> this.getPrestazioniSelezionate()().some(sel => sel.id === p.id);
 
     // Aggiunge o rimuove una prestazione dalla selezione multipla.
-    // Se già selezionata, la deseleziona. Altrimenti, la aggiunge.
-    selezionaPrestazioni(p: Prestazione, e:Event) {
-      const btnCalendario = (e.target as HTMLButtonElement).closest('[calendario]');
-      const btnPaziente = (e.target as HTMLButtonElement).closest('[paziente]');
-      if(this.isSelected(p) && (btnCalendario || btnPaziente)) return;
-
-      // se l'elemento non era gia selezionato o se non si sono selezionati i pulsanti
+    selezionaPrestazioni(p: Prestazione, e: Event, routeToTab?: Function) {
+      const btnCalendario = (e.target as HTMLElement).closest('[calendario]');
+      const btnPaziente = (e.target as HTMLElement).closest('[paziente]');
       const attuali = this.selezionate();
-      if (attuali.find(sel => sel.id === p.id)) 
-          this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
-      else this.selezionate.set([...attuali, p]);
+      const selezionata =this.getPrestazioniSelezionate()().some(sel => sel.id === p.id)
 
-      // Disabilita pulsanti se cambiano le prestazioni selezionate
-      this.main.AppCalendario.slotSelezionato.set(null);
-      this.main.AppPazienti.pazienteSelezionato.set(null);
+      // Se la prestazione non è selezionata, o nessun bottone è stato premuto, o non ci sono selezioni attive
+      if (!selezionata || // se non è già selezionata
+          (!btnCalendario && !btnPaziente) || // nessun pulsante premuto
+          !attuali.length || // prima selezione
+          !(btnPaziente && selezionata) // route primo disponibile in slot selezionati
+      ){
+        if (attuali.find(sel => sel.id === p.id)) 
+          this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
+        else this.selezionate.set([...attuali, p])
+
+        // Reset degli slot e paziente
+        this.main.AppCalendario.slotSelezionato.set(null);
+        this.main.AppPazienti.pazienteSelezionato.set(null);
+      }
+      
+      setTimeout(()=>{
+        // Navigazione al tab calendario
+        if (btnCalendario && routeToTab) routeToTab('datetime');
+        // Selezione prima data disponibile
+        if (btnPaziente) this.main.AppCalendario.selezionaPrimaDisponibile();
+      }, 200);
     }
 
     // Rimuove una prestazione specifica dalla selezione.

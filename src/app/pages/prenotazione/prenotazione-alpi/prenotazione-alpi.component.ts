@@ -50,11 +50,6 @@ export class PrenotazioneAlpiComponent {
     el?.nativeElement?.click();
   }
 
-  selezionaPrimaDisponibile(){
-    setTimeout(() => {
-      this.AppCalendario.selezionaPrimaDisponibile()
-    }, 200);
-  }
   StoricoPazienti(): StoricoPaziente[] {
     return this.AppPaziente.storicoPazienti;
   }
