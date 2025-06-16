@@ -78,4 +78,7 @@ export class PrenotazioneAlpiService {
   getReparto =(id: number)=> this.reparti().find(r => Number(r.id) === id);
   getMedico =(id: number)=> this.medici().find(m => Number(m.id) === id);
   getAgenda =(id: number) => this.agende().find(a => Number(a.id) ==id);
+  addPaziente(paziente:Paziente){
+    this.pazientiService.post(paziente)
+  }
 }

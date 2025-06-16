@@ -56,7 +56,7 @@
     <div class="alert alert-primary rounded w-75 container mb-5 mt-3" role="alert">
       I campi contrassegnati da "<b>*</b>" sono obbligatori.   </div>
 
-    <form [formGroup]="AppPaziente.form" *ngIf="AppPaziente.form" (ngSubmit)="AppPaziente.onSubmit()" 
+    <form [formGroup]="AppPaziente.form" *ngIf="AppPaziente.form" (ngSubmit)="AppPaziente.onSubmit($event)" 
     (input)="AppPaziente.labelsBehavior($event)" (click)="AppPaziente.labelsBehavior($event)" (focusout)="AppPaziente.labelsBehavior($event)">
       <div class="row">
         @for (field of AppPaziente.fields; track $index) {
@@ -65,35 +65,36 @@
             <h5>{{ field.key == 'recidenceAddress' ?'Residenza' :'Domicilio' }}</h5>
           </div>
           <div [ngClass]="{'col-4': field.type !== 'radio', 'col-8': field.type === 'radio'}"> 
-            <div class="form-group mb-5">
-              @switch (field.type) {
+            <div class="form-group mb-5" 
+            > @switch (field.type) {
                 @case ('textarea') {
                 <textarea class="form-control" [formControlName]="field.key" [id]="field.key" [name]="field.key"></textarea>
 
                 }@case ('radio') {
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" [id]="field.key + '-m'" [name]="field.key" [value]="'M'" [formControlName]="field.key">
-                  <label class="form-check-label" [for]="field.key + '-m'"><small>Maschio</small></label>
-                </div>
-                <div class="form-check">
-                  <input type="radio" class="form-check-input" [id]="field.key + '-f'" [name]="field.key" [value]="'F'" [formControlName]="field.key">
-                  <label class="form-check-label" [for]="field.key + '-f'"><small>Femmina</small></label>
-                </div>
+                  <div style="max-width: 200px;">
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" [id]="field.key + '-m'" [name]="field.key" [value]="'M'" [formControlName]="field.key">
+                      <label class="form-check-label" [for]="field.key + '-m'"><small>Maschio</small></label>
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" [id]="field.key + '-f'" [name]="field.key" [value]="'F'" [formControlName]="field.key">
+                      <label class="form-check-label" [for]="field.key + '-f'"><small>Femmina</small></label>
+                    </div>
+                  </div>
 
-              }@case('autocomplete') {
-                <div [id]="field.key+'Autocomplete'" [attr.name]="field.key+'Autocomplete'" class="autocomplete-wrapper"></div>
-                
-              }@default {
-                <div>
-                  <input class="form-control"
-                    [type]="field.type && field.type!=='autocomplete' ?field.type :'text'"
-                    [id]="field.key" [name]="field.key" [formControlName]="field.key"
-                  />
-                </div>
+                }@default {
+                  <!-- AUTOCOMPLETE
+                  <div [id]="field.key+'Autocomplete'" [attr.name]="field.key+'Autocomplete'" class="autocomplete-wrapper"></div> -->
+                  <div>
+                    <input class="form-control {{AppPaziente.isInvalid(field.key) ?'is-invalid' :''}}"
+                      [type]="field.type && field.type!=='autocomplete' ?field.type :'text'"
+                      [id]="field.key" [name]="field.key" [formControlName]="field.key"
+                    />
+                  </div>
                 }
               }
   
-              <label [for]="field.key"class="text-whitespace"
+              <label [for]="field.key"class="text-whitespace {{AppPaziente.isInvalid(field.key) ?'text-danger' :''}}"
                 [class.active]="field.type === 'date' || field.type === 'radio'"
               > {{ field.label }}
                 <b *ngIf="AppPaziente.form.get(field.key)?.errors?.['required'] " class="text-danger">*</b>

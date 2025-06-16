@@ -13,7 +13,10 @@ export class AppPazienteService {
       this.pazienti =this.main.pazienti();
       this.storicoPazienti = this.main.storicoPazienti();      
     });
-    this.buildForm()
+    this.http.get<typeof this.stato>('/assets/datas/italia.json').subscribe((data) => {
+      this.stato = data
+      this.buildForm()
+    })
   }
 
   //* MOSTRA DATI
@@ -97,7 +100,7 @@ export class AppPazienteService {
       type: 'date',
       control: new FormControl('', [
         Validators.required,
-        // Custom validator for date not future, to be implemented separately
+        this.DateValidator(),
       ]),
       errorMessage: 'La data non può essere presente o futura'
     },
@@ -142,7 +145,10 @@ export class AppPazienteService {
       key: 'recidenceMunicipality',
       label: 'Comune e Regione',
       type: 'autocomplete',
-      control: new FormControl('', [Validators.required])
+      control: new FormControl('', [
+        Validators.required,
+      ]),
+      errorMessage: 'Comune non valido'
     },
     {
       key: 'recidencePostalCode',
@@ -150,15 +156,18 @@ export class AppPazienteService {
       type: 'autocomplete',
       control: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^\d{5}$/)
+        Validators.pattern(/^\d{5}$/),
       ]),
-      errorMessage: 'Richiede 5 cifre numeriche'
+      errorMessage: 'CAP non valido o non presente nella lista'
     },
     {
       key: 'recidenceProvince',
       label: 'Provincia e Città',
       type: 'autocomplete',
-      control: new FormControl('', [Validators.required])
+      control: new FormControl('', [
+        Validators.required,
+      ]),
+      errorMessage: 'Provincia non valida'
     },
     // Campi Domicilio (non obbligatori, quindi no Validators.required)
     {
@@ -187,7 +196,7 @@ export class AppPazienteService {
       type: 'autocomplete',
       control: new FormControl('')
     },
-  ];
+  ]
   form!: FormGroup;
   stato :{
     cap: string;
@@ -212,10 +221,6 @@ export class AppPazienteService {
       group[field.key] = field.control;
     });
     this.form = new FormGroup(group);
-
-    this.http.get<typeof this.stato>('/assets/datas/italia.json').subscribe((data) => {
-      this.stato = data
-    })
 
     // COSTRUZIONE AUTOCOMPLETE
     let counter =0
@@ -257,12 +262,17 @@ export class AppPazienteService {
     if ((target as HTMLInputElement).value) label.classList.add('active');
   }
 
-  onSubmit() {
+  onSubmit(e:Event) {
     this.validationFlag = true;
     if (this.form.invalid) return; // Non inviare, i messaggi ora saranno mostrati
     
     // procedi con il form valido
-    console.log(this.form.value);
+    this.main.addPaziente(this.form.value)
+
+    // disattiva la modale
+    if(!e) return;
+    const btn :HTMLButtonElement|null =(e.target as HTMLElement).querySelector('[data-bs-dismiss="modal"]');
+    if(btn) btn.click()
   }
 
   validationFlag = false;
@@ -270,6 +280,21 @@ export class AppPazienteService {
     if (!this.validationFlag) return false;
     const control = this.form.get(fieldKey);
     return control ? control.invalid && (control.dirty || control.touched || this.validationFlag) : false;
+  }
+  DateValidator() {
+    return (control: import('@angular/forms').AbstractControl) => {
+      const value = control.value;
+      if (!value) return null; // Nessun errore se il campo è vuoto
+
+      const inputDate = new Date(value);
+      const today = new Date();
+
+      // Rimuoviamo l'ora per un confronto solo di data
+      inputDate.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+
+      return inputDate > today ? { futureDate: true } : null;
+    };
   }
 
   datiModale = signal <StoricoPaziente|null>(null);
