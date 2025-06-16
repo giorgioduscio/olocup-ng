@@ -575,10 +575,10 @@
                           (click)="AppPaziente.selezionaPaziente($event, paziente)"
                         > <div>
                             <h6 class="mb-1">{{paziente.lastName}} {{paziente.firstName}}</h6>
-                            <p class="small text-muted mb-0">{{paziente.fiscalCode}}</p>
-                            <p class="small text-muted mb-0">{{ AppCalendario.itaDate(paziente.birthDate)}} - {{paziente.gender}}</p>
-                            <p class="small text-muted mb-0">Tel: {{paziente.phoneNumber}}</p>
-                            <p class="small text-muted mb-0">{{paziente.city}} ({{paziente}})</p>
+                            <p class="small text-muted mb-0"><b>{{paziente.fiscalCode}}</b></p>
+                            <p class="small text-muted mb-0"><b>{{ AppCalendario.itaDate(paziente.birthDate)}} - {{paziente.gender}}</b></p>
+                            <p class="small text-muted mb-0"><b>Tel: {{paziente.phoneNumber}}</b></p>
+                            <p class="small text-muted mb-0"><b>{{paziente.city}} ({{paziente.recidenceProvince}})</b></p>
                           </div>
                           <div class="text-right btn-group-vertical">
                             <button (click)="aggiornaStorico(paziente)" name="storicoPaziente" class="btn btn-sm btn-primary mt-1"
@@ -625,8 +625,8 @@
                               <li *ngFor="let prestazione of AppPrestazioni.selezionate()">
                                 <div class="small p-2">
                                   <svg class="icon icon-sm"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-arrow-right-triangle"></use></svg>
-                                  {{prestazione.name}}
-                                  <div class="small text-muted p-2 text-center">Codice: {{prestazione.code}}</div>
+                                  <b>{{prestazione.name}}</b>
+                                  <div class="small text-muted p-2 text-center">Codice: <b>{{prestazione.code}}</b></div>
                                 </div>
                               </li>
 
@@ -644,7 +644,7 @@
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-pa"></use>
                               </svg>Struttura
                             </h6>
-                            <div>{{appConferma.render()?.struttura?.name}}</div>
+                            <div><b>{{appConferma.render()?.struttura?.name}}</b></div>
                             <div class="small text-muted">Reparto:  
                               <b>{{appConferma.render()?.reparto?.name}} 
                                 {{appConferma.render()?.reparto?.branchTypeId}}, 
