@@ -46,14 +46,24 @@ export class AppCalendarioService {
 
   //* seleziona gli slot inerenti alle prestazioni selezionate
   getSlots(prestazioniSelezionate: Prestazione[]): Slot[] {
-    if (!Array.isArray(prestazioniSelezionate) || prestazioniSelezionate.length === 0) return [];
+    if (!Array.isArray(prestazioniSelezionate) || prestazioniSelezionate.length) return [];
 
     const prestazioneIds = prestazioniSelezionate.map(p => Number(p.id));
 
-    // Raggruppa gli slot per data, includendo solo quelli di prestazioni selezionate e disponibili
+    const now = new Date();
+    const nowStr = this.formatDate(now); // es: "2025-06-16"
+
+    // Raggruppa gli slot per data, includendo solo quelli selezionati, disponibili e validi nel tempo
     const slotsByDay: { [date: string]: Slot[] } = this.main.slots().reduce((acc, slot) => {
-      if (!prestazioneIds.includes(slot.prestazioneId)) return acc; // ignora slot non selezionati
-      if (slot.status !== 'available') return acc; // solo slot disponibili
+      if (!prestazioneIds.includes(slot.prestazioneId)) return acc;
+      if (slot.status !== 'available') return acc;
+
+      // Filtra anche gli slot di oggi in base all'orario corrente
+      if (slot.date === nowStr) {
+        const [slotHour, slotMin] = slot.time.split(':').map(Number);
+        const slotDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), slotHour, slotMin);
+        if (slotDate <= now) return acc; // salta slot già passati
+      }
 
       if (!acc[slot.date]) acc[slot.date] = [];
       acc[slot.date].push(slot);
@@ -63,16 +73,16 @@ export class AppCalendarioService {
 
     // Filtra solo i giorni che contengono slot per TUTTE le prestazioni selezionate
     const filteredSlots = Object.entries(slotsByDay)
-      .filter(([date, slots]) =>
+      .filter(([_, slots]) =>
         prestazioneIds.every(pid =>
-          //@ts-ignore
           slots.some(slot => slot.prestazioneId === pid)
         )
       )
-      // Appiattisci gli slot filtrati in un unico array
-      .flatMap(([date, slots]) => slots);
+      .flatMap(([_, slots]) => slots);
+
     return filteredSlots;
   }
+
 
   //* mostra la data del primo slot disponibile
   firstTime($prestazioni: Prestazione[]){
