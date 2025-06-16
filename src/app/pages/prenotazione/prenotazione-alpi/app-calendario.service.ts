@@ -46,32 +46,30 @@ export class AppCalendarioService {
 
   //* seleziona gli slot inerenti alle prestazioni selezionate
   getSlots(prestazioniSelezionate: Prestazione[]): Slot[] {
-    if (!Array.isArray(prestazioniSelezionate) || prestazioniSelezionate.length) return [];
+    if (!Array.isArray(prestazioniSelezionate) || prestazioniSelezionate.length === 0) return [];
 
     const prestazioneIds = prestazioniSelezionate.map(p => Number(p.id));
-
     const now = new Date();
-    const nowStr = this.formatDate(now); // es: "2025-06-16"
+    const nowStr = this.formatDate(now); // es. "2025-01-01"
 
-    // Raggruppa gli slot per data, includendo solo quelli selezionati, disponibili e validi nel tempo
     const slotsByDay: { [date: string]: Slot[] } = this.main.slots().reduce((acc, slot) => {
       if (!prestazioneIds.includes(slot.prestazioneId)) return acc;
       if (slot.status !== 'available') return acc;
 
-      // Filtra anche gli slot di oggi in base all'orario corrente
+      // Se lo slot è di oggi, confronta orario
       if (slot.date === nowStr) {
         const [slotHour, slotMin] = slot.time.split(':').map(Number);
-        const slotDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), slotHour, slotMin);
-        if (slotDate <= now) return acc; // salta slot già passati
+        const slotDateTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), slotHour, slotMin);
+        if (slotDateTime <= now) return acc; // salta slot già passati oggi
       }
 
+      // Slot futuri? Nessun problema
       if (!acc[slot.date]) acc[slot.date] = [];
       acc[slot.date].push(slot);
 
       return acc;
     }, {} as { [date: string]: Slot[] });
 
-    // Filtra solo i giorni che contengono slot per TUTTE le prestazioni selezionate
     const filteredSlots = Object.entries(slotsByDay)
       .filter(([_, slots]) =>
         prestazioneIds.every(pid =>
@@ -82,6 +80,7 @@ export class AppCalendarioService {
 
     return filteredSlots;
   }
+
 
 
   //* mostra la data del primo slot disponibile
