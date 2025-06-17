@@ -1034,7 +1034,7 @@
       "time": "08:00",
       "durationMinutes": 30,
       "priority": "b",
-      "status": "unavailable",
+      "status": "available",
       "dayOfWeek": "lun",
       "agendaId": 1
     },
@@ -1045,7 +1045,7 @@
       "time": "08:30",
       "durationMinutes": 30,
       "priority": "b",
-      "status": "available",
+      "status": "unavailable",
       "dayOfWeek": "lun",
       "agendaId": 1
     },

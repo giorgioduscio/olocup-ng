@@ -435,15 +435,12 @@
                     }@else {
                       @for (btn of AppCalendario.renderSlots(); track $index){
                         <div>
-                          <button class="btn m-2 p-2 btn-light border {{btn.hideIfRepeatTime}}" 
-                            [ngClass]="{'giornoSelezionato': AppCalendario.slotSelezionato()?.id === btn.slot.id}"
-                            [attr.slot-id]="btn.slot.id" 
-                            [disabled]="btn.disabled" 
-                            (click)="AppCalendario.selezionaSlot($event, btn.slot)"
-                          > <svg class="icon icon-sm icon-primary mr-2 me-2">
-                              <use href="/assets/bootstrap-italia/svg/sprites.svg#it-clock"></use>
-                            </svg>
-                            <span>{{btn.slot.time}} - {{btn.endTime}}</span>
+                          <button class="btn m-2 p-2 btn-light border"
+                                  [attr.slot-id]="btn.slot.id"
+                                  [class.giornoSelezionato]="AppCalendario.slotSelezionato()?.id === btn.slot.id"
+                                  [class.d-none]="btn.visuallyHidden"
+                                  (click)="AppCalendario.selezionaSlot($event, btn.slot)"
+                          > {{btn.slot.time}} - {{btn.endTime}}
                           </button>
                         </div>
                       }

@@ -92,13 +92,14 @@ export class AppPrestazioniService {
   // ───────────────────────────────────────────────
     // Signal che contiene tutte le prestazioni selezionate 
     selezionate: WritableSignal<Prestazione[]> = signal([]);
+    isSelected =(p:Prestazione)=> this.getPrestazioniSelezionate()().some(sel => sel.id === p.id)
 
     // Aggiunge o rimuove una prestazione dalla selezione multipla.
     selezionaPrestazioni(p: Prestazione, e: Event, routeToTab?: Function) {
       const btnCalendario = (e.target as HTMLElement).closest('[calendario]');
       const btnPaziente = (e.target as HTMLElement).closest('[paziente]');
       const attuali = this.selezionate();
-      const selezionata =this.getPrestazioniSelezionate()().some(sel => sel.id === p.id)
+      const selezionata =this.isSelected(p);
 
       // Se la prestazione non è selezionata, o nessun bottone è stato premuto, o non ci sono selezioni attive
       if (!selezionata || // se non è già selezionata

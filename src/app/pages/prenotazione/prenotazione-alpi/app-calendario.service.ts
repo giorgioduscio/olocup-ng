@@ -164,42 +164,42 @@ export class AppCalendarioService {
   renderSlots() {
     const todayStr = this.formatDate(new Date());
 
-    // Filtra gli slot per giorno selezionato e da oggi in avanti
     let slotsMatch = this.getSlots(this.AppPrestazioni.selezionate())
       .filter(s => (s.date >= todayStr) && (s.date === this.giornoSelezionato()));
 
     // Ordina per orario
     slotsMatch.sort((s1, s2) => {
-      // @ts-ignore
       const [hours1, minutes1] = s1.time.split(':').map(Number);
-      // @ts-ignore
       const [hours2, minutes2] = s2.time.split(':').map(Number);
       return (hours1 * 60 + minutes1) - (hours2 * 60 + minutes2);
     });
 
     if (!slotsMatch.length) return null;
 
-    return slotsMatch.map((slot, i, sm) => { //@ts-ignore
+    const seenTimes = new Set<string>();
+
+    return slotsMatch.map((slot) => {
       const [hours, minutes] = slot.time.split(':').map(Number);
       const start = new Date(0, 0, 0, hours, minutes);
-      //@ts-ignore
       const end = new Date(start.getTime() + slot.durationMinutes * 60000);
-      const endHours = String(end.getHours()).padStart(2, '0');
-      const endMinutes = String(end.getMinutes()).padStart(2, '0');
-      const endTime = `${endHours}:${endMinutes}`;
+      const endTime = `${String(end.getHours()).padStart(2, '0')}:${String(end.getMinutes()).padStart(2, '0')}`;
 
       const disabled = slot.status !== "available";
-
-      const borderClass = //@ts-ignore
+      const borderClass =
         slot.priority === 'ob' ? 'border border-2 border-danger' :
-        //@ts-ignore
-        slot.priority === 'd' ? 'border border-2 border-success' : '';
+        slot.priority === 'd'  ? 'border border-2 border-success' : '';
 
-      // Nasconde il pulsante se l'orario è uguale al precedente 
-      // @ts-ignore
-      const hideIfRepeatTime = sm[i - 1]?.time === slot.time;
-      
-      return{ slot, endTime, disabled, borderClass, hideIfRepeatTime, };
+      const key = `${slot.date}-${slot.time}`;
+      const visuallyHidden = seenTimes.has(key);
+      seenTimes.add(key);
+
+      return {
+        slot,
+        endTime,
+        disabled,
+        borderClass,
+        visuallyHidden
+      };
     });
   }
 
@@ -255,16 +255,25 @@ export class AppCalendarioService {
   slotSelezionato = signal<Slot|undefined>(undefined)
   
   selezionaSlot(e: Event, slot:Slot) {
-    const btn = (e.target as HTMLElement).closest('.btn');
+    const btn = (e.target as HTMLElement).closest('.btn') as HTMLButtonElement | null;
     if (!btn) return;
     
     if (!slot || !slot.id) return console.warn('Slot non valido o senza ID');
     if (slot.status !== 'available') return console.warn('Slot non disponibile');   
     if (slot.prestazioneId === undefined) return console.warn('Slot senza prestazione associata');
     if (slot.prestazioneId === null) return console.warn('Slot senza prestazione associata (null)');
-
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);
+    // se il pulsante è nascosto e accanto ne ha uno visibile
+    // mostra il pulsante attuale e nascondi quello accanto
+    const prevBtn =btn.parentElement?.previousElementSibling?.children[0] as HTMLButtonElement | null;
+    const nextBtn =btn.parentElement?.nextElementSibling?.children[0] as HTMLButtonElement | null;
+    const hide ='d-none'
+    if(!btn.classList.contains(hide)) return;
+
+    btn.classList.remove(hide);
+    if(prevBtn?.innerText ==btn.innerText) prevBtn.classList.add(hide)
+    else if(nextBtn?.innerText ==btn.innerText) nextBtn.classList.add(hide)
   }
 
   selezionaPrimaDisponibile() {
@@ -300,8 +309,28 @@ export class AppCalendarioService {
       dayBtn?.click();
 
       setTimeout(() => {
-        const slotBtn :HTMLButtonElement|null =document.querySelector(`button[slot-id="${firstSlot.id}"]`);        
-        slotBtn?.click();        
+        const slotBtn :HTMLButtonElement|null = document.querySelector(`button[slot-id="${firstSlot.id}"]`);
+
+        if (slotBtn) {
+          // Rimuovi invisibilità temporaneamente
+          slotBtn.classList.remove('invisible');
+          slotBtn.classList.add('btn-primary');
+
+          // Effettua click
+          slotBtn.click();
+
+          // Evidenzia anche il giorno
+          const btnDate :HTMLButtonElement|null = document.querySelector('[date]');
+          if (btnDate) {
+            btnDate.classList.add('btn-success');
+            btnDate.classList.remove('btn-secondary');
+
+            setTimeout(() => {
+              btnDate.classList.remove('btn-success');
+              btnDate.classList.add('btn-secondary');
+            }, 1000);
+          }
+        }
 
         const result = slotBtn ? 'success' : 'danger';
         const btnDate :HTMLButtonElement|null =document.querySelector('[date]'); if(!btnDate) return;
