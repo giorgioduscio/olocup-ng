@@ -300,9 +300,10 @@ export class AppPazienteService {
   aggiornaStorico(paziente:Paziente){
     // Trova lo storico del paziente selezionato
     const storicoPaziente = this.main.storicoPazienti().find(    
-      sp => sp.pazienteId === paziente.id);
+      sp => sp.pazienteId == paziente.id);
     
     this.datiModale.set(storicoPaziente || null);
+    
   }
 
   getVisitePazienteSelezionato() {

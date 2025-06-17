@@ -1850,6 +1850,7 @@
           "repartoId": 2,
           "medicoId": 5,
           "strutturaId": 1,
+          "prescriptionNumber": "NRE7654321",
           "payment": {
             "code": "CASH",
             "ticketCost": "36.15",
@@ -1864,6 +1865,7 @@
           "repartoId": 2,
           "medicoId": 1,
           "strutturaId": 2,
+          "prescriptionNumber": "NRE1234567",
           "payment": {
             "code": "POS",
             "ticketCost": "25.40",
@@ -1884,6 +1886,7 @@
           "repartoId": 9,
           "medicoId": 3,
           "strutturaId": 3,
+          "prescriptionNumber": "NRE1236467",
           "payment": {
             "code": "BANK",
             "ticketCost": "87.30",
@@ -1898,6 +1901,7 @@
           "repartoId": 13,
           "medicoId": 4,
           "strutturaId": 2,
+          "prescriptionNumber": "NRE9984567",
           "payment": {
             "code": "POS",
             "ticketCost": "20.50",
@@ -1918,6 +1922,7 @@
           "repartoId": 2,
           "medicoId": 1,
           "strutturaId": 1,
+          "prescriptionNumber": "NRE1260261",
           "payment": {
             "code": "CASH",
             "ticketCost": "25.40",
@@ -1932,6 +1937,7 @@
           "repartoId": 13,
           "medicoId": 4,
           "strutturaId": 2,
+          "prescriptionNumber": "NRE1099587",
           "payment": {
             "code": "BANK",
             "ticketCost": "51.65",
@@ -1952,6 +1958,7 @@
           "repartoId": 9,
           "medicoId": 3,
           "strutturaId": 2,
+          "prescriptionNumber": "NRE9875304",
           "payment": {
             "code": "CASH",
             "ticketCost": "25.40",
@@ -1966,6 +1973,7 @@
           "repartoId": 9,
           "medicoId": 5,
           "strutturaId": 3,
+          "prescriptionNumber": "NRE0088543",
           "payment": {
             "code": "POS",
             "ticketCost": "87.30",

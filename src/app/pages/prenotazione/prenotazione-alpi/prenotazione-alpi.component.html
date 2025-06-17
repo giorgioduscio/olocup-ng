@@ -21,7 +21,8 @@
         <div>
             <h6 class="mb-1">{{visit.name}} {{AppCalendario.itaDate(visit.date)}} - {{visit.time}}</h6> 
             <p class="small mb-1 text-muted"><b>{{main.getStruttura(visit.strutturaId)?.name}} {{main.getStruttura(visit.strutturaId)?.address}} - {{main.getStruttura(visit.strutturaId)?.city}}</b></p>
-            <div class="small mb-1 text-muted"><b>{{main.getReparto(visit.repartoId)?.name}}</b>
+            <p class="small mb-1 text-muted"><b>Prescrizione: {{visit.prescriptionNumber}}</b></p>
+            <div class="small mb-1 text-muted"><b>Reparto: {{main.getReparto(visit.repartoId)?.name}} </b>
               <div class="badge bg-secondary">{{main.getReparto(visit.repartoId)?.code}}</div>
             </div>
             <p class="small mb-1 text-muted"><b>{{main.getMedico(visit.medicoId)?.title}} {{main.getMedico(visit.medicoId)?.lastName}} {{main.getMedico(visit.medicoId)?.firstName}}</b></p>

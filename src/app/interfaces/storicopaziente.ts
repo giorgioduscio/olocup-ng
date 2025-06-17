@@ -11,6 +11,7 @@ export interface Visit {
   repartoId: number;
   medicoId: number;
   strutturaId: number;
+  prescriptionNumber: string;
   payment: Payment;
 }
 export interface Payment {
