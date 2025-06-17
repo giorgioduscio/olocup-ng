@@ -18,7 +18,7 @@ import { Paziente } from '../../../interfaces/paziente';
   styleUrl: './prenotazione-alpi.component.sass'
 })
 export class PrenotazioneAlpiComponent {
-  aggiornaStorico(_t445: Paziente) {throw new Error('Method not implemented.');} //!DA ELIMINARE
+  
   constructor(
     public main:PrenotazioneAlpiService,
     public AppPrestazioni:AppPrestazioniService,
@@ -50,8 +50,5 @@ export class PrenotazioneAlpiComponent {
     el?.nativeElement?.click();
   }
 
-  StoricoPazienti(): StoricoPaziente[] {
-    return this.AppPaziente.storicoPazienti;
-  }
 
 }

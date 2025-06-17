@@ -16,8 +16,7 @@
     </div>
   </div>
   <div *ngIf="AppPaziente.datiModale(); else noStoricoPazienti" class="container p-5">
-    @for(storicoPaziente of AppPaziente.storicoPazienti; track storicoPaziente) {
-      @for(visit of storicoPaziente.visits; track visit) {
+    @for(visit of AppPaziente.datiModale()?.visits; track visit) {
       <div class="d-flex justify-content-between align-items-start">
         <div>
             <h6 class="mb-1">{{visit.name}} {{AppCalendario.itaDate(visit.date)}} - {{visit.time}}</h6> 
@@ -33,8 +32,8 @@
         </div>
       </div>
       <hr>
-      }
     }
+    
   </div>
   <ng-template #noStoricoPazienti>
     <div class="alert alert-info rounded w-75 container justify-content-center align-items-center" role="alert">
@@ -578,7 +577,7 @@
                             <p class="small text-muted mb-0"><b>{{paziente.city}} ({{paziente.recidenceProvince}})</b></p>
                           </div>
                           <div class="text-right btn-group-vertical">
-                            <button (click)="aggiornaStorico(paziente)" name="storicoPaziente" class="btn btn-sm btn-primary mt-1"
+                            <button (click)="AppPaziente.aggiornaStorico(paziente)" name="storicoPaziente" class="btn btn-sm btn-primary mt-1"
                               data-bs-toggle="modal" data-bs-target="#historyModal" type="button">
                               <svg class="icon icon-sm icon-white">
                                 <use href="/assets/bootstrap-italia/svg/sprites.svg#it-note"></use>

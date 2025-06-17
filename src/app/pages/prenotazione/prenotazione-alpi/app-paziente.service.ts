@@ -10,8 +10,7 @@ export class AppPazienteService {
   constructor(private main:PrenotazioneAlpiService, private http:HttpClient) {
     main.AppPazienti =this
     effect(() => {
-      this.pazienti =this.main.pazienti();
-      this.storicoPazienti = this.main.storicoPazienti();      
+      this.pazienti =this.main.pazienti();   
     });
     this.http.get<typeof this.stato>('/assets/datas/italia.json').subscribe((data) => {
       this.stato = data
@@ -21,7 +20,6 @@ export class AppPazienteService {
 
   //* MOSTRA DATI
   pazienti :Paziente[] = [];
-  storicoPazienti :StoricoPaziente[] =[];
   pazienteSelezionato =signal<Paziente|null>(null);
   filtroPaziente: string = '';
   renderPatients() {
@@ -301,7 +299,7 @@ export class AppPazienteService {
   
   aggiornaStorico(paziente:Paziente){
     // Trova lo storico del paziente selezionato
-    const storicoPaziente = this.storicoPazienti.find(    
+    const storicoPaziente = this.main.storicoPazienti().find(    
       sp => sp.pazienteId === paziente.id);
     
     this.datiModale.set(storicoPaziente || null);
@@ -312,7 +310,7 @@ export class AppPazienteService {
     if (!pazienteId) return [];
     
     // Cerca nello storico pazienti le visite corrispondenti all'ID del paziente selezionato
-    const storicoPaziente = this.storicoPazienti.find(
+    const storicoPaziente = this.main.storicoPazienti().find(
       sp => sp.pazienteId === pazienteId
     );
     
