@@ -189,8 +189,7 @@
                     <label for="filtroPrestazioni" class="visually-hidden">Cerca Prestazione</label>
                     <div class="input-group mb-3">
                       <span class="input-group-text bg-white border-end-0">
-                        <svg class="icon icon-sm" aria-hidden="true">
-                          <use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use></svg>
+                        <svg class="icon icon-sm" aria-hidden="true"><use href="/assets/bootstrap-italia/svg/sprites.svg#it-search"></use></svg>
                       </span>
                       <!--TEST: Visita cardiologica, Elettrocardiogramma, Ecocardiogramma, RX Torace, TAC Cranio-->
                       <input type="search" class="form-control border-start-0 m-0" 
@@ -436,9 +435,8 @@
                       @for (btn of AppCalendario.renderSlots(); track $index){
                         <div>
                           <button class="btn m-2 p-2 btn-light border"
-                                  [attr.slot-id]="btn.slot.id"
+                                  [attr.slot-time]="btn.slot.time"
                                   [class.giornoSelezionato]="AppCalendario.slotSelezionato()?.id === btn.slot.id"
-                                  [class.d-none]="btn.visuallyHidden"
                                   (click)="AppCalendario.selezionaSlot($event, btn.slot)"
                           > {{btn.slot.time}} - {{btn.endTime}}
                           </button>
@@ -519,8 +517,10 @@
                             </svg>Struttura
                           </h6>  
                           <p class="font-weight-bold mb-1">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.name }}</p>
-                          <p class="small mb-1">{{ main.getAgenda(AppPrestazioni.selezionate()[0].agendaId)?.name }}</p>
-                          <p class="small">{{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.address }}</p> 
+                          <p class="small mb-1">
+                            {{ main.getAgenda(AppPrestazioni.selezionate()[0].agendaId)?.name }},
+                            {{ main.getStruttura(AppPrestazioni.selezionate()[0].strutturaId)?.address }}
+                          </p> 
                         </div> 
                       </div>
                   </div>

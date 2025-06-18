@@ -162,46 +162,40 @@ export class AppCalendarioService {
   }
   //! Slots
   renderSlots() {
-    const todayStr = this.formatDate(new Date());
+    const todayStr = this.formatDate(new Date()); // Data odierna in formato 'YYYY-MM-DD'
+    const selectedDate = this.giornoSelezionato(); // Giorno selezionato dal calendario
+    if (!selectedDate) return null; // Nessuna data selezionata, niente da mostrare
 
-    let slotsMatch = this.getSlots(this.AppPrestazioni.selezionate())
-      .filter(s => (s.date >= todayStr) && (s.date === this.giornoSelezionato()));
+    // Filtra slot per la data selezionata e scarta quelli passati
+    const slots = this.getSlots(this.AppPrestazioni.selezionate())
+      .filter(s => s.date === selectedDate && s.date >= todayStr) // solo slot del giorno selezionato, da oggi in poi
+      .sort((a, b) => a.time.localeCompare(b.time)); // ordina per orario (es. '08:30' < '10:00')
 
-    // Ordina per orario
-    slotsMatch.sort((s1, s2) => {
-      const [hours1, minutes1] = s1.time.split(':').map(Number);
-      const [hours2, minutes2] = s2.time.split(':').map(Number);
-      return (hours1 * 60 + minutes1) - (hours2 * 60 + minutes2);
-    });
+    if (!slots.length) return null; // Nessuno slot valido
 
-    if (!slotsMatch.length) return null;
+    const seenTimes = new Set<string>(); // Tiene traccia degli orari già visti per evitare duplicati
 
-    const seenTimes = new Set<string>();
+    return slots
+      .filter(slot => {
+        if (seenTimes.has(slot.time)) return false; // Se già visto, salta
+        seenTimes.add(slot.time); // Altrimenti, memorizza e tienilo
+        return true;
+      })
+      .map(slot => {
+        const [h, m] = slot.time.split(':').map(Number); // Divide l'orario in ore e minuti
+        const end = new Date(0, 0, 0, h, m + slot.durationMinutes); // Calcola l'orario di fine
+        const endTime = `${String(end.getHours()).padStart(2, '0')}:${String(end.getMinutes()).padStart(2, '0')}`; // Formatta 'HH:MM'
 
-    return slotsMatch.map((slot) => {
-      const [hours, minutes] = slot.time.split(':').map(Number);
-      const start = new Date(0, 0, 0, hours, minutes);
-      const end = new Date(start.getTime() + slot.durationMinutes * 60000);
-      const endTime = `${String(end.getHours()).padStart(2, '0')}:${String(end.getMinutes()).padStart(2, '0')}`;
-
-      const disabled = slot.status !== "available";
-      const borderClass =
-        slot.priority === 'ob' ? 'border border-2 border-danger' :
-        slot.priority === 'd'  ? 'border border-2 border-success' : '';
-
-      const key = `${slot.date}-${slot.time}`;
-      const visuallyHidden = seenTimes.has(key);
-      seenTimes.add(key);
-
-      return {
-        slot,
-        endTime,
-        disabled,
-        borderClass,
-        visuallyHidden
-      };
-    });
+        // Restituisce oggetto con dati per il template
+        return {
+          slot,
+          endTime,
+          disabled: slot.status !== 'available', // Disabilita se non disponibile
+        };
+      });
   }
+
+
 
 
 
@@ -264,16 +258,6 @@ export class AppCalendarioService {
     if (slot.prestazioneId === null) return console.warn('Slot senza prestazione associata (null)');
     // Imposta nuovo selezionato
     this.slotSelezionato.set(slot);
-    // se il pulsante è nascosto e accanto ne ha uno visibile
-    // mostra il pulsante attuale e nascondi quello accanto
-    const prevBtn =btn.parentElement?.previousElementSibling?.children[0] as HTMLButtonElement | null;
-    const nextBtn =btn.parentElement?.nextElementSibling?.children[0] as HTMLButtonElement | null;
-    const hide ='d-none'
-    if(!btn.classList.contains(hide)) return;
-
-    btn.classList.remove(hide);
-    if(prevBtn?.innerText ==btn.innerText) prevBtn.classList.add(hide)
-    else if(nextBtn?.innerText ==btn.innerText) nextBtn.classList.add(hide)
   }
 
   selezionaPrimaDisponibile() {
@@ -309,7 +293,7 @@ export class AppCalendarioService {
       dayBtn?.click();
 
       setTimeout(() => {
-        const slotBtn :HTMLButtonElement|null = document.querySelector(`button[slot-id="${firstSlot.id}"]`);
+        const slotBtn :HTMLButtonElement|null = document.querySelector(`button[slot-time="${firstSlot.time}"]`);
 
         if (slotBtn) {
           // Rimuovi invisibilità temporaneamente

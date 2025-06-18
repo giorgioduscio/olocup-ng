@@ -90,39 +90,52 @@ export class AppPrestazioniService {
   // ───────────────────────────────────────────────
   // SELEZIONE MULTIPLA
   // ───────────────────────────────────────────────
-    // Signal che contiene tutte le prestazioni selezionate 
-    selezionate: WritableSignal<Prestazione[]> = signal([]);
-    isSelected =(p:Prestazione)=> this.getPrestazioniSelezionate()().some(sel => sel.id === p.id)
+  // Signal che contiene tutte le prestazioni selezionate 
+  selezionate: WritableSignal<Prestazione[]> = signal([]);
+  isSelected =(p:Prestazione)=> this.getPrestazioniSelezionate()().some(sel => sel.id === p.id)
 
-    // Aggiunge o rimuove una prestazione dalla selezione multipla.
-    selezionaPrestazioni(p: Prestazione, e: Event, routeToTab?: Function) {
-      const btnCalendario = (e.target as HTMLElement).closest('[calendario]');
-      const btnPaziente = (e.target as HTMLElement).closest('[paziente]');
-      const attuali = this.selezionate();
-      const selezionata =this.isSelected(p);
+  // Aggiunge o rimuove una prestazione dalla selezione multipla.
+  selezionaPrestazioni(p: Prestazione, e: Event, routeToTab?: Function) {
+    // Ottieni il pulsante cliccato: "Altre disponibilità" (calendario) o "Prima data disponibile" (paziente)
+    const btnCalendario = (e.target as HTMLElement).closest('[calendario]');
+    const btnPaziente = (e.target as HTMLElement).closest('[paziente]');
 
-      // Se la prestazione non è selezionata, o nessun bottone è stato premuto, o non ci sono selezioni attive
-      if (!selezionata || // se non è già selezionata
-          (!btnCalendario && !btnPaziente) || // nessun pulsante premuto
-          !attuali.length || // prima selezione
-          !(btnPaziente && selezionata) // route primo disponibile in slot selezionati
-      ){
-        if (attuali.find(sel => sel.id === p.id)) 
-          this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
-        else this.selezionate.set([...attuali, p])
+    // Ottieni le prestazioni attualmente selezionate
+    const attuali = this.selezionate();
+    // Verifica se la prestazione è già selezionata
+    const selezionata = this.isSelected(p);
 
-        // Reset degli slot e paziente
-        this.main.AppCalendario.slotSelezionato.set(null);
-        this.main.AppPazienti.pazienteSelezionato.set(null);
-      }
-      
-      setTimeout(()=>{
-        // Navigazione al tab calendario
-        if (btnCalendario && routeToTab) routeToTab('datetime');
-        // Selezione prima data disponibile
-        if (btnPaziente) this.main.AppCalendario.selezionaPrimaDisponibile();
+    // Se la prestazione è già selezionata e il click è su uno dei due pulsanti,
+    // allora NON va deselezionata. Esegui solo le eventuali azioni di routing.
+    if (selezionata && (btnCalendario || btnPaziente)) {
+      setTimeout(() => {
+        if (btnCalendario && routeToTab) routeToTab('datetime'); // Vai al calendario
+        if (btnPaziente) this.main.AppCalendario.selezionaPrimaDisponibile(); // Seleziona primo slot disponibile
       }, 200);
+      return; // Impedisce la deselezione dell'elemento
     }
+
+    // Aggiungi o rimuovi la prestazione dalla selezione
+    if (attuali.find(sel => sel.id === p.id)) {
+      // Se la prestazione è già presente, rimuovila
+      this.selezionate.set(attuali.filter(sel => sel.id !== p.id));
+    } else {
+      // Altrimenti aggiungila alla lista delle selezionate
+      this.selezionate.set([...attuali, p]);
+    }
+
+    // Reset slot selezionato e paziente selezionato
+    this.main.AppCalendario.slotSelezionato.set(null);
+    this.main.AppPazienti.pazienteSelezionato.set(null);
+
+    // Esegui eventuali azioni post-selezione
+    // - Vai al calendario se è stato cliccato il pulsante relativo
+    // - Seleziona automaticamente la prima disponibilità se richiesto
+    setTimeout(() => {
+      if (btnCalendario && routeToTab) routeToTab('datetime'); // Naviga alla tab calendario
+      if (btnPaziente) this.main.AppCalendario.selezionaPrimaDisponibile(); // Seleziona primo slot disponibile
+    }, 200);
+  }
 
     // Rimuove una prestazione specifica dalla selezione.
     deselezionaPrestazione(prestazioneId: number) {
